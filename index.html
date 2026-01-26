@@ -4,279 +4,97 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مركز النخبة الطبي</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <style>
-        :root {
-            --primary-blue: #0c59cf; /* أزرق طبي عميق */
-            --medical-teal: #10b981; /* أخضر طبي للنجاح والتأكيد */
-            --bg-light: #f0f4f8;
-            --text-dark: #1e293b;
-            --white: #ffffff;
-        }
-
-        body {
-            font-family: 'Tajawal', sans-serif;
-            background-color: var(--bg-light);
-            margin: 0;
-            color: var(--text-dark);
-        }
-
-        .mobile-wrapper {
-            width: 100%;
-            max-width: 480px;
-            margin: 0 auto;
-            background-color: var(--white);
-            min-height: 100vh;
-            box-shadow: 0 0 20px rgba(0,0,0,0.05);
-        }
-
-        /* الهيدر واللوجو */
-        .header-section {
-            padding: 40px 20px;
-            text-align: center;
-            background: linear-gradient(135deg, #ffffff 0%, #eef2ff 100%);
-            border-bottom-left-radius: 40px;
-            border-bottom-right-radius: 40px;
-        }
-
-        .logo-box i {
-            font-size: 45px;
-            color: var(--primary-blue);
-            margin-bottom: 10px;
-        }
-
-        .clinic-name {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--primary-blue);
-            margin: 5px 0;
-        }
-
-        .clinic-sub {
-            font-size: 14px;
-            color: #64748b;
-        }
-
-        /* أيقونات التواصل الاحترافية */
-        .contact-bar {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 25px;
-        }
-
-        .contact-btn {
-            width: 50px;
-            height: 50px;
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            font-size: 20px;
-            background: white;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            transition: 0.3s;
-        }
-
-        .btn-call { color: #2563eb; }
-        .btn-wa { color: #22c55e; }
-        .btn-map { color: #ef4444; }
-
-        .contact-btn:hover { transform: translateY(-3px); }
-
-        /* قسم الخدمات */
-        .section-header {
-            padding: 30px 25px 15px;
-            font-weight: 700;
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .services-scroll {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            padding: 0 25px;
-        }
-
-        .s-card {
-            background: #f8fafc;
-            padding: 20px;
-            border-radius: 20px;
-            border: 1px solid #e2e8f0;
-            text-align: center;
-        }
-
-        .s-card i {
-            font-size: 28px;
-            color: var(--primary-blue);
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        .s-card span {
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        /* فورم الحجز العصري */
-        .booking-card {
-            margin: 30px 20px;
-            padding: 30px;
-            border-radius: 30px;
-            background: var(--white);
-            border: 1px solid #eef2ff;
-            box-shadow: 0 15px 35px rgba(12, 89, 207, 0.08);
-        }
-
+        :root { --primary: #0c59cf; --bg: #f8fafc; }
+        body { font-family: 'Tajawal', sans-serif; background: var(--bg); margin: 0; display: flex; justify-content: center; }
+        .app-container { width: 100%; max-width: 450px; background: white; min-height: 100vh; }
+        
+        .header { padding: 40px 20px; text-align: center; background: linear-gradient(135deg, #0c59cf, #06b6d4); color: white; border-bottom-left-radius: 30px; border-bottom-right-radius: 30px; }
+        .logo i { font-size: 50px; margin-bottom: 10px; }
+        
+        .booking-form { padding: 30px 20px; }
         .form-group { margin-bottom: 20px; }
-        .form-group label {
-            display: block;
-            font-size: 13px;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #475569;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 15px;
-            border-radius: 12px;
-            border: 1px solid #cbd5e1;
-            background: #fdfdfd;
-            font-family: 'Tajawal', sans-serif;
-            box-sizing: border-box;
-            font-size: 15px;
-        }
-
-        .form-group input:focus {
-            outline: none;
-            border-color: var(--primary-blue);
-            box-shadow: 0 0 0 4px rgba(12, 89, 207, 0.1);
+        label { display: block; margin-bottom: 8px; font-weight: 600; color: #475569; font-size: 14px; }
+        
+        input, select {
+            width: 100%; padding: 15px; border-radius: 12px; border: 1px solid #e2e8f0;
+            background: #fdfdfd; font-family: 'Tajawal'; box-sizing: border-box; font-size: 16px;
         }
 
         #submitBtn {
-            width: 100%;
-            padding: 16px;
-            background: var(--primary-blue);
-            color: white;
-            border: none;
-            border-radius: 15px;
-            font-size: 17px;
-            font-weight: 700;
-            font-family: 'Tajawal', sans-serif;
-            cursor: pointer;
-            box-shadow: 0 8px 20px rgba(12, 89, 207, 0.2);
+            width: 100%; padding: 16px; background: var(--primary); color: white;
+            border: none; border-radius: 12px; font-size: 18px; font-weight: 700; cursor: pointer;
         }
 
-        #submitBtn:active { transform: scale(0.98); }
-
-        .success-overlay {
-            display: none;
-            text-align: center;
-            color: var(--medical-teal);
-            font-weight: 700;
-            margin-top: 20px;
-            animation: bounceIn 0.5s;
-        }
-
-        @keyframes bounceIn {
-            0% { transform: scale(0.8); opacity: 0; }
-            70% { transform: scale(1.1); }
-            100% { transform: scale(1); opacity: 1; }
-        }
+        .loading-services { font-size: 12px; color: var(--primary); }
     </style>
 </head>
 <body>
 
-<div class="mobile-wrapper">
-    <div class="header-section">
-        <div class="logo-box">
-            <i class="fa-solid fa-house-medical"></i>
-        </div>
-        <h1 class="clinic-name">مركز النخبة الطبي</h1>
-        <p class="clinic-sub">رعايتكم هي أولويتنا القصوى</p>
-
-        <div class="contact-bar">
-            <a href="tel:+966500000000" class="contact-btn btn-call"><i class="fa-solid fa-phone"></i></a>
-            <a href="https://wa.me/966500000000" class="contact-btn btn-wa"><i class="fa-brands fa-whatsapp"></i></a>
-            <a href="#" class="contact-btn btn-map"><i class="fa-solid fa-location-dot"></i></a>
-        </div>
+<div class="app-container">
+    <div class="header">
+        <div class="logo"><i class="fa-solid fa-file-medical"></i></div>
+        <h1>مركز النخبة الطبي</h1>
+        <p>اختر الخدمة واترك بياناتك وسنتصل بك</p>
     </div>
 
-    <div class="section-header">
-        <i class="fa-solid fa-hand-holding-medical"></i> خدماتنا المميزة
-    </div>
-    <div class="services-scroll">
-        <div class="s-card">
-            <i class="fa-solid fa-stethoscope"></i>
-            <span>كشف عام</span>
-        </div>
-        <div class="s-card">
-            <i class="fa-solid fa-tooth"></i>
-            <span>طب الأسنان</span>
-        </div>
-        <div class="s-card">
-            <i class="fa-solid fa-kit-medical"></i>
-            <span>طوارئ</span>
-        </div>
-        <div class="s-card">
-            <i class="fa-solid fa-microscope"></i>
-            <span>مختبر</span>
-        </div>
-    </div>
-
-    <div class="booking-card">
-        <h2 style="font-size: 20px; margin-bottom: 25px; text-align: center;">حجز موعد جديد</h2>
+    <div class="booking-form">
         <form id="bookingForm">
             <div class="form-group">
-                <label><i class="fa-solid fa-user"></i> اسم المريض</label>
-                <input type="text" id="name" placeholder="أدخل اسمك بالكامل" required>
+                <label>اسم المريض</label>
+                <input type="text" id="name" placeholder="الاسم الثلاثي" required>
             </div>
+
             <div class="form-group">
-                <label><i class="fa-solid fa-mobile-screen"></i> رقم الجوال</label>
+                <label>رقم الجوال</label>
                 <input type="tel" id="phone" placeholder="05xxxxxxxx" required>
             </div>
-            <div style="display: flex; gap: 15px;">
-                <div class="form-group" style="flex: 1;">
-                    <label><i class="fa-solid fa-calendar-day"></i> التاريخ</label>
-                    <input type="date" id="date" required>
-                </div>
-                <div class="form-group" style="flex: 1;">
-                    <label><i class="fa-solid fa-clock"></i> الوقت</label>
-                    <input type="time" id="time" required>
-                </div>
+
+            <div class="form-group">
+                <label>الخدمة المطلوبة</label>
+                <select id="service" required>
+                    <option value="">جاري تحميل الخدمات...</option>
+                </select>
             </div>
-            <button type="submit" id="submitBtn">تأكيد الحجز</button>
+
+            <button type="submit" id="submitBtn">إرسال الطلب</button>
         </form>
-        <div id="msg" class="success-overlay">
-            <i class="fa-solid fa-circle-check"></i> تم تسجيل موعدك بنجاح!
-        </div>
+        <p id="msg" style="display:none; text-align:center; color:green; margin-top:20px; font-weight:bold;">✅ تم استلام طلبك، سنتواصل معك فوراً!</p>
     </div>
 </div>
 
 <script>
     const scriptURL = 'https://script.google.com/macros/s/AKfycbxGsCS6Kl4c-936GBAaCbiNMEvMpMaG0lpVmZtsVgWh2ORftZ2M8XQ6sy8xWJBxuCBA/exec';
-    const form = document.getElementById('bookingForm');
-    const submitBtn = document.getElementById('submitBtn');
-    const msg = document.getElementById('msg');
 
-    form.addEventListener('submit', e => {
+    // 1. جلب الخدمات من قوقل شيت عند تحميل الصفحة
+    window.onload = function() {
+        fetch(scriptURL)
+        .then(res => res.json())
+        .then(services => {
+            const select = document.getElementById('service');
+            select.innerHTML = '<option value="">-- اختر الخدمة --</option>';
+            services.forEach(s => {
+                let opt = document.createElement('option');
+                opt.value = s;
+                opt.innerHTML = s;
+                select.appendChild(opt);
+            });
+        });
+    };
+
+    // 2. إرسال البيانات
+    document.getElementById('bookingForm').addEventListener('submit', e => {
         e.preventDefault();
-        submitBtn.disabled = true;
-        submitBtn.innerText = "جاري الحفظ...";
+        const btn = document.getElementById('submitBtn');
+        btn.disabled = true;
+        btn.innerText = "جاري الإرسال...";
 
         const data = {
             name: document.getElementById('name').value,
             phone: document.getElementById('phone').value,
-            date: document.getElementById('date').value,
-            time: document.getElementById('time').value
+            service: document.getElementById('service').value
         };
 
         fetch(scriptURL, {
@@ -285,22 +103,13 @@
             body: JSON.stringify(data)
         })
         .then(() => {
-            msg.style.display = "block";
-            form.reset();
-            submitBtn.disabled = false;
-            submitBtn.innerText = "تأكيد الحجز";
-            setTimeout(() => { msg.style.display = "none"; }, 5000);
-        })
-        .catch(err => {
-            alert("حدث خطأ، يرجى التحقق من الاتصال");
-            submitBtn.disabled = false;
+            document.getElementById('msg').style.display = "block";
+            document.getElementById('bookingForm').reset();
+            btn.disabled = false;
+            btn.innerText = "إرسال الطلب";
         });
     });
-
-    // منع التواريخ الماضية
-    document.getElementById('date').min = new Date().toISOString().split("T")[0];
 </script>
 
 </body>
 </html>
-
