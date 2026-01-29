@@ -3,170 +3,206 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Elite Medical Portal | Pro</title>
+    <title>Elite Clinic App</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
             --primary: #2d6cdf;
-            --bg: #f8fbff;
-            --card-white: rgba(255, 255, 255, 0.9);
-            --star: #ffc107;
+            --accent: #0ea5e9;
+            --bg: #fdfeff;
+            --text: #1e293b;
+            --soft-shadow: 0 20px 50px rgba(0,0,0,0.05);
         }
 
         body {
             font-family: 'Tajawal', sans-serif;
-            background: #cbd5e1; /* خلفية المحاكاة للكمبيوتر */
+            background-color: #e2e8f0; /* خلفية للعرض على الكمبيوتر */
             margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh;
+            color: var(--text);
         }
 
-        .phone-frame {
-            width: 100%; max-width: 414px; height: 92vh;
-            background: var(--bg); border-radius: 40px;
-            border: 8px solid #1a1a1a; position: relative;
+        /* حاوية التطبيق */
+        .phone-wrapper {
+            width: 100%; max-width: 420px; height: 92vh;
+            background: var(--bg); border-radius: 45px;
+            border: 8px solid #111; position: relative;
             overflow-y: auto; scrollbar-width: none;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.2);
         }
 
-        /* الهيدر المحسن */
-        .app-header {
-            background: linear-gradient(180deg, #fff 0%, var(--bg) 100%);
+        /* الهيدر العلوي - فخامة هادئة */
+        header {
             padding: 40px 20px 20px; text-align: center;
+            background: linear-gradient(to bottom, #fff, var(--bg));
         }
 
-        .profile-img {
-            width: 100px; height: 100px; border-radius: 30px;
-            object-fit: cover; border: 4px solid #fff;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        .logo-container {
+            width: 90px; height: 90px; margin: 0 auto 15px;
+            background: white; border-radius: 25px;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 10px 30px rgba(45, 108, 223, 0.15);
+            border: 1px solid #f0f4f8;
         }
 
-        /* شبكة الأزرار */
-        .grid-links {
+        .logo-container img { width: 70%; object-fit: contain; }
+
+        h1 { font-size: 20px; font-weight: 800; margin: 0; color: #0f172a; }
+        .specialty { font-size: 13px; color: #64748b; margin-top: 5px; }
+
+        /* أزرار الإجراءات السريعة */
+        .action-grid {
             display: grid; grid-template-columns: repeat(3, 1fr);
-            gap: 12px; padding: 0 20px 20px;
+            gap: 15px; padding: 20px;
         }
 
-        .action-item {
-            background: #fff; padding: 15px 5px; border-radius: 20px;
-            text-align: center; text-decoration: none; color: #1e293b;
-            font-size: 11px; font-weight: 700; transition: 0.3s;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
-        }
-        .action-item i { font-size: 20px; margin-bottom: 8px; display: block; color: var(--primary); }
-
-        /* قسم التقييمات (العرض) */
-        .section-title { padding: 0 25px; font-size: 16px; font-weight: 800; color: #1e293b; margin: 20px 0 10px; }
-
-        .reviews-container {
-            display: flex; overflow-x: auto; gap: 15px; padding: 10px 20px 20px;
-            scrollbar-width: none;
+        .action-btn {
+            background: white; padding: 15px 5px; border-radius: 20px;
+            text-align: center; text-decoration: none; color: var(--text);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02); transition: 0.3s;
+            border: 1px solid #f1f5f9;
         }
 
-        .review-card {
-            min-width: 260px; background: #fff; padding: 15px;
-            border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+        .action-btn i { font-size: 22px; margin-bottom: 8px; display: block; }
+        .action-btn span { font-size: 11px; font-weight: 700; }
+        .action-btn.wa i { color: #22c55e; }
+        .action-btn.call i { color: var(--primary); }
+        .action-btn.map i { color: #ef4444; }
+
+        /* بطاقة الحجز الموحدة */
+        .section-card {
+            background: white; margin: 0 20px 20px; padding: 25px;
+            border-radius: 30px; box-shadow: var(--soft-shadow);
+            border: 1px solid #f8fafc;
         }
 
-        .stars { color: var(--star); font-size: 12px; margin-bottom: 8px; }
-        .review-text { font-size: 13px; color: #475569; line-height: 1.5; }
-        .reviewer-name { font-size: 12px; font-weight: 800; margin-top: 10px; display: block; }
+        .card-header { font-size: 16px; font-weight: 800; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        .card-header i { color: var(--primary); }
 
-        /* فورم إضافة تقييم */
-        .add-review-box {
-            background: #1e293b; color: #fff; margin: 0 20px 40px;
-            padding: 25px; border-radius: 30px;
+        .input-group { margin-bottom: 18px; }
+        label { font-size: 12px; font-weight: 700; color: #94a3b8; margin-bottom: 8px; display: block; padding-right: 5px; }
+        
+        input, select, textarea {
+            width: 100%; padding: 15px; background: #f8fafc;
+            border: 1.5px solid #edf2f7; border-radius: 16px;
+            font-family: inherit; font-size: 14px; box-sizing: border-box; transition: 0.3s;
         }
 
-        .star-rating {
-            display: flex; flex-direction: row-reverse; justify-content: center; gap: 10px; margin-bottom: 15px;
-        }
-        .star-rating input { display: none; }
-        .star-rating label { font-size: 25px; color: #4b5563; cursor: pointer; transition: 0.3s; }
-        .star-rating input:checked ~ label, .star-rating label:hover, .star-rating label:hover ~ label { color: var(--star); }
+        input:focus, select:focus, textarea:focus { outline: none; border-color: var(--primary); background: white; }
 
-        .review-input {
-            width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 12px; padding: 12px; color: #fff; font-family: inherit; margin-bottom: 15px;
+        #submitBtn {
+            width: 100%; padding: 16px; background: var(--primary);
+            color: white; border: none; border-radius: 18px;
+            font-size: 16px; font-weight: 800; cursor: pointer;
+            box-shadow: 0 10px 25px rgba(45, 108, 223, 0.2);
         }
 
-        .btn-review {
-            width: 100%; padding: 12px; background: var(--primary); border: none;
-            border-radius: 12px; color: #fff; font-weight: 700; cursor: pointer;
-        }
+        /* نظام التقييم بالنجوم */
+        .stars-row { display: flex; flex-direction: row-reverse; justify-content: center; gap: 8px; margin-bottom: 15px; }
+        .stars-row input { display: none; }
+        .stars-row label { font-size: 28px; color: #e2e8f0; cursor: pointer; transition: 0.2s; }
+        .stars-row input:checked ~ label, .stars-row label:hover, .stars-row label:hover ~ label { color: #ffc107; }
+
+        .footer-logo { text-align: center; padding: 20px; opacity: 0.4; font-size: 12px; }
     </style>
 </head>
 <body>
 
-<div class="phone-frame">
-    <div class="app-header">
-        <img src="https://cdn-icons-png.flaticon.com/512/3304/3304567.png" class="profile-img">
-        <h1 style="font-size: 20px; margin-top:15px;">د. سفيان بن عيسى</h1>
-        <p style="font-size: 12px; color: #64748b;">أخصائي جراحة الأسنان وتجميل الوجه</p>
-    </div>
-
-    <div class="grid-links">
-        <a href="tel:+966500" class="action-item"><i class="fa-solid fa-phone"></i>اتصال</a>
-        <a href="https://wa.me/966500" class="action-item"><i class="fa-brands fa-whatsapp"></i>واتساب</a>
-        <a href="#" class="action-item"><i class="fa-solid fa-map-location-dot"></i>الموقع</a>
-    </div>
-
-    <div class="section-title">آراء المرضى ⭐</div>
-    <div class="reviews-container" id="reviewsList">
-        <div class="review-card">
-            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-            <p class="review-text">"أفضل طبيب أسنان تعاملت معه في الجزائر، احترافية عالية واستقبال رائع."</p>
-            <span class="reviewer-name">محمد أمين</span>
+<div class="phone-wrapper">
+    <header>
+        <div class="logo-container">
+            <img src="https://cdn-icons-png.flaticon.com/512/387/387561.png" alt="Logo">
         </div>
+        <h1>مركز النخبة الطبي</h1>
+        <div class="specialty">طب وجراحة الأسنان الحديثة</div>
+    </header>
+
+    <div class="action-grid">
+        <a href="tel:+96650" class="action-btn call"><i class="fa-solid fa-phone-flip"></i><span>اتصال</span></a>
+        <a href="https://wa.me/96650" class="action-btn wa"><i class="fa-brands fa-whatsapp"></i><span>واتساب</span></a>
+        <a href="#" class="action-btn map"><i class="fa-solid fa-location-arrow"></i><span>الموقع</span></a>
     </div>
 
-    <div class="add-review-box">
-        <h4 style="margin: 0 0 15px; text-align: center;">شاركنا تجربتك</h4>
-        <form id="reviewForm">
-            <div class="star-rating">
-                <input type="radio" name="stars" id="s5" value="5"><label for="s5">★</label>
-                <input type="radio" name="stars" id="s4" value="4"><label for="s4">★</label>
-                <input type="radio" name="stars" id="s3" value="3"><label for="s3">★</label>
-                <input type="radio" name="stars" id="s2" value="2"><label for="s2">★</label>
-                <input type="radio" name="stars" id="s1" value="1"><label for="s1">★</label>
+    <div class="section-card">
+        <div class="card-header"><i class="fa-solid fa-calendar-check"></i> حجز موعد سريع</div>
+        <form id="bookingForm">
+            <div class="input-group">
+                <input type="text" id="name" placeholder="اسمك الكامل" required>
             </div>
-            <input type="text" id="revName" class="review-input" placeholder="اسمك" required>
-            <textarea id="revText" class="review-input" rows="2" placeholder="اكتب تعليقك هنا..." required></textarea>
-            <button type="submit" class="btn-review" id="sendRev">إرسال التقييم</button>
+            <div class="input-group">
+                <input type="tel" id="phone" placeholder="رقم الهاتف" required>
+            </div>
+            <div class="input-group">
+                <select id="service" required>
+                    <option value="">اختر التخصص...</option>
+                </select>
+            </div>
+            <button type="submit" id="submitBtn">تأكيد الموعد</button>
         </form>
+    </div>
+
+    <div class="section-card">
+        <div class="card-header"><i class="fa-solid fa-star-half-stroke"></i> قيّم تجربتك معنا</div>
+        <form id="reviewForm">
+            <div class="stars-row">
+                <input type="radio" name="star" id="st5" value="5"><label for="st5">★</label>
+                <input type="radio" name="star" id="st4" value="4"><label for="st4">★</label>
+                <input type="radio" name="star" id="st3" value="3"><label for="st3">★</label>
+                <input type="radio" name="star" id="st2" value="2"><label for="st2">★</label>
+                <input type="radio" name="star" id="st1" value="1"><label for="st1">★</label>
+            </div>
+            <textarea id="revComment" rows="2" placeholder="اكتب رأيك باختصار هنا..."></textarea>
+            <button type="submit" id="revBtn" style="background: #f1f5f9; color: #475569; margin-top: 10px; border-radius: 12px; font-size: 13px; height: 45px; width: 100%; border: none; font-weight: 700; cursor: pointer;">إرسال التقييم</button>
+        </form>
+    </div>
+
+    <div class="footer-logo">
+        <p>تصميم وتطوير بواسطة [اسمك]</p>
+        <img src="https://profile-counter.glitch.me/ElitePro/count.svg" alt="Visitors">
     </div>
 </div>
 
 <script>
     const scriptURL = 'https://script.google.com/macros/s/AKfycbxGsCS6Kl4c-936GBAaCbiNMEvMpMaG0lpVmZtsVgWh2ORftZ2M8XQ6sy8xWJBxuCBA/exec';
 
-    // إرسال التقييم
-    document.getElementById('reviewForm').addEventListener('submit', e => {
-        e.preventDefault();
-        const btn = document.getElementById('sendRev');
-        btn.disabled = true; btn.innerText = "جاري الحفظ...";
-
-        const stars = document.querySelector('input[name="stars"]:checked')?.value || 5;
-        
-        fetch(scriptURL, {
-            method: 'POST',
-            mode: 'no-cors',
-            body: JSON.stringify({
-                type: 'review', // لتمييز الطلب في السكريبت
-                name: document.getElementById('revName').value,
-                text: document.getElementById('revText').value,
-                rating: stars
-            })
-        }).then(() => {
-            alert("شكراً لتقييمك! سيظهر بعد المراجعة.");
-            document.getElementById('reviewForm').reset();
-            btn.disabled = false; btn.innerText = "إرسال التقييم";
+    // جلب الخدمات
+    window.onload = () => {
+        fetch(scriptURL).then(r => r.json()).then(data => {
+            const s = document.getElementById('service');
+            s.innerHTML = '<option value="">اختر التخصص...</option>';
+            data.forEach(item => { s.innerHTML += `<option value="${item}">${item}</option>`; });
         });
-    });
+    };
 
-    // ملاحظة للمصمم: لجلب التقييمات، يمكنك تطوير سكريبت الـ GET 
-    // ليقوم بقراءة البيانات من ورقة Reviews في Google Sheets
+    // إرسال الحجز والتقييم (نفس الـ POST مع تمييز النوع)
+    const sendData = (payload) => {
+        return fetch(scriptURL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(payload) });
+    };
+
+    document.getElementById('bookingForm').onsubmit = (e) => {
+        e.preventDefault();
+        const btn = document.getElementById('submitBtn');
+        btn.innerText = "جاري الحفظ...";
+        sendData({
+            type: 'booking',
+            name: document.getElementById('name').value,
+            phone: document.getElementById('phone').value,
+            service: document.getElementById('service').value
+        }).then(() => { alert("تم الحجز بنجاح!"); btn.innerText = "تأكيد الموعد"; });
+    };
+
+    document.getElementById('reviewForm').onsubmit = (e) => {
+        e.preventDefault();
+        const star = document.querySelector('input[name="star"]:checked')?.value || 5;
+        sendData({
+            type: 'review',
+            name: "مريض",
+            rating: star,
+            comment: document.getElementById('revComment').value
+        }).then(() => { alert("شكراً لتقييمك!"); });
+    };
 </script>
 
 </body>
