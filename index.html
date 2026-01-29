@@ -3,24 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>تطبيق عيادة النخبة</title>
+    <title>Premium Clinic Portal</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
-            --primary: #2d6cdf;
-            --bg-body: #eef2f7;
-            --bg-app: #f8fbff;
-            --white: #ffffff;
-            --text-main: #1a2b4b;
-            --shadow: 0 10px 25px rgba(0,0,0,0.05);
+            --accent: #2d6cdf;
+            --glass: rgba(255, 255, 255, 0.85);
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
 
         body {
             font-family: 'Tajawal', sans-serif;
-            background-color: var(--bg-body);
+            background: #f0f2f5;
             margin: 0;
             display: flex;
             justify-content: center;
@@ -28,209 +25,190 @@
             min-height: 100vh;
         }
 
-        /* حاوية الهاتف - تجعل الموقع يبدو كتطبيق حتى في الكمبيوتر */
-        .phone-container {
+        /* حاوية المنافسة (Desktop Mockup) */
+        .app-frame {
             width: 100%;
-            max-width: 414px; /* عرض iPhone standard */
+            max-width: 420px;
             height: 92vh;
-            background-color: var(--bg-app);
+            background: #fff;
+            border-radius: 45px;
             position: relative;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.2);
+            border: 10px solid #1a1a1a;
             overflow-y: auto;
-            border-radius: 40px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-            border: 8px solid #333; /* إطار الهاتف */
+            scrollbar-width: none;
         }
 
-        /* الهيدر مع اللوجو */
-        .app-header {
-            background: var(--white);
-            padding: 40px 20px 25px;
-            text-align: center;
-            border-bottom-left-radius: 35px;
-            border-bottom-right-radius: 35px;
-            box-shadow: var(--shadow);
-        }
-
-        .logo-wrapper {
-            width: 85px;
-            height: 85px;
-            background: var(--white);
-            border-radius: 22px;
-            margin: 0 auto 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 8px 20px rgba(45, 108, 223, 0.15);
-            overflow: hidden;
-            border: 2px solid #f0f7ff;
-        }
-
-        /* ضع رابط اللوجو الخاص بك هنا */
-        .logo-wrapper img {
-            width: 80%;
-            height: 80%;
-            object-fit: contain;
-        }
-
-        .app-header h1 { font-size: 20px; font-weight: 800; margin: 5px 0; color: var(--primary); }
-        .app-header p { font-size: 12px; color: #7a8ba3; margin: 0; }
-
-        /* أزرار التواصل السريع */
-        .quick-actions {
-            display: flex;
-            justify-content: space-around;
-            padding: 25px 15px;
-        }
-
-        .action-btn {
-            text-decoration: none;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            color: var(--text-main);
-        }
-
-        .icon-box {
-            width: 52px;
-            height: 52px;
-            background: var(--white);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            box-shadow: var(--shadow);
-            transition: 0.3s;
-        }
-
-        .btn-call { color: var(--primary); }
-        .btn-wa { color: #25d366; }
-        .btn-map { color: #ff3b30; }
-
-        .action-btn span { font-size: 11px; font-weight: 700; }
-        .action-btn:active .icon-box { transform: scale(0.9); }
-
-        /* نموذج الحجز */
-        .form-card {
-            margin: 0 20px 30px;
-            background: var(--white);
-            padding: 25px;
-            border-radius: 30px;
-            box-shadow: var(--shadow);
-        }
-
-        .form-card h3 { font-size: 18px; font-weight: 800; text-align: center; margin-bottom: 25px; }
-
-        .input-group { margin-bottom: 20px; }
-        .input-group label { display: block; font-size: 13px; font-weight: 700; color: #5c6c84; margin-bottom: 8px; }
-
-        .input-field { position: relative; }
-        .input-field i { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: var(--primary); opacity: 0.6; }
-
-        input, select {
+        /* خلفية فنية */
+        .header-bg {
+            height: 180px;
+            background: var(--gradient);
+            position: absolute;
             width: 100%;
-            padding: 15px 45px 15px 15px;
-            background: #f4f8fc;
-            border: 2px solid transparent;
-            border-radius: 15px;
-            font-family: inherit;
-            font-size: 15px;
-            box-sizing: border-box;
-            transition: 0.3s;
+            z-index: 1;
         }
 
-        input:focus, select:focus { outline: none; border-color: var(--primary); background: white; }
+        /* محتوى البروفايل */
+        .content {
+            position: relative;
+            z-index: 2;
+            padding: 25px;
+            margin-top: 100px;
+        }
+
+        .profile-section {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .avatar-box {
+            width: 110px; height: 110px;
+            background: white;
+            border-radius: 35px;
+            margin: 0 auto 15px;
+            padding: 5px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transform: rotate(-5deg);
+        }
+
+        .avatar-box img {
+            width: 100%; height: 100%;
+            border-radius: 30px;
+            object-fit: cover;
+            transform: rotate(5deg);
+        }
+
+        h1 { font-size: 22px; font-weight: 900; color: #1a2b4b; margin: 5px 0; }
+        .badge {
+            display: inline-block;
+            background: #e0e7ff;
+            color: var(--accent);
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 11px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        /* شبكة الروابط الاحترافية */
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .link-card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            padding: 20px 10px;
+            border-radius: 25px;
+            text-align: center;
+            text-decoration: none;
+            color: #1a2b4b;
+            border: 1px solid rgba(255,255,255,0.3);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.03);
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .link-card i { font-size: 24px; margin-bottom: 10px; display: block; color: var(--accent); }
+        .link-card:hover { transform: translateY(-10px); background: white; }
+
+        /* منطقة الحجز (Booking Engine) */
+        .booking-panel {
+            background: #1a2b4b;
+            color: white;
+            padding: 25px;
+            border-radius: 35px;
+            margin-bottom: 30px;
+        }
+
+        .booking-panel h3 { margin-top: 0; font-size: 18px; display: flex; align-items: center; gap: 10px; }
+        
+        input, select {
+            width: 100%; background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 14px; border-radius: 15px; color: white;
+            margin-bottom: 12px; font-family: inherit;
+        }
+
+        input::placeholder { color: rgba(255,255,255,0.5); }
 
         #submitBtn {
-            width: 100%;
-            padding: 16px;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 15px;
-            font-size: 17px;
-            font-weight: 800;
-            cursor: pointer;
-            box-shadow: 0 10px 20px rgba(45, 108, 223, 0.2);
+            width: 100%; padding: 16px;
+            background: #fff; color: #1a2b4b;
+            border: none; border-radius: 15px;
+            font-weight: 800; cursor: pointer;
+            transition: 0.3s;
         }
 
-        /* رسالة النجاح */
-        #successMsg {
-            display: none;
+        /* إحصائيات وفوتر */
+        .footer-stats {
             text-align: center;
-            padding: 20px;
-            animation: fadeIn 0.5s ease;
+            padding-bottom: 40px;
         }
 
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        /* إخفاء شريط التمرير */
-        .phone-container::-webkit-scrollbar { width: 0; }
+        .stat-chip {
+            background: #fff;
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-size: 11px;
+            color: #64748b;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+        }
     </style>
 </head>
 <body>
 
-<div class="phone-container">
-    <div class="app-header">
-        <div class="logo-wrapper">
-            <img src="https://cdn-icons-png.flaticon.com/512/387/387561.png" alt="Clinic Logo">
+<div class="app-frame">
+    <div class="header-bg"></div>
+    
+    <div class="content">
+        <div class="profile-section">
+            <div class="avatar-box">
+                <img src="https://cdn-icons-png.flaticon.com/512/2785/2785544.png" alt="Doctor">
+            </div>
+            <div class="badge">نخبة الأطباء المعتمدين</div>
+            <h1>د. سفيان بن عيسى</h1>
+            <p style="color: #64748b; font-size: 13px;">جراحة وزراعة الأسنان الحديثة</p>
         </div>
-        <h1>مركز النخبة الطبي</h1>
-        <p><i class="fa-solid fa-circle-check" style="color: #25d366;"></i> متاح الآن للحجز</p>
-    </div>
 
-    <div class="quick-actions">
-        <a href="tel:+966500000000" class="action-btn">
-            <div class="icon-box btn-call"><i class="fa-solid fa-phone"></i></div>
-            <span>اتصال</span>
-        </a>
-        <a href="https://wa.me/966500000000" class="action-btn">
-            <div class="icon-box btn-wa"><i class="fa-brands fa-whatsapp"></i></div>
-            <span>واتساب</span>
-        </a>
-        <a href="#" class="action-btn">
-            <div class="icon-box btn-map"><i class="fa-solid fa-location-dot"></i></div>
-            <span>الموقع</span>
-        </a>
-    </div>
+        <div class="links-grid">
+            <a href="tel:+966500000000" class="link-card">
+                <i class="fa-solid fa-phone-volume"></i>
+                <span>اتصال فوري</span>
+            </a>
+            <a href="https://wa.me/966500000000" class="link-card">
+                <i class="fa-brands fa-whatsapp"></i>
+                <span>واتساب</span>
+            </a>
+            <a href="#" class="link-card">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>موقع العيادة</span>
+            </a>
+            <a href="#" class="link-card">
+                <i class="fa-solid fa-star"></i>
+                <span>آراء المرضى</span>
+            </a>
+        </div>
 
-    <div class="form-card" id="formCard">
-        <h3>حجز موعد إلكتروني</h3>
-        <form id="bookingForm">
-            <div class="input-group">
-                <label>اسم المريض</label>
-                <div class="input-field">
-                    <i class="fa-solid fa-user"></i>
-                    <input type="text" id="name" placeholder="الاسم الثلاثي" required>
-                </div>
+        <div class="booking-panel">
+            <h3><i class="fa-solid fa-calendar-day"></i> حجز استشارة</h3>
+            <form id="bookingForm">
+                <input type="text" id="name" placeholder="الاسم الكامل" required>
+                <input type="tel" id="phone" placeholder="رقم الهاتف" required>
+                <select id="service" required>
+                    <option value="">اختر التخصص...</option>
+                </select>
+                <button type="submit" id="submitBtn">تأكيد الموعد</button>
+            </form>
+            <div id="success" style="display:none; text-align:center; color:#22c55e; margin-top:10px;">✅ تم استلام طلبك!</div>
+        </div>
+
+        <div class="footer-stats">
+            <div class="stat-chip">
+                <i class="fa-solid fa-eye"></i> مشاهدات البروفايل: <img src="https://profile-counter.glitch.me/EliteClinic_DZ/count.svg" style="vertical-align: middle;">
             </div>
-
-            <div class="input-group">
-                <label>رقم الجوال</label>
-                <div class="input-field">
-                    <i class="fa-solid fa-mobile-screen-button"></i>
-                    <input type="tel" id="phone" placeholder="05xxxxxxxx" required>
-                </div>
-            </div>
-
-            <div class="input-group">
-                <label>العيادة المطلوبة</label>
-                <div class="input-field">
-                    <i class="fa-solid fa-stethoscope"></i>
-                    <select id="service" required>
-                        <option value="">جاري تحميل العيادات...</option>
-                    </select>
-                </div>
-            </div>
-
-            <button type="submit" id="submitBtn">إرسال طلب الحجز</button>
-        </form>
-
-        <div id="successMsg">
-            <i class="fa-solid fa-circle-check" style="font-size: 50px; color: #25d366; margin-bottom: 15px;"></i>
-            <h3 style="margin: 0;">تم الحجز بنجاح!</h3>
-            <p style="color: #7a8ba3; font-size: 13px;">سنتواصل معك هاتفياً قريباً جداً.</p>
         </div>
     </div>
 </div>
@@ -238,7 +216,7 @@
 <script>
     const scriptURL = 'https://script.google.com/macros/s/AKfycbxGsCS6Kl4c-936GBAaCbiNMEvMpMaG0lpVmZtsVgWh2ORftZ2M8XQ6sy8xWJBxuCBA/exec';
 
-    // 1. جلب العيادات من قوقل شيت
+    // جلب الخدمات من قوقل شيت
     window.onload = function() {
         fetch(scriptURL)
         .then(res => res.json())
@@ -253,31 +231,22 @@
         });
     };
 
-    // 2. إرسال البيانات
+    // إرسال البيانات
     document.getElementById('bookingForm').addEventListener('submit', e => {
         e.preventDefault();
-        const btn = document.getElementById('submitBtn');
-        btn.disabled = true;
-        btn.innerText = "جاري التأكيد...";
-
-        const data = {
-            name: document.getElementById('name').value,
-            phone: document.getElementById('phone').value,
-            service: document.getElementById('service').value
-        };
-
+        document.getElementById('submitBtn').innerText = "جاري الإرسال...";
+        
         fetch(scriptURL, {
             method: 'POST',
             mode: 'no-cors',
-            body: JSON.stringify(data)
-        })
-        .then(() => {
+            body: JSON.stringify({
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value,
+                service: document.getElementById('service').value
+            })
+        }).then(() => {
             document.getElementById('bookingForm').style.display = "none";
-            document.getElementById('successMsg').style.display = "block";
-        })
-        .catch(err => {
-            alert("حدث خطأ، حاول مرة أخرى");
-            btn.disabled = false;
+            document.getElementById('success').style.display = "block";
         });
     });
 </script>
