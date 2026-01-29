@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Elite Clinic App</title>
+    <title>Elite Clinic Portal | المنظومة الطبية المتكاملة</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -11,197 +11,245 @@
     <style>
         :root {
             --primary: #2d6cdf;
-            --accent: #0ea5e9;
-            --bg: #fdfeff;
-            --text: #1e293b;
-            --soft-shadow: 0 20px 50px rgba(0,0,0,0.05);
+            --secondary: #0ea5e9;
+            --bg: #fdfefe;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --star: #ffc107;
+            --card-shadow: 0 15px 35px rgba(0,0,0,0.05);
         }
 
         body {
             font-family: 'Tajawal', sans-serif;
-            background-color: #e2e8f0; /* خلفية للعرض على الكمبيوتر */
+            background-color: #d1d5db; /* خلفية الغرفة الافتراضية للكمبيوتر */
             margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh;
-            color: var(--text);
         }
 
-        /* حاوية التطبيق */
-        .phone-wrapper {
-            width: 100%; max-width: 420px; height: 92vh;
+        /* حاوية الهاتف */
+        .app-container {
+            width: 100%; max-width: 414px; height: 92vh;
             background: var(--bg); border-radius: 45px;
-            border: 8px solid #111; position: relative;
+            border: 10px solid #1a1a1a; position: relative;
             overflow-y: auto; scrollbar-width: none;
-            box-shadow: 0 40px 80px rgba(0,0,0,0.2);
+            box-shadow: 0 40px 100px rgba(0,0,0,0.3);
         }
 
-        /* الهيدر العلوي - فخامة هادئة */
+        /* الهيدر */
         header {
-            padding: 40px 20px 20px; text-align: center;
-            background: linear-gradient(to bottom, #fff, var(--bg));
+            padding: 40px 20px 25px; text-align: center;
+            background: linear-gradient(180deg, #fff 0%, var(--bg) 100%);
         }
 
-        .logo-container {
-            width: 90px; height: 90px; margin: 0 auto 15px;
-            background: white; border-radius: 25px;
+        .profile-wrapper {
+            width: 95px; height: 95px; margin: 0 auto 15px;
+            background: white; border-radius: 28px;
             display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 10px 30px rgba(45, 108, 223, 0.15);
-            border: 1px solid #f0f4f8;
-        }
-
-        .logo-container img { width: 70%; object-fit: contain; }
-
-        h1 { font-size: 20px; font-weight: 800; margin: 0; color: #0f172a; }
-        .specialty { font-size: 13px; color: #64748b; margin-top: 5px; }
-
-        /* أزرار الإجراءات السريعة */
-        .action-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr);
-            gap: 15px; padding: 20px;
-        }
-
-        .action-btn {
-            background: white; padding: 15px 5px; border-radius: 20px;
-            text-align: center; text-decoration: none; color: var(--text);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.02); transition: 0.3s;
+            box-shadow: 0 12px 25px rgba(45, 108, 223, 0.12);
             border: 1px solid #f1f5f9;
         }
 
-        .action-btn i { font-size: 22px; margin-bottom: 8px; display: block; }
-        .action-btn span { font-size: 11px; font-weight: 700; }
-        .action-btn.wa i { color: #22c55e; }
-        .action-btn.call i { color: var(--primary); }
-        .action-btn.map i { color: #ef4444; }
+        .profile-wrapper img { width: 75%; height: 75%; object-fit: contain; }
 
-        /* بطاقة الحجز الموحدة */
-        .section-card {
+        h1 { font-size: 20px; font-weight: 800; color: #0f172a; margin: 0; }
+        .tagline { font-size: 13px; color: var(--text-muted); margin-top: 6px; }
+
+        /* الأزرار السريعة */
+        .quick-actions {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 12px; padding: 0 20px 25px;
+        }
+
+        .action-item {
+            background: white; padding: 16px 5px; border-radius: 22px;
+            text-align: center; text-decoration: none; color: var(--text-main);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02); transition: 0.3s;
+            border: 1px solid #f1f5f9;
+        }
+
+        .action-item i { font-size: 22px; margin-bottom: 8px; display: block; }
+        .action-item span { font-size: 11px; font-weight: 700; }
+        .wa i { color: #22c55e; }
+        .call i { color: var(--primary); }
+        .map i { color: #ef4444; }
+
+        /* البطاقات العامة */
+        .card {
             background: white; margin: 0 20px 20px; padding: 25px;
-            border-radius: 30px; box-shadow: var(--soft-shadow);
+            border-radius: 30px; box-shadow: var(--card-shadow);
             border: 1px solid #f8fafc;
         }
 
-        .card-header { font-size: 16px; font-weight: 800; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
-        .card-header i { color: var(--primary); }
+        .card-title { font-size: 16px; font-weight: 800; margin-bottom: 18px; display: flex; align-items: center; gap: 10px; }
+        .card-title i { color: var(--primary); font-size: 14px; }
 
-        .input-group { margin-bottom: 18px; }
-        label { font-size: 12px; font-weight: 700; color: #94a3b8; margin-bottom: 8px; display: block; padding-right: 5px; }
-        
+        /* الفورم */
+        .form-group { margin-bottom: 15px; }
         input, select, textarea {
             width: 100%; padding: 15px; background: #f8fafc;
-            border: 1.5px solid #edf2f7; border-radius: 16px;
+            border: 1.5px solid #f1f5f9; border-radius: 16px;
             font-family: inherit; font-size: 14px; box-sizing: border-box; transition: 0.3s;
         }
+        input:focus, select:focus, textarea:focus { border-color: var(--primary); outline: none; background: #fff; }
 
-        input:focus, select:focus, textarea:focus { outline: none; border-color: var(--primary); background: white; }
-
-        #submitBtn {
+        .submit-btn {
             width: 100%; padding: 16px; background: var(--primary);
             color: white; border: none; border-radius: 18px;
             font-size: 16px; font-weight: 800; cursor: pointer;
-            box-shadow: 0 10px 25px rgba(45, 108, 223, 0.2);
+            box-shadow: 0 10px 20px rgba(45, 108, 223, 0.2);
         }
 
-        /* نظام التقييم بالنجوم */
-        .stars-row { display: flex; flex-direction: row-reverse; justify-content: center; gap: 8px; margin-bottom: 15px; }
-        .stars-row input { display: none; }
-        .stars-row label { font-size: 28px; color: #e2e8f0; cursor: pointer; transition: 0.2s; }
-        .stars-row input:checked ~ label, .stars-row label:hover, .stars-row label:hover ~ label { color: #ffc107; }
+        /* نظام النجوم */
+        .star-rating { display: flex; flex-direction: row-reverse; justify-content: center; gap: 8px; margin-bottom: 15px; }
+        .star-rating input { display: none; }
+        .star-rating label { font-size: 30px; color: #e2e8f0; cursor: pointer; }
+        .star-rating input:checked ~ label, .star-rating label:hover, .star-rating label:hover ~ label { color: var(--star); }
 
-        .footer-logo { text-align: center; padding: 20px; opacity: 0.4; font-size: 12px; }
+        /* قسم عرض التقييمات */
+        .reviews-list { max-height: 200px; overflow-y: auto; padding-right: 5px; scrollbar-width: none; }
+        .review-bubble {
+            background: #f8fafc; padding: 15px; border-radius: 20px;
+            margin-bottom: 12px; border-right: 4px solid var(--star);
+        }
+        .review-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .review-name { font-size: 12px; font-weight: 800; color: var(--text-main); }
+        .review-stars { color: var(--star); font-size: 10px; }
+        .review-text { font-size: 12px; color: var(--text-muted); margin: 0; line-height: 1.4; }
+
+        footer { text-align: center; padding: 25px; opacity: 0.5; font-size: 11px; }
     </style>
 </head>
 <body>
 
-<div class="phone-wrapper">
+<div class="app-container">
     <header>
-        <div class="logo-container">
-            <img src="https://cdn-icons-png.flaticon.com/512/387/387561.png" alt="Logo">
+        <div class="profile-wrapper">
+            <img src="https://cdn-icons-png.flaticon.com/512/387/387561.png" alt="Doctor Logo">
         </div>
         <h1>مركز النخبة الطبي</h1>
-        <div class="specialty">طب وجراحة الأسنان الحديثة</div>
+        <p class="tagline">أخصائي جراحة وتجميل الأسنان</p>
     </header>
 
-    <div class="action-grid">
-        <a href="tel:+96650" class="action-btn call"><i class="fa-solid fa-phone-flip"></i><span>اتصال</span></a>
-        <a href="https://wa.me/96650" class="action-btn wa"><i class="fa-brands fa-whatsapp"></i><span>واتساب</span></a>
-        <a href="#" class="action-btn map"><i class="fa-solid fa-location-arrow"></i><span>الموقع</span></a>
+    <div class="quick-actions">
+        <a href="tel:+213" class="action-item call"><i class="fa-solid fa-phone-flip"></i><span>اتصال</span></a>
+        <a href="https://wa.me/213" class="action-item wa"><i class="fa-brands fa-whatsapp"></i><span>واتساب</span></a>
+        <a href="#" class="action-item map"><i class="fa-solid fa-location-dot"></i><span>الموقع</span></a>
     </div>
 
-    <div class="section-card">
-        <div class="card-header"><i class="fa-solid fa-calendar-check"></i> حجز موعد سريع</div>
+    <div class="card">
+        <div class="card-title"><i class="fa-solid fa-calendar-check"></i> حجز موعد جديد</div>
         <form id="bookingForm">
-            <div class="input-group">
-                <input type="text" id="name" placeholder="اسمك الكامل" required>
-            </div>
-            <div class="input-group">
-                <input type="tel" id="phone" placeholder="رقم الهاتف" required>
-            </div>
-            <div class="input-group">
+            <div class="form-group"><input type="text" id="name" placeholder="الاسم الكامل" required></div>
+            <div class="form-group"><input type="tel" id="phone" placeholder="رقم الهاتف" required></div>
+            <div class="form-group">
                 <select id="service" required>
-                    <option value="">اختر التخصص...</option>
+                    <option value="">جاري تحميل العيادات...</option>
                 </select>
             </div>
-            <button type="submit" id="submitBtn">تأكيد الموعد</button>
+            <button type="submit" class="submit-btn" id="bookBtn">تأكيد الموعد</button>
         </form>
     </div>
 
-    <div class="section-card">
-        <div class="card-header"><i class="fa-solid fa-star-half-stroke"></i> قيّم تجربتك معنا</div>
+    <div class="card">
+        <div class="card-title"><i class="fa-solid fa-comment-medical"></i> آراء مرضانا</div>
+        <div id="reviewsContainer" class="reviews-list">
+            <p style="text-align:center; font-size:12px; color:#94a3b8;">جاري تحميل التقييمات...</p>
+        </div>
+    </div>
+
+    <div class="card" style="background: #1e293b; color: white; border: none;">
+        <div class="card-title" style="color: white;"><i class="fa-solid fa-pen-to-square"></i> اترك رأيك</div>
         <form id="reviewForm">
-            <div class="stars-row">
+            <div class="star-rating">
                 <input type="radio" name="star" id="st5" value="5"><label for="st5">★</label>
                 <input type="radio" name="star" id="st4" value="4"><label for="st4">★</label>
                 <input type="radio" name="star" id="st3" value="3"><label for="st3">★</label>
                 <input type="radio" name="star" id="st2" value="2"><label for="st2">★</label>
                 <input type="radio" name="star" id="st1" value="1"><label for="st1">★</label>
             </div>
-            <textarea id="revComment" rows="2" placeholder="اكتب رأيك باختصار هنا..."></textarea>
-            <button type="submit" id="revBtn" style="background: #f1f5f9; color: #475569; margin-top: 10px; border-radius: 12px; font-size: 13px; height: 45px; width: 100%; border: none; font-weight: 700; cursor: pointer;">إرسال التقييم</button>
+            <div class="form-group"><input type="text" id="revName" placeholder="اسمك" style="background:rgba(255,255,255,0.1); border:none; color:white;"></div>
+            <div class="form-group"><textarea id="revComment" rows="2" placeholder="رأيك في الخدمة..." style="background:rgba(255,255,255,0.1); border:none; color:white;"></textarea></div>
+            <button type="submit" class="submit-btn" style="background:white; color:#1e293b;" id="revBtn">إرسال التقييم</button>
         </form>
     </div>
 
-    <div class="footer-logo">
+    <footer>
         <p>تصميم وتطوير بواسطة [اسمك]</p>
-        <img src="https://profile-counter.glitch.me/ElitePro/count.svg" alt="Visitors">
-    </div>
+        <div class="visitor-counter">
+            <i class="fa-solid fa-eye"></i> الزوار: <img src="https://profile-counter.glitch.me/EliteClinicProDZ/count.svg" style="vertical-align: middle; height:12px;">
+        </div>
+    </footer>
 </div>
 
 <script>
     const scriptURL = 'https://script.google.com/macros/s/AKfycbxGsCS6Kl4c-936GBAaCbiNMEvMpMaG0lpVmZtsVgWh2ORftZ2M8XQ6sy8xWJBxuCBA/exec';
 
-    // جلب الخدمات
+    // 1. جلب البيانات عند التشغيل (الخدمات + التقييمات)
     window.onload = () => {
-        fetch(scriptURL).then(r => r.json()).then(data => {
-            const s = document.getElementById('service');
-            s.innerHTML = '<option value="">اختر التخصص...</option>';
-            data.forEach(item => { s.innerHTML += `<option value="${item}">${item}</option>`; });
+        loadServices();
+        loadReviews();
+    };
+
+    function loadServices() {
+        fetch(scriptURL + "?action=getServices")
+        .then(res => res.json())
+        .then(data => {
+            const select = document.getElementById('service');
+            select.innerHTML = '<option value="">اختر التخصص...</option>';
+            data.forEach(s => select.innerHTML += `<option value="${s}">${s}</option>`);
         });
-    };
+    }
 
-    // إرسال الحجز والتقييم (نفس الـ POST مع تمييز النوع)
-    const sendData = (payload) => {
-        return fetch(scriptURL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(payload) });
-    };
+    function loadReviews() {
+        fetch(scriptURL + "?action=getReviews")
+        .then(res => res.json())
+        .then(data => {
+            const container = document.getElementById('reviewsContainer');
+            container.innerHTML = '';
+            if(data.length === 0) container.innerHTML = '<p style="text-align:center; font-size:12px;">لا توجد تقييمات بعد.</p>';
+            data.forEach(r => {
+                container.innerHTML += `
+                    <div class="review-bubble">
+                        <div class="review-header">
+                            <span class="review-name">${r.name}</span>
+                            <span class="review-stars">${'★'.repeat(r.rating)}</span>
+                        </div>
+                        <p class="review-text">${r.comment}</p>
+                    </div>`;
+            });
+        });
+    }
 
+    // 2. إرسال الموعد
     document.getElementById('bookingForm').onsubmit = (e) => {
         e.preventDefault();
-        const btn = document.getElementById('submitBtn');
-        btn.innerText = "جاري الحفظ...";
-        sendData({
-            type: 'booking',
-            name: document.getElementById('name').value,
-            phone: document.getElementById('phone').value,
-            service: document.getElementById('service').value
-        }).then(() => { alert("تم الحجز بنجاح!"); btn.innerText = "تأكيد الموعد"; });
+        document.getElementById('bookBtn').innerText = "جاري الحجز...";
+        fetch(scriptURL, {
+            method: 'POST',
+            mode: 'no-cors',
+            body: JSON.stringify({
+                type: 'booking',
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value,
+                service: document.getElementById('service').value
+            })
+        }).then(() => { alert("تم الحجز! سنتصل بك قريباً."); location.reload(); });
     };
 
+    // 3. إرسال التقييم
     document.getElementById('reviewForm').onsubmit = (e) => {
         e.preventDefault();
-        const star = document.querySelector('input[name="star"]:checked')?.value || 5;
-        sendData({
-            type: 'review',
-            name: "مريض",
-            rating: star,
-            comment: document.getElementById('revComment').value
-        }).then(() => { alert("شكراً لتقييمك!"); });
+        const stars = document.querySelector('input[name="star"]:checked')?.value || 5;
+        document.getElementById('revBtn').innerText = "جاري الحفظ...";
+        fetch(scriptURL, {
+            method: 'POST',
+            mode: 'no-cors',
+            body: JSON.stringify({
+                type: 'review',
+                name: document.getElementById('revName').value,
+                rating: stars,
+                comment: document.getElementById('revComment').value
+            })
+        }).then(() => { alert("شكراً لتقييمك!"); location.reload(); });
     };
 </script>
 
