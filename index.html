@@ -3,1609 +3,1332 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#0a1628" />
-  <title>د. أحمد الخالدي – طبيب أخصائي باطنة</title>
-  <meta name="description" content="عيادة د. أحمد الخالدي – أخصائي الباطنة والأمراض المزمنة. احجز موعدك الآن واحصل على رعاية طبية متميزة." />
-  <meta name="keywords" content="طبيب باطنة, عيادة, حجز موعد, أمراض مزمنة, د. أحمد الخالدي" />
-  <meta property="og:title" content="د. أحمد الخالدي – طبيب أخصائي باطنة" />
-  <meta property="og:description" content="رعاية طبية متميزة بأيدي خبيرة. احجز موعدك اليوم." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://placehold.co/1200x630/0a1628/ffffff?text=Dr.+Clinic" />
-  <link rel="manifest" href="#" />
+  <meta name="theme-color" content="#0a6e6e" />
+  <title>عيادة الابتسامة النقية - طب الأسنان</title>
+  <meta name="description" content="عيادة طب أسنان متخصصة - ابتسامتك هي مهمتنا" />
+  <link rel="manifest" href="manifest.json" />
+
+  <!-- Cairo Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
   <style>
     /* ===========================
-       CSS CUSTOM PROPERTIES
+       CSS Variables & Reset
     =========================== */
     :root {
-      --color-bg: #050d1a;
-      --color-bg-2: #0a1628;
-      --color-surface: rgba(255,255,255,0.05);
-      --color-surface-hover: rgba(255,255,255,0.09);
-      --color-border: rgba(255,255,255,0.1);
-      --color-primary: #2563eb;
-      --color-primary-light: #3b82f6;
-      --color-primary-glow: rgba(37,99,235,0.35);
-      --color-accent: #06b6d4;
-      --color-accent-glow: rgba(6,182,212,0.3);
-      --color-text: #f0f4ff;
-      --color-text-muted: #8a9bc0;
-      --color-text-dim: #4a5a7a;
-      --color-success: #10b981;
-      --color-warning: #f59e0b;
-      --color-error: #ef4444;
-      --color-whatsapp: #25D366;
-      --radius-sm: 8px;
-      --radius-md: 16px;
-      --radius-lg: 24px;
-      --radius-xl: 36px;
-      --radius-full: 9999px;
-      --shadow-glass: 0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1);
-      --shadow-card: 0 20px 60px rgba(0,0,0,0.5);
-      --transition: 0.3s cubic-bezier(0.4,0,0.2,1);
-      --font: 'Cairo', sans-serif;
+      --primary: #0a6e6e;
+      --primary-light: #0d8f8f;
+      --primary-dark: #074f4f;
+      --accent: #2de1c2;
+      --accent-warm: #f0a500;
+      --bg: #f4f9f9;
+      --surface: #ffffff;
+      --surface-2: #eaf4f4;
+      --text: #0f2a2a;
+      --text-muted: #5a7a7a;
+      --border: rgba(10, 110, 110, 0.12);
+      --shadow-sm: 0 2px 12px rgba(10,110,110,0.08);
+      --shadow-md: 0 8px 32px rgba(10,110,110,0.14);
+      --shadow-lg: 0 20px 60px rgba(10,110,110,0.18);
+      --radius: 18px;
+      --radius-sm: 10px;
+      --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    /* ===========================
-       RESET & BASE
-    =========================== */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
     body {
-      font-family: var(--font);
-      background-color: var(--color-bg);
-      color: var(--color-text);
-      line-height: 1.7;
-      overflow-x: hidden;
+      font-family: 'Cairo', sans-serif;
+      background: var(--bg);
+      color: var(--text);
       direction: rtl;
+      overflow-x: hidden;
+      line-height: 1.7;
     }
+
     img { max-width: 100%; display: block; }
     a { text-decoration: none; color: inherit; }
     ul { list-style: none; }
-    button { cursor: pointer; font-family: var(--font); border: none; outline: none; }
 
     /* ===========================
-       SCROLLBAR
+       Utility Classes
     =========================== */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: var(--color-bg); }
-    ::-webkit-scrollbar-thumb { background: var(--color-primary); border-radius: var(--radius-full); }
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 1.5rem; }
+    .section-pad { padding: 90px 0; }
+    .text-center { text-align: center; }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
 
     /* ===========================
-       BACKGROUND BLOBS
+       Buttons
     =========================== */
-    .bg-blobs {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      overflow: hidden;
-    }
-    .bg-blobs__blob {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(100px);
-      opacity: 0.15;
-      animation: blobFloat 12s ease-in-out infinite;
-    }
-    .bg-blobs__blob--1 { width: 600px; height: 600px; background: var(--color-primary); top: -200px; right: -150px; animation-delay: 0s; }
-    .bg-blobs__blob--2 { width: 400px; height: 400px; background: var(--color-accent); bottom: 10%; left: -100px; animation-delay: 4s; }
-    .bg-blobs__blob--3 { width: 300px; height: 300px; background: var(--color-primary-light); top: 50%; left: 50%; animation-delay: 8s; }
-    @keyframes blobFloat {
-      0%, 100% { transform: translate(0,0) scale(1); }
-      33% { transform: translate(30px,-20px) scale(1.05); }
-      66% { transform: translate(-20px,30px) scale(0.95); }
-    }
-
-    /* ===========================
-       NOISE OVERLAY
-    =========================== */
-    .noise-overlay {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 1;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-      opacity: 0.4;
-    }
-
-    /* ===========================
-       CONTAINER
-    =========================== */
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 24px;
-      position: relative;
-      z-index: 2;
-    }
-
-    /* ===========================
-       GLASS CARD MIXIN
-    =========================== */
-    .glass {
-      background: var(--color-surface);
-      backdrop-filter: blur(24px) saturate(1.8);
-      -webkit-backdrop-filter: blur(24px) saturate(1.8);
-      border: 1px solid var(--color-border);
-      box-shadow: var(--shadow-glass);
-    }
-
-    /* ===========================
-       NAVBAR
-    =========================== */
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      padding: 16px 0;
-      transition: var(--transition);
-    }
-    .navbar--scrolled {
-      background: rgba(5,13,26,0.8);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--color-border);
-      padding: 10px 0;
-    }
-    .navbar__inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .navbar__logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .navbar__logo-icon {
-      width: 44px; height: 44px;
-      background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
-      border-radius: var(--radius-sm);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 22px;
-      box-shadow: 0 0 20px var(--color-primary-glow);
-    }
-    .navbar__logo-text { font-size: 18px; font-weight: 700; }
-    .navbar__logo-text span { color: var(--color-accent); }
-    .navbar__nav { display: flex; align-items: center; gap: 8px; }
-    .navbar__link {
-      padding: 8px 16px;
-      border-radius: var(--radius-full);
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--color-text-muted);
-      transition: var(--transition);
-    }
-    .navbar__link:hover, .navbar__link--active {
-      color: var(--color-text);
-      background: var(--color-surface);
-    }
-    .navbar__cta {
-      padding: 10px 24px;
-      background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
-      border-radius: var(--radius-full);
-      font-size: 14px;
-      font-weight: 600;
-      color: #fff;
-      transition: var(--transition);
-      box-shadow: 0 4px 20px var(--color-primary-glow);
-    }
-    .navbar__cta:hover { transform: translateY(-2px); box-shadow: 0 8px 30px var(--color-primary-glow); }
-    .navbar__burger {
-      display: none;
-      width: 40px; height: 40px;
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius-sm);
-      align-items: center; justify-content: center;
-      flex-direction: column;
-      gap: 5px;
-    }
-    .navbar__burger span {
-      display: block;
-      width: 20px; height: 2px;
-      background: var(--color-text);
-      border-radius: 2px;
-      transition: var(--transition);
-    }
-    .navbar__mobile {
-      display: none;
-      flex-direction: column;
-      gap: 4px;
-      margin-top: 12px;
-      padding: 16px;
-      background: rgba(5,13,26,0.95);
-      backdrop-filter: blur(20px);
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius-md);
-    }
-    .navbar__mobile.is-open { display: flex; }
-    .navbar__mobile .navbar__link { padding: 12px 16px; font-size: 16px; }
-
-    /* ===========================
-       HERO SECTION
-    =========================== */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      padding: 100px 0 60px;
-      position: relative;
-    }
-    .hero__inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
-    }
-    .hero__badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 16px;
-      background: rgba(6,182,212,0.1);
-      border: 1px solid rgba(6,182,212,0.3);
-      border-radius: var(--radius-full);
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--color-accent);
-      margin-bottom: 24px;
-    }
-    .hero__badge::before { content: '●'; font-size: 8px; animation: pulse 2s infinite; }
-    @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
-    .hero__title {
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      font-weight: 900;
-      line-height: 1.2;
-      margin-bottom: 20px;
-    }
-    .hero__title-gradient {
-      background: linear-gradient(135deg, var(--color-primary-light), var(--color-accent));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .hero__subtitle {
-      font-size: 1.1rem;
-      color: var(--color-text-muted);
-      margin-bottom: 36px;
-      max-width: 500px;
-    }
-    .hero__actions { display: flex; gap: 16px; flex-wrap: wrap; }
     .btn {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 14px 28px;
-      border-radius: var(--radius-full);
-      font-family: var(--font);
-      font-size: 15px;
+      gap: 0.5rem;
+      padding: 0.85rem 2rem;
+      border-radius: 50px;
+      font-family: 'Cairo', sans-serif;
+      font-size: 1rem;
       font-weight: 700;
-      transition: var(--transition);
       cursor: pointer;
+      border: none;
+      transition: var(--transition);
+      white-space: nowrap;
     }
-    .btn--primary {
-      background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+    .btn-primary {
+      background: var(--primary);
       color: #fff;
-      box-shadow: 0 4px 24px var(--color-primary-glow);
+      box-shadow: 0 4px 20px rgba(10,110,110,0.3);
     }
-    .btn--primary:hover { transform: translateY(-3px); box-shadow: 0 10px 40px var(--color-primary-glow); }
-    .btn--ghost {
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
-      color: var(--color-text);
-      backdrop-filter: blur(10px);
+    .btn-primary:hover {
+      background: var(--primary-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(10,110,110,0.4);
     }
-    .btn--ghost:hover { background: var(--color-surface-hover); transform: translateY(-2px); }
-    .hero__stats {
-      display: flex;
-      gap: 32px;
-      margin-top: 48px;
-      padding-top: 32px;
-      border-top: 1px solid var(--color-border);
+    .btn-outline {
+      background: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
     }
-    .hero__stat-number {
-      font-size: 2rem;
-      font-weight: 900;
-      color: var(--color-primary-light);
-      line-height: 1;
+    .btn-outline:hover {
+      background: var(--primary);
+      color: #fff;
+      transform: translateY(-2px);
     }
-    .hero__stat-label { font-size: 13px; color: var(--color-text-muted); margin-top: 4px; }
-
-    /* Hero image / blob mask */
-    .hero__image-wrapper {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    .btn-whatsapp {
+      background: #25d366;
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.35);
     }
-    .hero__blob-bg {
-      position: absolute;
-      width: 110%;
-      height: 110%;
-      background: linear-gradient(135deg, var(--color-primary-glow), var(--color-accent-glow));
-      border-radius: 70% 30% 60% 40% / 50% 60% 40% 50%;
-      animation: morphBlob 8s ease-in-out infinite;
-      filter: blur(40px);
-      z-index: 0;
+    .btn-whatsapp:hover {
+      background: #1ebe5d;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(37,211,102,0.45);
     }
-    @keyframes morphBlob {
-      0%,100% { border-radius: 70% 30% 60% 40% / 50% 60% 40% 50%; }
-      25% { border-radius: 40% 60% 30% 70% / 60% 40% 70% 30%; }
-      50% { border-radius: 50% 50% 70% 30% / 40% 70% 30% 60%; }
-      75% { border-radius: 60% 40% 50% 50% / 30% 50% 60% 40%; }
-    }
-    .hero__image-card {
-      position: relative;
-      z-index: 1;
-      width: 380px;
-      height: 450px;
-      border-radius: 60% 40% 55% 45% / 45% 55% 45% 55%;
-      overflow: hidden;
-      border: 2px solid var(--color-border);
-      box-shadow: var(--shadow-card);
-      animation: morphBlob 8s ease-in-out infinite;
-    }
-    .hero__image-card img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-    }
-    .hero__floating-card {
-      position: absolute;
-      padding: 14px 20px;
-      border-radius: var(--radius-md);
-      z-index: 2;
-    }
-    .hero__floating-card--1 {
-      bottom: 60px;
-      left: -30px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .hero__floating-card--2 {
-      top: 50px;
-      left: -20px;
-    }
-    .hero__floating-icon {
-      width: 40px; height: 40px;
-      background: linear-gradient(135deg, var(--color-success), #34d399);
-      border-radius: var(--radius-sm);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 20px;
-    }
-    .hero__floating-text-main { font-size: 14px; font-weight: 700; }
-    .hero__floating-text-sub { font-size: 11px; color: var(--color-text-muted); }
-    .hero__stars { color: #fbbf24; font-size: 12px; letter-spacing: 1px; }
 
     /* ===========================
-       SECTION COMMON
+       Section Titles
     =========================== */
-    .section { padding: 100px 0; position: relative; }
-    .section__header { text-align: center; margin-bottom: 64px; }
-    .section__tag {
+    .section-tag {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 4px 14px;
-      border-radius: var(--radius-full);
-      background: rgba(37,99,235,0.1);
-      border: 1px solid rgba(37,99,235,0.3);
-      font-size: 12px;
+      gap: 0.4rem;
+      background: var(--surface-2);
+      color: var(--primary);
+      padding: 0.35rem 1rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
       font-weight: 700;
-      color: var(--color-primary-light);
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      margin-bottom: 16px;
+      margin-bottom: 1rem;
+      border: 1px solid var(--border);
     }
-    .section__title {
+    .section-title {
       font-size: clamp(1.8rem, 4vw, 2.8rem);
       font-weight: 800;
-      margin-bottom: 16px;
       line-height: 1.3;
+      color: var(--text);
+      margin-bottom: 1rem;
     }
-    .section__desc { font-size: 1rem; color: var(--color-text-muted); max-width: 560px; margin: 0 auto; }
-    .section__divider {
-      width: 60px; height: 4px;
-      background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
-      border-radius: var(--radius-full);
-      margin: 16px auto 0;
+    .section-title span { color: var(--primary); }
+    .section-desc {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 560px;
+      margin: 0 auto 2.5rem;
     }
 
     /* ===========================
-       ABOUT SECTION
+       Header / Navbar
     =========================== */
-    .about__inner {
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      transition: var(--transition);
+      padding: 1rem 0;
+    }
+    header.scrolled {
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: var(--shadow-sm);
+      padding: 0.6rem 0;
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: var(--primary);
+    }
+    .logo-icon {
+      width: 44px; height: 44px;
+      background: var(--primary);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+    }
+    nav { display: flex; align-items: center; gap: 0.2rem; }
+    nav a {
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text);
+      transition: var(--transition);
+    }
+    nav a:hover { background: var(--surface-2); color: var(--primary); }
+    .nav-cta { margin-right: auto; }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 0.5rem;
+      background: none;
+      border: none;
+    }
+    .hamburger span {
+      width: 24px; height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: var(--transition);
+      display: block;
+    }
+
+    /* Mobile Menu */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(20px);
+      z-index: 999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text);
+      padding: 0.5rem 2rem;
+      border-radius: 50px;
+      transition: var(--transition);
+    }
+    .mobile-menu a:hover { background: var(--surface-2); color: var(--primary); }
+    .mobile-menu-close {
+      position: absolute;
+      top: 1.5rem; left: 1.5rem;
+      font-size: 1.8rem;
+      cursor: pointer;
+      background: none; border: none;
+      color: var(--text);
+    }
+
+    /* ===========================
+       Hero Section
+    =========================== */
+    .hero {
+      min-height: 100vh;
+      padding-top: 100px;
+      background: linear-gradient(135deg, #e8f5f5 0%, #f4f9f9 50%, #d4efef 100%);
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; left: -200px;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(10,110,110,0.06) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -150px; right: -150px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(45,225,194,0.08) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero-inner {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 60px;
+      gap: 4rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(10,110,110,0.1);
+      color: var(--primary);
+      padding: 0.4rem 1.2rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      border: 1px solid rgba(10,110,110,0.2);
+    }
+    .hero-title {
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 900;
+      line-height: 1.2;
+      margin-bottom: 1.2rem;
+      color: var(--text);
+    }
+    .hero-title span {
+      color: var(--primary);
+      position: relative;
+    }
+    .hero-title span::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; right: 0;
+      width: 100%;
+      height: 3px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+    .hero-desc {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      max-width: 480px;
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2.5rem; }
+    .hero-stats {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .stat-item { }
+    .stat-number {
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: var(--primary);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    .stat-divider {
+      width: 1px;
+      height: 40px;
+      background: var(--border);
+      align-self: center;
+    }
+
+    /* Hero Visual */
+    .hero-visual {
+      display: flex;
+      justify-content: center;
       align-items: center;
     }
-    .about__image {
+    .hero-img-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 460px;
+    }
+    .hero-img-main {
+      width: 100%;
+      aspect-ratio: 4/5;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      border-radius: 32px 32px 120px 32px;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 8rem;
+      color: rgba(255,255,255,0.25);
       position: relative;
     }
-    .about__image-main {
-      border-radius: var(--radius-xl);
-      overflow: hidden;
-      border: 1px solid var(--color-border);
-      box-shadow: var(--shadow-card);
-    }
-    .about__image-main img {
-      width: 100%; height: 400px; object-fit: cover;
-    }
-    .about__cert {
+    .hero-img-main::before {
+      content: '';
       position: absolute;
-      bottom: -20px;
-      left: -20px;
-      padding: 20px;
-      min-width: 180px;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
     }
-    .about__cert-title { font-size: 28px; font-weight: 900; color: var(--color-primary-light); }
-    .about__cert-sub { font-size: 12px; color: var(--color-text-muted); }
-    .about__content { }
-    .about__features { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; }
-    .about__feature {
+    .hero-doctor-placeholder {
       display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      padding: 20px;
-      border-radius: var(--radius-md);
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
-      transition: var(--transition);
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: rgba(255,255,255,0.6);
+      font-size: 1rem;
+      font-weight: 600;
+      position: relative;
+      z-index: 1;
     }
-    .about__feature:hover { background: var(--color-surface-hover); transform: translateX(-4px); }
-    .about__feature-icon {
-      width: 44px; height: 44px;
-      border-radius: var(--radius-sm);
+    .hero-doctor-placeholder .doctor-icon { font-size: 5rem; }
+
+    .hero-card-float {
+      position: absolute;
+      background: white;
+      border-radius: var(--radius);
+      padding: 1rem 1.2rem;
+      box-shadow: var(--shadow-md);
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+    .hero-card-float.card-1 {
+      bottom: 30px;
+      right: -20px;
+      animation: float1 4s ease-in-out infinite;
+    }
+    .hero-card-float.card-2 {
+      top: 40px;
+      left: -20px;
+      animation: float2 5s ease-in-out infinite;
+    }
+    .float-icon {
+      width: 42px; height: 42px;
+      border-radius: 12px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 20px;
-      flex-shrink: 0;
+      font-size: 1.3rem;
     }
-    .about__feature-icon--blue { background: rgba(37,99,235,0.2); }
-    .about__feature-icon--cyan { background: rgba(6,182,212,0.2); }
-    .about__feature-icon--green { background: rgba(16,185,129,0.2); }
-    .about__feature-title { font-weight: 700; font-size: 15px; margin-bottom: 4px; }
-    .about__feature-desc { font-size: 13px; color: var(--color-text-muted); }
+    .float-icon.green { background: #e8faf0; }
+    .float-icon.blue { background: #e8f4fb; }
+    .float-text strong { display: block; font-size: 0.9rem; font-weight: 800; }
+    .float-text span { font-size: 0.75rem; color: var(--text-muted); }
+
+    @keyframes float1 {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    @keyframes float2 {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(8px); }
+    }
 
     /* ===========================
-       SERVICES SECTION
+       Services Section
     =========================== */
-    .services { background: rgba(255,255,255,0.02); }
-    .services__grid {
+    .services { background: var(--surface); }
+    .services-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
     }
     .service-card {
-      padding: 36px 28px;
-      border-radius: var(--radius-xl);
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
       transition: var(--transition);
+      cursor: pointer;
       position: relative;
       overflow: hidden;
-      cursor: default;
     }
     .service-card::before {
       content: '';
       position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
-      transform: scaleX(0);
-      transform-origin: right;
+      bottom: 0; right: 0;
+      width: 100px; height: 100px;
+      background: radial-gradient(circle, rgba(10,110,110,0.06), transparent);
+      border-radius: 50%;
       transition: var(--transition);
     }
     .service-card:hover {
-      transform: translateY(-8px);
-      background: var(--color-surface-hover);
-      border-color: rgba(37,99,235,0.3);
-      box-shadow: 0 20px 60px rgba(37,99,235,0.15);
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+      border-color: rgba(10,110,110,0.25);
+      background: var(--surface);
     }
-    .service-card:hover::before { transform: scaleX(1); transform-origin: left; }
-    .service-card__icon {
-      width: 64px; height: 64px;
-      border-radius: var(--radius-md);
+    .service-card:hover::before {
+      width: 200px; height: 200px;
+      bottom: -30px; right: -30px;
+    }
+    .service-icon {
+      width: 60px; height: 60px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      border-radius: 16px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 30px;
-      margin-bottom: 24px;
-      background: linear-gradient(135deg, rgba(37,99,235,0.15), rgba(6,182,212,0.15));
-      border: 1px solid rgba(37,99,235,0.2);
+      font-size: 1.7rem;
+      margin-bottom: 1.2rem;
       transition: var(--transition);
     }
-    .service-card:hover .service-card__icon {
-      background: linear-gradient(135deg, rgba(37,99,235,0.3), rgba(6,182,212,0.3));
-      transform: scale(1.1) rotate(5deg);
+    .service-card:hover .service-icon { transform: scale(1.08) rotate(-3deg); }
+    .service-card h3 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
     }
-    .service-card__title { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
-    .service-card__desc { font-size: 14px; color: var(--color-text-muted); line-height: 1.8; }
-    .service-card__link {
+    .service-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+    .service-arrow {
+      margin-top: 1.2rem;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      margin-top: 20px;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--color-primary-light);
+      gap: 0.3rem;
+      color: var(--primary);
+      font-size: 0.88rem;
+      font-weight: 700;
+      opacity: 0;
+      transform: translateX(-8px);
       transition: var(--transition);
     }
-    .service-card:hover .service-card__link { gap: 10px; }
+    .service-card:hover .service-arrow { opacity: 1; transform: translateX(0); }
 
     /* ===========================
-       BOOKING SECTION
+       Why Us Section
     =========================== */
-    .booking__inner {
+    .why-us { background: var(--surface-2); }
+    .why-inner {
       display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: 60px;
-      align-items: start;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
     }
-    .booking__info { }
-    .booking__info-list { display: flex; flex-direction: column; gap: 20px; margin-top: 32px; }
-    .booking__info-item {
+    .why-visual {
+      position: relative;
+    }
+    .why-img-box {
+      width: 100%;
+      aspect-ratio: 1;
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      border-radius: 40px 40px 40px 120px;
       display: flex;
       align-items: center;
-      gap: 16px;
-      padding: 16px 20px;
-      border-radius: var(--radius-md);
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
+      justify-content: center;
+      font-size: 6rem;
+      color: rgba(255,255,255,0.2);
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      overflow: hidden;
     }
-    .booking__info-icon {
-      width: 44px; height: 44px;
-      background: linear-gradient(135deg, rgba(37,99,235,0.2), rgba(6,182,212,0.2));
-      border-radius: var(--radius-sm);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 20px;
-      flex-shrink: 0;
+    .why-img-box::after {
+      content: '🏥';
+      font-size: 7rem;
+      position: absolute;
+      opacity: 0.15;
+      bottom: -10px;
+      left: -10px;
     }
-    .booking__info-label { font-size: 12px; color: var(--color-text-muted); }
-    .booking__info-value { font-size: 15px; font-weight: 600; }
-
-    /* Form */
-    .booking-form {
-      padding: 40px;
-      border-radius: var(--radius-xl);
-    }
-    .booking-form__title { font-size: 22px; font-weight: 800; margin-bottom: 28px; }
-    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .form-group { display: flex; flex-direction: column; gap: 8px; }
-    .form-group--full { grid-column: 1 / -1; }
-    .form-label { font-size: 13px; font-weight: 600; color: var(--color-text-muted); }
-    .form-input, .form-select, .form-textarea {
-      padding: 12px 16px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius-sm);
-      color: var(--color-text);
-      font-family: var(--font);
-      font-size: 14px;
-      transition: var(--transition);
-      direction: rtl;
-    }
-    .form-input:focus, .form-select:focus, .form-textarea:focus {
-      outline: none;
-      border-color: var(--color-primary);
-      background: rgba(37,99,235,0.08);
-      box-shadow: 0 0 0 3px var(--color-primary-glow);
-    }
-    .form-input.is-error { border-color: var(--color-error); }
-    .form-input.is-valid { border-color: var(--color-success); }
-    .form-error-msg { font-size: 11px; color: var(--color-error); display: none; }
-    .form-error-msg.is-visible { display: block; }
-    .form-select option { background: var(--color-bg-2); }
-    .form-textarea { resize: vertical; min-height: 100px; }
-    .form-submit {
-      width: 100%;
-      padding: 15px;
-      background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
-      color: #fff;
-      border: none;
-      border-radius: var(--radius-full);
-      font-family: var(--font);
-      font-size: 16px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: var(--transition);
-      margin-top: 8px;
-      box-shadow: 0 4px 24px var(--color-primary-glow);
-    }
-    .form-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 40px var(--color-primary-glow); }
-    .form-submit:active { transform: scale(0.98); }
-    .form-success {
-      display: none;
+    .why-badge-float {
+      position: absolute;
+      bottom: -20px; left: 50%;
+      transform: translateX(-50%);
+      background: white;
+      border-radius: var(--radius);
+      padding: 1rem 2rem;
+      box-shadow: var(--shadow-md);
       text-align: center;
-      padding: 40px 20px;
+      white-space: nowrap;
     }
-    .form-success__icon { font-size: 56px; margin-bottom: 16px; }
-    .form-success__title { font-size: 20px; font-weight: 700; margin-bottom: 8px; color: var(--color-success); }
-    .form-success__desc { color: var(--color-text-muted); font-size: 14px; }
+    .why-badge-float strong { display: block; font-size: 1.4rem; color: var(--primary); }
+    .why-badge-float span { font-size: 0.82rem; color: var(--text-muted); }
+
+    .features-list { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 2rem; }
+    .feature-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      padding: 1.2rem;
+      background: white;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      transition: var(--transition);
+    }
+    .feature-item:hover { box-shadow: var(--shadow-sm); transform: translateX(-4px); }
+    .feature-icon-box {
+      width: 46px; height: 46px; min-width: 46px;
+      background: var(--surface-2);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+    }
+    .feature-text h4 { font-weight: 800; font-size: 0.95rem; margin-bottom: 0.2rem; }
+    .feature-text p { font-size: 0.85rem; color: var(--text-muted); }
 
     /* ===========================
-       TESTIMONIALS
+       Testimonials
     =========================== */
-    .testimonials__grid {
+    .testimonials { background: var(--surface); }
+    .testimonials-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
     }
     .testimonial-card {
-      padding: 32px;
-      border-radius: var(--radius-xl);
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.8rem;
       transition: var(--transition);
     }
-    .testimonial-card:hover { transform: translateY(-4px); background: var(--color-surface-hover); }
-    .testimonial-card__stars { color: #fbbf24; font-size: 16px; margin-bottom: 16px; letter-spacing: 2px; }
-    .testimonial-card__text { font-size: 14px; color: var(--color-text-muted); line-height: 1.9; margin-bottom: 24px; }
-    .testimonial-card__author { display: flex; align-items: center; gap: 12px; }
-    .testimonial-card__avatar {
+    .testimonial-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .stars { color: var(--accent-warm); font-size: 1rem; margin-bottom: 1rem; letter-spacing: 2px; }
+    .testimonial-card p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 1.2rem; }
+    .t-author { display: flex; align-items: center; gap: 0.8rem; }
+    .t-avatar {
       width: 44px; height: 44px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
       display: flex; align-items: center; justify-content: center;
-      font-size: 18px;
+      font-size: 1.3rem;
+      color: white;
       font-weight: 700;
-      color: #fff;
-      flex-shrink: 0;
     }
-    .testimonial-card__name { font-weight: 700; font-size: 14px; }
-    .testimonial-card__role { font-size: 12px; color: var(--color-text-dim); }
+    .t-avatar.a { background: var(--primary); }
+    .t-avatar.b { background: #e07b54; }
+    .t-avatar.c { background: #6c5ce7; }
+    .t-name { font-weight: 800; font-size: 0.92rem; }
+    .t-title { font-size: 0.78rem; color: var(--text-muted); }
 
     /* ===========================
-       GALLERY SECTION
+       Booking Section
     =========================== */
-    .gallery-section { background: rgba(255,255,255,0.015); }
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: 220px 220px;
-      gap: 16px;
-    }
-    .gallery-item {
+    .booking {
+      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
       position: relative;
-      border-radius: var(--radius-lg);
       overflow: hidden;
-      cursor: pointer;
-      border: 1px solid var(--color-border);
     }
-    .gallery-item--tall { grid-row: span 2; }
-    .gallery-item--wide { grid-column: span 2; }
-    .gallery-item img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);
-    }
-    .gallery-item:hover img { transform: scale(1.08); }
-    .gallery-item__overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(5,13,26,0.85) 0%, transparent 60%);
-      display: flex;
-      align-items: flex-end;
-      padding: 20px;
-      opacity: 0;
-      transition: var(--transition);
-    }
-    .gallery-item:hover .gallery-item__overlay { opacity: 1; }
-    .gallery-item__overlay span {
-      font-size: 14px;
-      font-weight: 600;
-      color: #fff;
-    }
-
-    @media (max-width: 768px) {
-      .gallery-grid {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: auto;
-      }
-      .gallery-item--tall { grid-row: span 1; }
-      .gallery-item--wide { grid-column: span 2; }
-      .gallery-item { height: 180px; }
-    }
-
-    /* ===========================
-       MAP SECTION
-    =========================== */
-    .map__inner { display: grid; grid-template-columns: 1fr 1.5fr; gap: 40px; align-items: center; }
-    .map__frame {
-      border-radius: var(--radius-xl);
-      overflow: hidden;
-      border: 1px solid var(--color-border);
-      box-shadow: var(--shadow-card);
-      height: 350px;
-      position: relative;
-    }
-    .map__frame iframe { width: 100%; height: 100%; border: none; filter: invert(0.9) hue-rotate(190deg); }
-    .map__overlay-label {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      padding: 8px 14px;
-      border-radius: var(--radius-full);
-      font-size: 12px;
-      font-weight: 700;
-      z-index: 5;
-    }
-    .map__info-title { font-size: 1.8rem; font-weight: 800; margin-bottom: 24px; }
-    .map__details { display: flex; flex-direction: column; gap: 16px; }
-    .map__detail {
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      padding: 16px 20px;
-      border-radius: var(--radius-md);
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
-    }
-    .map__detail-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
-    .map__detail-label { font-size: 12px; color: var(--color-text-muted); margin-bottom: 2px; }
-    .map__detail-value { font-size: 14px; font-weight: 600; }
-
-    /* ===========================
-       FOOTER
-    =========================== */
-    .footer {
-      padding: 60px 0 30px;
-      border-top: 1px solid var(--color-border);
-    }
-    .footer__inner { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
-    .footer__brand-desc { font-size: 14px; color: var(--color-text-muted); line-height: 1.8; margin: 16px 0 24px; }
-    .footer__social { display: flex; gap: 10px; }
-    .footer__social-link {
-      width: 38px; height: 38px;
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius-sm);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 16px;
-      transition: var(--transition);
-    }
-    .footer__social-link:hover { background: var(--color-primary); border-color: var(--color-primary); transform: translateY(-2px); }
-    .footer__col-title { font-size: 15px; font-weight: 700; margin-bottom: 20px; }
-    .footer__links { display: flex; flex-direction: column; gap: 10px; }
-    .footer__links a { font-size: 14px; color: var(--color-text-muted); transition: var(--transition); }
-    .footer__links a:hover { color: var(--color-text); padding-right: 4px; }
-    .footer__bottom {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-top: 24px;
-      border-top: 1px solid var(--color-border);
-      font-size: 13px;
-      color: var(--color-text-dim);
-    }
-
-    /* ===========================
-       WHATSAPP BUTTON
-    =========================== */
-    .whatsapp-btn {
-      position: fixed;
-      bottom: 28px;
-      left: 28px;
-      z-index: 999;
-      width: 60px; height: 60px;
-      background: var(--color-whatsapp);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 28px;
-      box-shadow: 0 4px 24px rgba(37,211,102,0.5);
-      cursor: pointer;
-      transition: var(--transition);
-    }
-    .whatsapp-btn:hover { transform: scale(1.1); box-shadow: 0 8px 40px rgba(37,211,102,0.6); }
-    .whatsapp-btn::before {
+    .booking::before {
       content: '';
       position: absolute;
-      width: 100%; height: 100%;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
       border-radius: 50%;
-      background: var(--color-whatsapp);
-      animation: waPulse 2.5s ease-out infinite;
-      z-index: -1;
     }
-    @keyframes waPulse {
-      0% { transform: scale(1); opacity: 0.6; }
-      100% { transform: scale(2); opacity: 0; }
+    .booking-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
     }
-    .whatsapp-tooltip {
-      position: absolute;
-      left: 70px;
-      background: var(--color-bg-2);
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius-sm);
-      padding: 6px 12px;
-      font-size: 12px;
+    .booking-info { color: white; }
+    .booking-info .section-tag { background: rgba(255,255,255,0.15); color: white; border-color: rgba(255,255,255,0.2); }
+    .booking-info .section-title { color: white; }
+    .booking-info .section-title span { color: var(--accent); }
+    .booking-info p { color: rgba(255,255,255,0.75); margin-bottom: 2rem; }
+    .booking-features { display: flex; flex-direction: column; gap: 0.8rem; }
+    .booking-feature {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      color: rgba(255,255,255,0.85);
+      font-size: 0.92rem;
       font-weight: 600;
+    }
+    .booking-feature::before { content: '✓'; color: var(--accent); font-weight: 900; }
+
+    /* Form */
+    .booking-form-card {
+      background: white;
+      border-radius: calc(var(--radius) * 1.5);
+      padding: 2.5rem;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.2);
+    }
+    .booking-form-card h3 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      color: var(--text);
+    }
+    .form-group { margin-bottom: 1.2rem; }
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
+    }
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-family: 'Cairo', sans-serif;
+      font-size: 0.95rem;
+      color: var(--text);
+      background: var(--bg);
+      transition: var(--transition);
+      outline: none;
+      direction: rtl;
+    }
+    .form-group input:focus,
+    .form-group select:focus {
+      border-color: var(--primary);
+      background: white;
+      box-shadow: 0 0 0 3px rgba(10,110,110,0.1);
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .btn-submit {
+      width: 100%;
+      justify-content: center;
+      font-size: 1.05rem;
+      padding: 1rem 2rem;
+      margin-top: 0.5rem;
+    }
+    .form-note {
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 0.8rem;
+    }
+
+    /* ===========================
+       Footer
+    =========================== */
+    footer {
+      background: var(--text);
+      color: rgba(255,255,255,0.7);
+      padding: 3rem 0 1.5rem;
+    }
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 2rem;
+    }
+    .footer-brand .logo { color: white; margin-bottom: 0.8rem; }
+    .footer-brand p { font-size: 0.88rem; line-height: 1.7; max-width: 280px; }
+    .footer-col h4 {
+      color: white;
+      font-weight: 800;
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+    .footer-col ul { display: flex; flex-direction: column; gap: 0.5rem; }
+    .footer-col ul a {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.55);
+      transition: var(--transition);
+    }
+    .footer-col ul a:hover { color: white; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.82rem;
+    }
+    .social-links { display: flex; gap: 0.8rem; }
+    .social-link {
+      width: 36px; height: 36px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+    .social-link:hover { background: var(--primary); }
+
+    /* ===========================
+       Floating WhatsApp Button
+    =========================== */
+    .wa-fab {
+      position: fixed;
+      bottom: 2rem;
+      left: 2rem;
+      z-index: 999;
+      width: 62px; height: 62px;
+      background: #25d366;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.5);
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+    }
+    .wa-fab:hover { transform: scale(1.1); box-shadow: 0 8px 32px rgba(37,211,102,0.6); }
+    .wa-fab::before {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      background: rgba(37,211,102,0.3);
+      animation: pulse-ring 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+    }
+    @keyframes pulse-ring {
+      0% { transform: scale(0.8); opacity: 1; }
+      100% { transform: scale(1.4); opacity: 0; }
+    }
+    .wa-tooltip {
+      position: absolute;
+      left: calc(100% + 12px);
+      top: 50%;
+      transform: translateY(-50%);
+      background: white;
+      color: var(--text);
+      padding: 0.4rem 0.8rem;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 700;
       white-space: nowrap;
+      box-shadow: var(--shadow-sm);
       opacity: 0;
       pointer-events: none;
       transition: var(--transition);
+      font-family: 'Cairo', sans-serif;
     }
-    .whatsapp-btn:hover .whatsapp-tooltip { opacity: 1; }
+    .wa-fab:hover .wa-tooltip { opacity: 1; }
 
     /* ===========================
-       SCROLL REVEAL
+       Responsive
     =========================== */
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .reveal.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .reveal--delay-1 { transition-delay: 0.1s; }
-    .reveal--delay-2 { transition-delay: 0.2s; }
-    .reveal--delay-3 { transition-delay: 0.3s; }
-    .reveal--delay-4 { transition-delay: 0.4s; }
-
-    /* ===========================
-       PROGRESS BAR
-    =========================== */
-    .progress-bar {
-      position: fixed;
-      top: 0; left: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
-      z-index: 9999;
-      transition: width 0.1s linear;
-      width: 0%;
-    }
-
-    /* ===========================
-       RESPONSIVE
-    =========================== */
-    @media (max-width: 1024px) {
-      .services__grid { grid-template-columns: repeat(2, 1fr); }
-      .testimonials__grid { grid-template-columns: repeat(2, 1fr); }
-    }
-
     @media (max-width: 768px) {
-      .navbar__nav, .navbar__cta { display: none; }
-      .navbar__burger { display: flex; }
-      .hero__inner { grid-template-columns: 1fr; text-align: center; gap: 40px; }
-      .hero__image-wrapper { order: -1; }
-      .hero__image-card { width: 260px; height: 300px; }
-      .hero__floating-card--1, .hero__floating-card--2 { display: none; }
-      .hero__subtitle { margin: 0 auto 36px; }
-      .hero__actions { justify-content: center; }
-      .hero__stats { justify-content: center; }
-      .about__inner { grid-template-columns: 1fr; }
-      .services__grid { grid-template-columns: 1fr; }
-      .booking__inner { grid-template-columns: 1fr; }
-      .form-grid { grid-template-columns: 1fr; }
-      .testimonials__grid { grid-template-columns: 1fr; }
-      .map__inner { grid-template-columns: 1fr; }
-      .footer__inner { grid-template-columns: 1fr; gap: 32px; }
-      .footer__bottom { flex-direction: column; gap: 8px; text-align: center; }
+      nav, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      .hero-inner { grid-template-columns: 1fr; text-align: center; }
+      .hero-actions { justify-content: center; }
+      .hero-stats { justify-content: center; }
+      .hero-visual { order: -1; }
+      .hero-img-wrapper { max-width: 320px; margin: 0 auto; }
+      .hero-card-float.card-1 { right: -10px; }
+      .hero-card-float.card-2 { left: -10px; }
+      .why-inner { grid-template-columns: 1fr; }
+      .why-visual { order: -1; }
+      .why-badge-float { position: relative; bottom: auto; left: auto; transform: none; margin-top: 1rem; display: inline-block; }
+      .booking-inner { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .section-pad { padding: 60px 0; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Progress Bar -->
-  <div class="progress-bar" id="progressBar"></div>
-
-  <!-- Background Blobs -->
-  <div class="bg-blobs" aria-hidden="true">
-    <div class="bg-blobs__blob bg-blobs__blob--1"></div>
-    <div class="bg-blobs__blob bg-blobs__blob--2"></div>
-    <div class="bg-blobs__blob bg-blobs__blob--3"></div>
-  </div>
-  <div class="noise-overlay" aria-hidden="true"></div>
-
-  <!-- ==================== NAVBAR ==================== -->
-  <header class="navbar" id="navbar" role="banner">
+  <!-- ===== HEADER ===== -->
+  <header id="header">
     <div class="container">
-      <div class="navbar__inner">
-        <a href="#home" class="navbar__logo" aria-label="الصفحة الرئيسية">
-          <div class="navbar__logo-icon" aria-hidden="true">🏥</div>
-          <div class="navbar__logo-text">د. أحمد <span>الخالدي</span></div>
+      <div class="nav-inner">
+        <a href="#" class="logo">
+          <div class="logo-icon">🦷</div>
+          <span>عيادة الابتسامة</span>
         </a>
-        <nav class="navbar__nav" role="navigation" aria-label="التنقل الرئيسي">
-          <a href="#home" class="navbar__link navbar__link--active">الرئيسية</a>
-          <a href="#about" class="navbar__link">عن الطبيب</a>
-          <a href="#services" class="navbar__link">الخدمات</a>
-          <a href="#booking" class="navbar__link">احجز موعد</a>
-          <a href="#contact" class="navbar__link">تواصل معنا</a>
+        <nav>
+          <a href="#services">خدماتنا</a>
+          <a href="#why-us">لماذا نحن</a>
+          <a href="#testimonials">آراء المرضى</a>
+          <a href="#booking">احجز الآن</a>
         </nav>
-        <a href="#booking" class="navbar__cta">احجز الآن 📅</a>
-        <button class="navbar__burger" id="burgerBtn" aria-label="القائمة" aria-expanded="false">
+        <a href="#booking" class="btn btn-primary nav-cta">احجز موعد 📅</a>
+        <button class="hamburger" id="hamburgerBtn" aria-label="فتح القائمة">
           <span></span><span></span><span></span>
         </button>
       </div>
-      <nav class="navbar__mobile" id="mobileMenu" role="navigation" aria-label="القائمة المتنقلة">
-        <a href="#home" class="navbar__link">الرئيسية</a>
-        <a href="#about" class="navbar__link">عن الطبيب</a>
-        <a href="#services" class="navbar__link">الخدمات</a>
-        <a href="#booking" class="navbar__link">احجز موعد</a>
-        <a href="#contact" class="navbar__link">تواصل معنا</a>
-      </nav>
     </div>
   </header>
 
-  <main>
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" id="mobileMenuClose">✕</button>
+    <a href="#services" class="mobile-link">خدماتنا</a>
+    <a href="#why-us" class="mobile-link">لماذا نحن</a>
+    <a href="#testimonials" class="mobile-link">آراء المرضى</a>
+    <a href="#booking" class="mobile-link">احجز الآن</a>
+    <a href="#booking" class="btn btn-primary">احجز موعد 📅</a>
+  </div>
 
-    <!-- ==================== HERO ==================== -->
-    <section class="hero section" id="home">
-      <div class="container">
-        <div class="hero__inner">
-          <div class="hero__content">
-            <div class="hero__badge reveal">⚕️ أخصائي الباطنة والأمراض المزمنة</div>
-            <h1 class="hero__title reveal reveal--delay-1">
-              رعاية طبية<br />
-              <span class="hero__title-gradient">متميزة وموثوقة</span>
-            </h1>
-            <p class="hero__subtitle reveal reveal--delay-2">
-              نقدم لك أحدث الحلول الطبية في بيئة متطورة ومريحة. صحتك هي أولويتنا القصوى ورسالتنا الأولى.
-            </p>
-            <div class="hero__actions reveal reveal--delay-3">
-              <a href="#booking" class="btn btn--primary">احجز موعدك الآن ←</a>
-              <a href="#about" class="btn btn--ghost">تعرف علينا أكثر</a>
-            </div>
-            <div class="hero__stats reveal reveal--delay-4">
-              <div class="hero__stat">
-                <div class="hero__stat-number" data-count="15">0</div>
-                <div class="hero__stat-label">سنة خبرة</div>
-              </div>
-              <div class="hero__stat">
-                <div class="hero__stat-number" data-count="5000">0</div>
-                <div class="hero__stat-label">مريض سعيد</div>
-              </div>
-              <div class="hero__stat">
-                <div class="hero__stat-number" data-count="98">0</div>
-                <div class="hero__stat-label">% رضا المرضى</div>
-              </div>
-            </div>
-          </div>
-          <div class="hero__image-wrapper reveal reveal--delay-2">
-            <div class="hero__blob-bg" aria-hidden="true"></div>
-            <div class="hero__image-card">
-              <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=800&q=85&auto=format&fit=crop&crop=faces" alt="د. أحمد الخالدي – طبيب أخصائي" loading="eager" />
-            </div>
-            <div class="hero__floating-card hero__floating-card--1 glass">
-              <div class="hero__floating-icon">✅</div>
-              <div>
-                <div class="hero__floating-text-main">موعد مؤكد</div>
-                <div class="hero__floating-text-sub">اليوم، 4:30 م</div>
-              </div>
-            </div>
-            <div class="hero__floating-card hero__floating-card--2 glass">
-              <div class="hero__stars">★★★★★</div>
-              <div class="hero__floating-text-main">5.0 تقييم ممتاز</div>
-              <div class="hero__floating-text-sub">بناءً على 900+ تقييم</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================== ABOUT ==================== -->
-    <section class="section" id="about">
-      <div class="container">
-        <div class="about__inner">
-          <div class="about__image reveal">
-            <div class="about__image-main">
-              <img src="https://images.unsplash.com/photo-1631815588090-d4bfec5b1ccb?w=700&q=85&auto=format&fit=crop" alt="عيادة د. أحمد الخالدي" loading="lazy" />
-            </div>
-            <div class="about__cert glass">
-              <div class="about__cert-title">+15</div>
-              <div class="about__cert-sub">سنة من الخبرة الطبية</div>
-            </div>
-          </div>
-          <div class="about__content">
-            <div class="section__tag reveal">👨‍⚕️ نبذة عنا</div>
-            <h2 class="section__title reveal reveal--delay-1">طبيب تثق به<br /> ورعاية تشعر بها</h2>
-            <p style="color: var(--color-text-muted); font-size: 15px; line-height: 1.9;" class="reveal reveal--delay-2">
-              الدكتور أحمد الخالدي، حاصل على شهادة الاختصاص في الباطنة من جامعة القاهرة، وزميل الكليات الملكية البريطانية. يجمع بين الخبرة العلمية الأكاديمية والتجربة السريرية المتراكمة لأكثر من 15 عاماً في خدمة المرضى.
-            </p>
-            <div class="about__features">
-              <div class="about__feature reveal reveal--delay-1">
-                <div class="about__feature-icon about__feature-icon--blue">🎓</div>
-                <div>
-                  <div class="about__feature-title">شهادات أكاديمية متميزة</div>
-                  <div class="about__feature-desc">ماجستير الطب الباطني وزمالة المجلس العربي للاختصاصات الطبية</div>
-                </div>
-              </div>
-              <div class="about__feature reveal reveal--delay-2">
-                <div class="about__feature-icon about__feature-icon--cyan">🔬</div>
-                <div>
-                  <div class="about__feature-title">تقنيات تشخيصية حديثة</div>
-                  <div class="about__feature-desc">نستخدم أحدث الأجهزة الطبية لضمان دقة التشخيص وسرعة العلاج</div>
-                </div>
-              </div>
-              <div class="about__feature reveal reveal--delay-3">
-                <div class="about__feature-icon about__feature-icon--green">💊</div>
-                <div>
-                  <div class="about__feature-title">متابعة شاملة ومستمرة</div>
-                  <div class="about__feature-desc">نوفر خطط علاجية مخصصة ومتابعة دورية لكل مريض</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================== SERVICES ==================== -->
-    <section class="section services" id="services">
-      <div class="container">
-        <div class="section__header">
-          <div class="section__tag reveal">⚕️ تخصصاتنا</div>
-          <h2 class="section__title reveal reveal--delay-1">خدماتنا الطبية</h2>
-          <p class="section__desc reveal reveal--delay-2">نقدم طيفاً واسعاً من الخدمات الطبية المتخصصة بأعلى المعايير الدولية</p>
-          <div class="section__divider reveal reveal--delay-3"></div>
-        </div>
-        <div class="services__grid">
-          <article class="service-card reveal" tabindex="0">
-            <div class="service-card__icon">🫀</div>
-            <h3 class="service-card__title">أمراض القلب والأوعية</h3>
-            <p class="service-card__desc">تشخيص وعلاج أمراض القلب التاجية وارتفاع ضغط الدم والفشل القلبي بأحدث البروتوكولات العلاجية.</p>
-            <span class="service-card__link">اعرف أكثر ←</span>
-          </article>
-          <article class="service-card reveal reveal--delay-1" tabindex="0">
-            <div class="service-card__icon">🩺</div>
-            <h3 class="service-card__title">داء السكري والغدد</h3>
-            <p class="service-card__desc">رعاية متكاملة لمرضى السكري من النوع الأول والثاني، ومتابعة اضطرابات الغدة الدرقية والكظرية.</p>
-            <span class="service-card__link">اعرف أكثر ←</span>
-          </article>
-          <article class="service-card reveal reveal--delay-2" tabindex="0">
-            <div class="service-card__icon">🫁</div>
-            <h3 class="service-card__title">أمراض الجهاز التنفسي</h3>
-            <p class="service-card__desc">تشخيص وعلاج الربو، الانسداد الرئوي المزمن، والالتهابات التنفسية المتكررة.</p>
-            <span class="service-card__link">اعرف أكثر ←</span>
-          </article>
-          <article class="service-card reveal reveal--delay-1" tabindex="0">
-            <div class="service-card__icon">🦠</div>
-            <h3 class="service-card__title">الأمراض المعدية</h3>
-            <p class="service-card__desc">تشخيص وعلاج الأمراض المعدية الحادة والمزمنة، وإدارة المناعة والتطعيمات الوقائية.</p>
-            <span class="service-card__link">اعرف أكثر ←</span>
-          </article>
-          <article class="service-card reveal reveal--delay-2" tabindex="0">
-            <div class="service-card__icon">🧬</div>
-            <h3 class="service-card__title">الفحوصات الدورية الشاملة</h3>
-            <p class="service-card__desc">باقات فحص شاملة للكشف المبكر عن الأمراض وتقييم الحالة الصحية العامة بشكل دوري.</p>
-            <span class="service-card__link">اعرف أكثر ←</span>
-          </article>
-          <article class="service-card reveal reveal--delay-3" tabindex="0">
-            <div class="service-card__icon">💉</div>
-            <h3 class="service-card__title">التطعيمات والوقاية</h3>
-            <p class="service-card__desc">برامج التطعيم للبالغين والكبار في السن، ومشاورات الوقاية من الأمراض المزمنة.</p>
-            <span class="service-card__link">اعرف أكثر ←</span>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================== GALLERY ==================== -->
-    <section class="section gallery-section">
-      <div class="container">
-        <div class="section__header">
-          <div class="section__tag reveal">📸 معرض الصور</div>
-          <h2 class="section__title reveal reveal--delay-1">من داخل عيادتنا</h2>
-          <p class="section__desc reveal reveal--delay-2">بيئة طبية متطورة ومريحة تضمن لك أفضل تجربة علاجية</p>
-          <div class="section__divider reveal reveal--delay-3"></div>
-        </div>
-        <div class="gallery-grid reveal">
-          <div class="gallery-item gallery-item--tall">
-            <img src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?w=600&q=85&auto=format&fit=crop" alt="غرفة الفحص" loading="lazy" />
-            <div class="gallery-item__overlay"><span>غرفة الفحص الطبي</span></div>
-          </div>
-          <div class="gallery-item">
-            <img src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=600&q=85&auto=format&fit=crop" alt="معدات طبية حديثة" loading="lazy" />
-            <div class="gallery-item__overlay"><span>معدات طبية حديثة</span></div>
-          </div>
-          <div class="gallery-item">
-            <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=600&q=85&auto=format&fit=crop" alt="صالة الانتظار" loading="lazy" />
-            <div class="gallery-item__overlay"><span>صالة الانتظار</span></div>
-          </div>
-          <div class="gallery-item gallery-item--wide">
-            <img src="https://images.unsplash.com/photo-1551601651-2a8555f1a136?w=900&q=85&auto=format&fit=crop" alt="مختبر التحاليل" loading="lazy" />
-            <div class="gallery-item__overlay"><span>مختبر التحاليل</span></div>
-          </div>
-          <div class="gallery-item">
-            <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=600&q=85&auto=format&fit=crop" alt="فريق طبي متكامل" loading="lazy" />
-            <div class="gallery-item__overlay"><span>فريقنا الطبي</span></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================== BOOKING ==================== -->
-    <section class="section" id="booking">
-      <div class="container">
-        <div class="section__header">
-          <div class="section__tag reveal">📅 المواعيد</div>
-          <h2 class="section__title reveal reveal--delay-1">احجز موعدك بسهولة</h2>
-          <p class="section__desc reveal reveal--delay-2">أكمل النموذج أدناه وسيتصل بك فريقنا لتأكيد الموعد خلال 24 ساعة</p>
-          <div class="section__divider reveal reveal--delay-3"></div>
-        </div>
-        <div class="booking__inner">
-          <div class="booking__info reveal">
-            <h3 style="font-size:1.3rem; font-weight:700; margin-bottom:8px;">معلومات التواصل</h3>
-            <p style="color:var(--color-text-muted); font-size:14px; margin-bottom:24px;">نحن هنا للإجابة على استفساراتك وحجز مواعيدك</p>
-            <div class="booking__info-list">
-              <div class="booking__info-item">
-                <div class="booking__info-icon">📞</div>
-                <div>
-                  <div class="booking__info-label">هاتف العيادة</div>
-                  <div class="booking__info-value" dir="ltr">+213 699 334 500</div>
-                </div>
-              </div>
-              <div class="booking__info-item">
-                <div class="booking__info-icon">📍</div>
-                <div>
-                  <div class="booking__info-label">العنوان</div>
-                  <div class="booking__info-value">شارع ديدوش مراد، الجزائر العاصمة، الجزائر</div>
-                </div>
-              </div>
-              <div class="booking__info-item">
-                <div class="booking__info-icon">🕐</div>
-                <div>
-                  <div class="booking__info-label">أوقات العمل</div>
-                  <div class="booking__info-value">الأحد – الخميس، 9 ص – 9 م</div>
-                </div>
-              </div>
-              <div class="booking__info-item">
-                <div class="booking__info-icon">📧</div>
-                <div>
-                  <div class="booking__info-label">البريد الإلكتروني</div>
-                  <div class="booking__info-value">info@dr-alkhalidi.com</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="booking-form glass reveal reveal--delay-1">
-            <div class="booking-form__title">📋 نموذج الحجز</div>
-            <form id="bookingForm" novalidate>
-              <div class="form-grid">
-                <div class="form-group">
-                  <label class="form-label" for="fullName">الاسم الكامل *</label>
-                  <input class="form-input" type="text" id="fullName" name="fullName" placeholder="أدخل اسمك الكامل" required autocomplete="name" />
-                  <span class="form-error-msg" id="fullNameError">يرجى إدخال اسمك الكامل</span>
-                </div>
-                <div class="form-group">
-                  <label class="form-label" for="phone">رقم الجوال *</label>
-                  <input class="form-input" type="tel" id="phone" name="phone" placeholder="06XXXXXXXX" required autocomplete="tel" dir="ltr" />
-                  <span class="form-error-msg" id="phoneError">أدخل رقم جوال صحيح (06/07 XXXXXXXX)</span>
-                </div>
-                <div class="form-group">
-                  <label class="form-label" for="email">البريد الإلكتروني</label>
-                  <input class="form-input" type="email" id="email" name="email" placeholder="example@email.com" autocomplete="email" dir="ltr" />
-                  <span class="form-error-msg" id="emailError">أدخل بريد إلكتروني صحيح</span>
-                </div>
-                <div class="form-group">
-                  <label class="form-label" for="service">نوع الاستشارة *</label>
-                  <select class="form-select" id="service" name="service" required>
-                    <option value="">اختر نوع الاستشارة</option>
-                    <option>كشف عام</option>
-                    <option>أمراض القلب</option>
-                    <option>داء السكري</option>
-                    <option>الجهاز التنفسي</option>
-                    <option>فحص دوري شامل</option>
-                    <option>متابعة حالة مزمنة</option>
-                  </select>
-                  <span class="form-error-msg" id="serviceError">يرجى اختيار نوع الاستشارة</span>
-                </div>
-                <div class="form-group">
-                  <label class="form-label" for="date">التاريخ المطلوب *</label>
-                  <input class="form-input" type="date" id="date" name="date" required />
-                  <span class="form-error-msg" id="dateError">يرجى اختيار تاريخ صحيح</span>
-                </div>
-                <div class="form-group">
-                  <label class="form-label" for="timeSlot">الوقت المفضل</label>
-                  <select class="form-select" id="timeSlot" name="timeSlot">
-                    <option value="">اختر الوقت</option>
-                    <option>9:00 ص</option>
-                    <option>10:00 ص</option>
-                    <option>11:00 ص</option>
-                    <option>12:00 م</option>
-                    <option>4:00 م</option>
-                    <option>5:00 م</option>
-                    <option>6:00 م</option>
-                    <option>7:00 م</option>
-                  </select>
-                </div>
-                <div class="form-group form-group--full">
-                  <label class="form-label" for="notes">ملاحظات إضافية</label>
-                  <textarea class="form-textarea" id="notes" name="notes" placeholder="صف شكواك الطبية أو أي ملاحظات تريد إضافتها..."></textarea>
-                </div>
-              </div>
-              <button type="submit" class="form-submit">تأكيد الحجز 🗓️</button>
-            </form>
-            <div class="form-success" id="formSuccess">
-              <div class="form-success__icon">✅</div>
-              <div class="form-success__title">تم الحجز بنجاح!</div>
-              <p class="form-success__desc">سيتواصل معك فريقنا قريباً لتأكيد موعدك. شكراً لثقتك بعيادة الدكتور أحمد الخالدي.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================== TESTIMONIALS ==================== -->
-    <section class="section" style="background: rgba(255,255,255,0.015);">
-      <div class="container">
-        <div class="section__header">
-          <div class="section__tag reveal">⭐ آراء المرضى</div>
-          <h2 class="section__title reveal reveal--delay-1">ماذا يقول مرضانا</h2>
-          <div class="section__divider reveal reveal--delay-2"></div>
-        </div>
-        <div class="testimonials__grid">
-          <article class="testimonial-card glass reveal">
-            <div class="testimonial-card__stars">★★★★★</div>
-            <p class="testimonial-card__text">
-              "الدكتور أحمد من أفضل الأطباء الذين تعاملت معهم. شرح حالتي بكل وضوح وكان الاهتمام رائعاً. أنصح به بشدة لكل من يبحث عن رعاية طبية متميزة."
-            </p>
-            <div class="testimonial-card__author">
-              <div class="testimonial-card__avatar">م</div>
-              <div>
-                <div class="testimonial-card__name">محمد العتيبي</div>
-                <div class="testimonial-card__role">مريض منذ 3 سنوات</div>
-              </div>
-            </div>
-          </article>
-          <article class="testimonial-card glass reveal reveal--delay-1">
-            <div class="testimonial-card__stars">★★★★★</div>
-            <p class="testimonial-card__text">
-              "تجربة رائعة من البداية للنهاية. الاستقبال محترم، الانتظار قصير، والدكتور متمكن جداً. تحسنت حالتي كثيراً بعد اتباع خطة العلاج التي وضعها."
-            </p>
-            <div class="testimonial-card__author">
-              <div class="testimonial-card__avatar">س</div>
-              <div>
-                <div class="testimonial-card__name">سارة البكر</div>
-                <div class="testimonial-card__role">مريضة منذ سنة</div>
-              </div>
-            </div>
-          </article>
-          <article class="testimonial-card glass reveal reveal--delay-2">
-            <div class="testimonial-card__stars">★★★★★</div>
-            <p class="testimonial-card__text">
-              "دكتور على مستوى عالٍ جداً، يهتم بالمريض ويشرح الأمور بالتفصيل. العيادة نظيفة ومجهزة بأحدث المعدات. سأواصل متابعتي معه دائماً."
-            </p>
-            <div class="testimonial-card__author">
-              <div class="testimonial-card__avatar">ف</div>
-              <div>
-                <div class="testimonial-card__name">فيصل الرشيد</div>
-                <div class="testimonial-card__role">مريض منذ سنتين</div>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================== MAP / CONTACT ==================== -->
-    <section class="section" id="contact">
-      <div class="container">
-        <div class="section__header">
-          <div class="section__tag reveal">📍 موقعنا</div>
-          <h2 class="section__title reveal reveal--delay-1">كيف تصل إلينا؟</h2>
-          <div class="section__divider reveal reveal--delay-2"></div>
-        </div>
-        <div class="map__inner">
-          <div class="map__info reveal">
-            <h3 class="map__info-title">تفاصيل العيادة</h3>
-            <div class="map__details">
-              <div class="map__detail">
-                <div class="map__detail-icon">📍</div>
-                <div>
-                  <div class="map__detail-label">العنوان</div>
-                  <div class="map__detail-value">عمارة الأطباء، الطابق 3، شارع ديدوش مراد، الجزائر 16000</div>
-                </div>
-              </div>
-              <div class="map__detail">
-                <div class="map__detail-icon">🕐</div>
-                <div>
-                  <div class="map__detail-label">ساعات العمل</div>
-                  <div class="map__detail-value">الأحد – الخميس: 9 ص – 9 م<br />السبت: 10 ص – 5 م</div>
-                </div>
-              </div>
-              <div class="map__detail">
-                <div class="map__detail-icon">📞</div>
-                <div>
-                  <div class="map__detail-label">الهاتف / الواتساب</div>
-                  <div class="map__detail-value" dir="ltr">+213 699 334 500</div>
-                </div>
-              </div>
-              <div class="map__detail">
-                <div class="map__detail-icon">🅿️</div>
-                <div>
-                  <div class="map__detail-label">مواقف السيارات</div>
-                  <div class="map__detail-value">موقف مجاني داخل المبنى</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="map__frame reveal reveal--delay-1">
-            <div class="map__overlay-label glass">📍 عيادة د. الخالدي</div>
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3197.0!2d3.0588!3d36.7525!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x128fb26977ea659f%3A0x3bec8bde2f8d9d41!2sDidouche%20Mourad%2C%20Algiers!5e0!3m2!1sar!2sdz!4v1234567890"
-              allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-              title="موقع العيادة على خريطة غوغل"
-              aria-label="خريطة العيادة">
-            </iframe>
-          </div>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- ==================== FOOTER ==================== -->
-  <footer class="footer" id="footer">
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="home">
     <div class="container">
-      <div class="footer__inner">
-        <div class="footer__brand">
-          <a href="#home" class="navbar__logo" style="margin-bottom:16px; display:inline-flex;">
-            <div class="navbar__logo-icon">🏥</div>
-            <div class="navbar__logo-text">د. أحمد <span>الخالدي</span></div>
-          </a>
-          <p class="footer__brand-desc">
-            عيادة متخصصة تقدم أعلى مستويات الرعاية الصحية للباطنة والأمراض المزمنة، بفريق طبي متكامل وتقنيات حديثة.
+      <div class="hero-inner">
+
+        <!-- Content -->
+        <div class="hero-content">
+          <div class="hero-badge reveal">
+            <span>⭐</span> التميّز في طب الأسنان منذ 2010
+          </div>
+          <h1 class="hero-title reveal reveal-delay-1">
+            ابتسامتك تستحق<br/><span>أفضل رعاية</span>
+          </h1>
+          <p class="hero-desc reveal reveal-delay-2">
+            نقدم خدمات متكاملة لطب الأسنان والتجميل بأحدث التقنيات وفريق طبي متخصص، لنمنحك الثقة والابتسامة التي تحلم بها.
           </p>
-          <div class="footer__social">
-            <a href="#" class="footer__social-link" aria-label="تويتر">𝕏</a>
-            <a href="#" class="footer__social-link" aria-label="إنستغرام">📸</a>
-            <a href="#" class="footer__social-link" aria-label="لينكدإن">💼</a>
-            <a href="#" class="footer__social-link" aria-label="يوتيوب">▶</a>
+          <div class="hero-actions reveal reveal-delay-3">
+            <a href="#booking" class="btn btn-primary">📅 احجز موعدك الآن</a>
+            <a href="#services" class="btn btn-outline">💡 اكتشف خدماتنا</a>
+          </div>
+          <div class="hero-stats reveal reveal-delay-4">
+            <div class="stat-item">
+              <div class="stat-number">+5000</div>
+              <div class="stat-label">مريض سعيد</div>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <div class="stat-number">15+</div>
+              <div class="stat-label">سنة خبرة</div>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <div class="stat-number">98%</div>
+              <div class="stat-label">رضا المرضى</div>
+            </div>
           </div>
         </div>
-        <div class="footer__col">
-          <div class="footer__col-title">روابط سريعة</div>
-          <nav class="footer__links" aria-label="روابط التذييل">
-            <a href="#home">الرئيسية</a>
-            <a href="#about">عن الطبيب</a>
-            <a href="#services">خدماتنا</a>
-            <a href="#booking">احجز موعد</a>
-            <a href="#contact">تواصل معنا</a>
-          </nav>
+
+        <!-- Visual -->
+        <div class="hero-visual reveal reveal-delay-2">
+          <div class="hero-img-wrapper">
+            <div class="hero-img-main">
+              <div class="hero-doctor-placeholder">
+                <span class="doctor-icon">👨‍⚕️</span>
+                <span>د. أحمد الكريم</span>
+              </div>
+            </div>
+
+            <!-- Floating Cards -->
+            <div class="hero-card-float card-1">
+              <div class="float-icon green">✅</div>
+              <div class="float-text">
+                <strong>موعد محجوز</strong>
+                <span>اليوم 10:30 ص</span>
+              </div>
+            </div>
+            <div class="hero-card-float card-2">
+              <div class="float-icon blue">🏆</div>
+              <div class="float-text">
+                <strong>أفضل عيادة 2024</strong>
+                <span>جائزة التميّز الطبي</span>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="footer__col">
-          <div class="footer__col-title">التخصصات</div>
-          <nav class="footer__links">
-            <a href="#">أمراض القلب</a>
-            <a href="#">داء السكري</a>
-            <a href="#">الجهاز التنفسي</a>
-            <a href="#">الأمراض المعدية</a>
-            <a href="#">فحص دوري شامل</a>
-          </nav>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SERVICES ===== -->
+  <section class="services section-pad" id="services">
+    <div class="container">
+      <div class="text-center reveal">
+        <div class="section-tag">🦷 خدماتنا</div>
+        <h2 class="section-title">كل ما يحتاجه <span>أسنانك</span></h2>
+        <p class="section-desc">نوفر طيفاً واسعاً من الخدمات المتخصصة في بيئة مريحة وآمنة</p>
+      </div>
+      <div class="services-grid">
+
+        <div class="service-card reveal reveal-delay-1">
+          <div class="service-icon">✨</div>
+          <h3>تبييض الأسنان</h3>
+          <p>تقنيات متطورة لتبييض احترافي يمنحك ابتسامة أكثر إشراقاً في جلسة واحدة فقط.</p>
+          <div class="service-arrow">احجز الآن ←</div>
+        </div>
+
+        <div class="service-card reveal reveal-delay-2">
+          <div class="service-icon">😁</div>
+          <h3>تقويم الأسنان</h3>
+          <p>حلول تقويم للكبار والأطفال، بما في ذلك التقويم الشفاف للحياة اليومية.</p>
+          <div class="service-arrow">احجز الآن ←</div>
+        </div>
+
+        <div class="service-card reveal reveal-delay-3">
+          <div class="service-icon">🦷</div>
+          <h3>زراعة الأسنان</h3>
+          <p>زراعة دائمة بتقنية 3D لاستعادة وظيفة وجمال أسنانك بشكل طبيعي تماماً.</p>
+          <div class="service-arrow">احجز الآن ←</div>
+        </div>
+
+        <div class="service-card reveal reveal-delay-1">
+          <div class="service-icon">🔍</div>
+          <h3>فحص دوري شامل</h3>
+          <p>كشف مبكر للمشكلات وتنظيف احترافي للحفاظ على صحة أسنانك على المدى البعيد.</p>
+          <div class="service-arrow">احجز الآن ←</div>
+        </div>
+
+        <div class="service-card reveal reveal-delay-2">
+          <div class="service-icon">💎</div>
+          <h3>قشور الأسنان</h3>
+          <p>قشور بورسلان رفيعة لتحسين شكل ولون أسنانك بنتائج طبيعية وجذابة.</p>
+          <div class="service-arrow">احجز الآن ←</div>
+        </div>
+
+        <div class="service-card reveal reveal-delay-3">
+          <div class="service-icon">🩺</div>
+          <h3>علاج اللثة</h3>
+          <p>علاج شامل لأمراض اللثة بأحدث الأساليب لضمان أساس صحي لأسنانك.</p>
+          <div class="service-arrow">احجز الآن ←</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHY US ===== -->
+  <section class="why-us section-pad" id="why-us">
+    <div class="container">
+      <div class="why-inner">
+        <div class="why-visual reveal">
+          <div class="why-img-box">🦷</div>
+          <div class="why-badge-float">
+            <strong>ISO 9001</strong>
+            <span>معتمدون دولياً</span>
+          </div>
+        </div>
+        <div class="why-content">
+          <div class="section-tag reveal">⭐ لماذا نحن؟</div>
+          <h2 class="section-title reveal">رعاية <span>استثنائية</span><br/>تستحقها</h2>
+          <p class="section-desc reveal" style="margin: 0 0 0 0; text-align: right;">
+            نجمع بين الخبرة الطبية العميقة والتقنيات الحديثة في بيئة دافئة تجعل زيارتك للعيادة تجربة ممتعة.
+          </p>
+          <div class="features-list">
+            <div class="feature-item reveal reveal-delay-1">
+              <div class="feature-icon-box">🔬</div>
+              <div class="feature-text">
+                <h4>تقنيات متطورة</h4>
+                <p>أجهزة تصوير ثلاثي الأبعاد وليزر طبي لنتائج دقيقة وآمنة</p>
+              </div>
+            </div>
+            <div class="feature-item reveal reveal-delay-2">
+              <div class="feature-icon-box">👨‍⚕️</div>
+              <div class="feature-text">
+                <h4>فريق طبي متخصص</h4>
+                <p>أطباء حاصلون على أعلى الشهادات الدولية في تخصصاتهم</p>
+              </div>
+            </div>
+            <div class="feature-item reveal reveal-delay-3">
+              <div class="feature-icon-box">💉</div>
+              <div class="feature-text">
+                <h4>معايير تعقيم صارمة</h4>
+                <p>بروتوكولات تعقيم تفوق المعايير الدولية لسلامتك الكاملة</p>
+              </div>
+            </div>
+            <div class="feature-item reveal reveal-delay-4">
+              <div class="feature-icon-box">💳</div>
+              <div class="feature-text">
+                <h4>خطط دفع مرنة</h4>
+                <p>نقدم تقسيطاً ميسراً وتغطية لمعظم شركات التأمين</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="footer__bottom">
-        <span>© 2024 عيادة د. أحمد الخالدي. جميع الحقوق محفوظة.</span>
-        <span>صُنع بـ ❤ في الجزائر</span>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIALS ===== -->
+  <section class="testimonials section-pad" id="testimonials">
+    <div class="container">
+      <div class="text-center reveal">
+        <div class="section-tag">💬 تجارب مرضانا</div>
+        <h2 class="section-title">ماذا يقول <span>مرضانا</span>؟</h2>
+        <p class="section-desc">أكثر من 5000 مريض وثقوا بنا — اقرأ تجاربهم الحقيقية</p>
+      </div>
+      <div class="testimonials-grid">
+
+        <div class="testimonial-card reveal reveal-delay-1">
+          <div class="stars">★★★★★</div>
+          <p>"أفضل عيادة أسنان جربتها على الإطلاق! الدكتور محترف جداً والنتيجة تخطّت توقعاتي. ابتسامتي تغيّرت بالكامل."</p>
+          <div class="t-author">
+            <div class="t-avatar a">س</div>
+            <div>
+              <div class="t-name">سارة المنصور</div>
+              <div class="t-title">مريضة — تبييض الأسنان</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal reveal-delay-2">
+          <div class="stars">★★★★★</div>
+          <p>"عملت زراعة كاملة للأسنان وكانت تجربة رائعة. لا ألم تقريباً، والنتيجة طبيعية جداً. أنصح كل شخص بزيارة هذه العيادة."</p>
+          <div class="t-author">
+            <div class="t-avatar b">م</div>
+            <div>
+              <div class="t-name">محمد الزهراني</div>
+              <div class="t-title">مريض — زراعة الأسنان</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal reveal-delay-3">
+          <div class="stars">★★★★★</div>
+          <p>"رهاب الأسنان كان يمنعني من الذهاب للطبيب. هنا الجو مريح جداً والفريق صبور ومتفهّم. شكراً جزيلاً!"</p>
+          <div class="t-author">
+            <div class="t-avatar c">ل</div>
+            <div>
+              <div class="t-name">لينا العمري</div>
+              <div class="t-title">مريضة — تقويم الأسنان</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BOOKING ===== -->
+  <section class="booking section-pad" id="booking">
+    <div class="container">
+      <div class="booking-inner">
+
+        <div class="booking-info reveal">
+          <div class="section-tag">📅 احجز موعدك</div>
+          <h2 class="section-title">ابدأ رحلتك نحو<br/><span>ابتسامة مثالية</span></h2>
+          <p>احجز موعدك الآن بكل سهولة عبر واتساب. فريقنا سيتواصل معك فوراً لتأكيد الحجز.</p>
+          <div class="booking-features">
+            <div class="booking-feature">كشف مجاني للمرضى الجدد</div>
+            <div class="booking-feature">مواعيد مرنة صباحاً ومساءً</div>
+            <div class="booking-feature">تأكيد فوري عبر واتساب</div>
+            <div class="booking-feature">إمكانية إلغاء الموعد مجاناً</div>
+          </div>
+        </div>
+
+        <div class="booking-form-card reveal reveal-delay-2">
+          <h3>📋 بيانات الحجز</h3>
+
+          <div class="form-group">
+            <label for="patientName">الاسم الكامل *</label>
+            <input type="text" id="patientName" placeholder="مثال: أحمد محمد" required />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="patientPhone">رقم الهاتف *</label>
+              <input type="tel" id="patientPhone" placeholder="+966 5X XXX XXXX" required />
+            </div>
+            <div class="form-group">
+              <label for="appointmentDate">التاريخ المفضّل *</label>
+              <input type="date" id="appointmentDate" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="serviceType">نوع الخدمة *</label>
+            <select id="serviceType" required>
+              <option value="">اختر الخدمة المطلوبة</option>
+              <option value="تبييض الأسنان">✨ تبييض الأسنان</option>
+              <option value="تقويم الأسنان">😁 تقويم الأسنان</option>
+              <option value="زراعة الأسنان">🦷 زراعة الأسنان</option>
+              <option value="فحص دوري شامل">🔍 فحص دوري شامل</option>
+              <option value="قشور الأسنان">💎 قشور الأسنان</option>
+              <option value="علاج اللثة">🩺 علاج اللثة</option>
+            </select>
+          </div>
+
+          <button class="btn btn-whatsapp btn-submit" id="bookBtn" type="button">
+            <span>📲</span> احجز عبر واتساب
+          </button>
+          <p class="form-note">🔒 بياناتك آمنة ومحمية تماماً</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <div class="logo">
+            <div class="logo-icon">🦷</div>
+            <span>عيادة الابتسامة</span>
+          </div>
+          <p>نلتزم بتقديم أفضل رعاية لأسنانك، لأن ابتسامتك هي انعكاس لصحتك وثقتك بنفسك.</p>
+        </div>
+        <div class="footer-col">
+          <h4>روابط سريعة</h4>
+          <ul>
+            <li><a href="#home">الرئيسية</a></li>
+            <li><a href="#services">خدماتنا</a></li>
+            <li><a href="#why-us">لماذا نحن؟</a></li>
+            <li><a href="#booking">احجز موعد</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>تواصل معنا</h4>
+          <ul>
+            <li><a href="tel:+966501234567">📞 +966 50 123 4567</a></li>
+            <li><a href="mailto:info@smile-clinic.sa">✉️ info@smile-clinic.sa</a></li>
+            <li><a href="#">📍 الرياض، حي النخيل</a></li>
+            <li><a href="#">🕒 ٩ص - ٩م (إجازة الجمعة)</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 عيادة الابتسامة النقية — جميع الحقوق محفوظة</span>
+        <div class="social-links">
+          <a href="#" class="social-link">📘</a>
+          <a href="#" class="social-link">📸</a>
+          <a href="#" class="social-link">🐦</a>
+          <a href="#" class="social-link">▶️</a>
+        </div>
       </div>
     </div>
   </footer>
 
-  <!-- ==================== WHATSAPP BTN ==================== -->
-  <a href="https://wa.me/213699334500?text=السلام عليكم، أريد حجز موعد" class="whatsapp-btn" aria-label="تواصل عبر واتساب" target="_blank" rel="noopener noreferrer">
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2C6.477 2 2 6.477 2 12c0 1.99.584 3.842 1.591 5.398L2 22l4.741-1.562A9.943 9.943 0 0012.004 22C17.53 22 22 17.523 22 12S17.53 2 12.004 2zm0 18.117a8.098 8.098 0 01-4.124-1.125l-.295-.176-3.069 1.012.97-3.01-.193-.309A8.099 8.099 0 013.883 12c0-4.487 3.633-8.117 8.121-8.117S20.117 7.513 20.117 12c0 4.487-3.63 8.117-8.113 8.117z"/></svg>
-    <span class="whatsapp-tooltip">تواصل عبر واتساب</span>
+  <!-- ===== WHATSAPP FAB ===== -->
+  <a href="#" class="wa-fab" id="waFab" aria-label="تواصل عبر واتساب">
+    💬
+    <span class="wa-tooltip">تحدث معنا الآن!</span>
   </a>
 
+  <!-- ===== JAVASCRIPT ===== -->
   <script>
-    'use strict';
-
-    // ===== PROGRESS BAR =====
-    const progressBar = document.getElementById('progressBar');
+    // ===========================
+    // 1. Header Scroll Behavior
+    // ===========================
+    const header = document.getElementById('header');
     window.addEventListener('scroll', () => {
-      const total = document.body.scrollHeight - window.innerHeight;
-      const progress = (window.scrollY / total) * 100;
-      progressBar.style.width = `${progress}%`;
+      header.classList.toggle('scrolled', window.scrollY > 50);
+    }, { passive: true });
+
+    // ===========================
+    // 2. Mobile Menu
+    // ===========================
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const mobileMenu   = document.getElementById('mobileMenu');
+    const mobileClose  = document.getElementById('mobileMenuClose');
+
+    hamburgerBtn.addEventListener('click', () => mobileMenu.classList.add('open'));
+    mobileClose.addEventListener('click',  () => mobileMenu.classList.remove('open'));
+
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => mobileMenu.classList.remove('open'));
     });
 
-    // ===== NAVBAR SCROLL =====
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      navbar.classList.toggle('navbar--scrolled', window.scrollY > 50);
-    });
-
-    // ===== MOBILE MENU =====
-    const burgerBtn = document.getElementById('burgerBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    burgerBtn.addEventListener('click', () => {
-      const isOpen = mobileMenu.classList.toggle('is-open');
-      burgerBtn.setAttribute('aria-expanded', isOpen);
-    });
-    document.querySelectorAll('.navbar__mobile .navbar__link').forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.remove('is-open');
-        burgerBtn.setAttribute('aria-expanded', 'false');
-      });
-    });
-
-    // ===== ACTIVE NAV LINK =====
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.navbar__link');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          navLinks.forEach(link => {
-            link.classList.remove('navbar__link--active');
-            if (link.getAttribute('href') === `#${entry.target.id}`) {
-              link.classList.add('navbar__link--active');
-            }
-          });
-        }
-      });
-    }, { threshold: 0.4 });
-    sections.forEach(s => observer.observe(s));
-
-    // ===== SCROLL REVEAL =====
+    // ===========================
+    // 3. Intersection Observer — Reveal on Scroll
+    // ===========================
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
+          entry.target.classList.add('visible');
           revealObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-    // ===== COUNT UP ANIMATION =====
-    const countElements = document.querySelectorAll('[data-count]');
-    const countObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const target = parseInt(entry.target.dataset.count);
-          const duration = 2000;
-          const step = target / (duration / 16);
-          let current = 0;
-          const timer = setInterval(() => {
-            current = Math.min(current + step, target);
-            entry.target.textContent = Math.floor(current).toLocaleString('ar-SA');
-            if (current >= target) {
-              entry.target.textContent = target.toLocaleString('ar-SA');
-              clearInterval(timer);
-            }
-          }, 16);
-          countObserver.unobserve(entry.target);
-        }
+    // ===========================
+    // 4. WhatsApp Booking Engine
+    // ===========================
+    const WHATSAPP_NUMBER = '966501234567'; // ← غيّر هذا الرقم لرقمك
+
+    document.getElementById('bookBtn').addEventListener('click', () => {
+      const name    = document.getElementById('patientName').value.trim();
+      const phone   = document.getElementById('patientPhone').value.trim();
+      const date    = document.getElementById('appointmentDate').value;
+      const service = document.getElementById('serviceType').value;
+
+      // Validation
+      if (!name || !phone || !date || !service) {
+        alert('⚠️ يرجى تعبئة جميع الحقول المطلوبة قبل المتابعة.');
+        return;
+      }
+
+      // Format date to Arabic readable
+      const dateObj = new Date(date);
+      const formattedDate = dateObj.toLocaleDateString('ar-SA', {
+        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
       });
-    }, { threshold: 0.5 });
-    countElements.forEach(el => countObserver.observe(el));
 
-    // ===== SET MIN DATE FOR BOOKING =====
-    const dateInput = document.getElementById('date');
-    if (dateInput) {
-      const today = new Date();
-      const tomorrow = new Date(today);
-      tomorrow.setDate(tomorrow.getDate() + 1);
-      const yyyy = tomorrow.getFullYear();
-      const mm = String(tomorrow.getMonth() + 1).padStart(2, '0');
-      const dd = String(tomorrow.getDate()).padStart(2, '0');
-      dateInput.min = `${yyyy}-${mm}-${dd}`;
-    }
+      // Build professional WhatsApp message
+      const message =
+        `🦷 *طلب حجز موعد — عيادة الابتسامة النقية*\n` +
+        `━━━━━━━━━━━━━━━━━━━━\n\n` +
+        `👤 *الاسم:* ${name}\n` +
+        `📱 *رقم التواصل:* ${phone}\n` +
+        `📅 *التاريخ المفضّل:* ${formattedDate}\n` +
+        `🩺 *الخدمة المطلوبة:* ${service}\n\n` +
+        `━━━━━━━━━━━━━━━━━━━━\n` +
+        `_تم الإرسال من الموقع الإلكتروني_`;
 
-    // ===== PHONE FORMATTING =====
-    const phoneInput = document.getElementById('phone');
-    phoneInput?.addEventListener('input', (e) => {
-      let val = e.target.value.replace(/\D/g, '');
-      if (val.length > 10) val = val.slice(0, 10);
-      e.target.value = val;
+      const encodedMsg = encodeURIComponent(message);
+      const waURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMsg}`;
+
+      window.open(waURL, '_blank');
     });
 
-    // ===== FORM VALIDATION & SUBMIT =====
-    const bookingForm = document.getElementById('bookingForm');
-    const formSuccess = document.getElementById('formSuccess');
+    // ===========================
+    // 5. WhatsApp FAB — Dynamic link
+    // ===========================
+    document.getElementById('waFab').href =
+      `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('مرحباً 👋 أود الاستفسار عن المواعيد المتاحة.')}`;
 
-    function showError(inputId, errorId, condition) {
-      const input = document.getElementById(inputId);
-      const error = document.getElementById(errorId);
-      if (!input || !error) return condition;
-      if (condition) {
-        input.classList.add('is-error');
-        input.classList.remove('is-valid');
-        error.classList.add('is-visible');
-        return false;
-      } else {
-        input.classList.remove('is-error');
-        input.classList.add('is-valid');
-        error.classList.remove('is-visible');
-        return true;
-      }
-    }
+    // ===========================
+    // 6. Set min date for date input
+    // ===========================
+    const dateInput = document.getElementById('appointmentDate');
+    const today = new Date().toISOString().split('T')[0];
+    dateInput.min = today;
 
-    bookingForm?.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const fullName = document.getElementById('fullName').value.trim();
-      const phone = document.getElementById('phone').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const service = document.getElementById('service').value;
-      const date = document.getElementById('date').value;
-
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      const phoneRegex = /^0[567]\d{8}$/;
-      const today = new Date(); today.setHours(0,0,0,0);
-
-      let valid = true;
-      if (!showError('fullName', 'fullNameError', fullName.length < 3)) valid = false;
-      if (!showError('phone', 'phoneError', !phoneRegex.test(phone))) valid = false;
-      if (email && !showError('email', 'emailError', !emailRegex.test(email))) valid = false;
-      if (!showError('service', 'serviceError', !service)) valid = false;
-      if (date) {
-        const selectedDate = new Date(date);
-        if (!showError('date', 'dateError', selectedDate <= today)) valid = false;
-      } else {
-        showError('date', 'dateError', true);
-        valid = false;
-      }
-
-      if (valid) {
-        const fullNameVal = document.getElementById('fullName').value.trim();
-        const phoneVal    = document.getElementById('phone').value.trim();
-        const emailVal    = document.getElementById('email').value.trim();
-        const serviceVal  = document.getElementById('service').value;
-        const dateVal     = document.getElementById('date').value;
-        const timeSlotVal = document.getElementById('timeSlot').value;
-        const notesVal    = document.getElementById('notes').value.trim();
-
-        const dateObj = new Date(dateVal);
-        const formattedDate = dateObj.toLocaleDateString('ar-DZ', {
-          weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
-        });
-
-        const msgLines = [
-          '🏥 *طلب حجز موعد جديد*',
-          '━━━━━━━━━━━━━━━━━━',
-          '👤 *الاسم:* ' + fullNameVal,
-          '📞 *الهاتف:* ' + phoneVal,
-          emailVal ? '📧 *البريد:* ' + emailVal : null,
-          '🩺 *نوع الاستشارة:* ' + serviceVal,
-          '📅 *التاريخ:* ' + formattedDate,
-          timeSlotVal ? '🕐 *الوقت المفضل:* ' + timeSlotVal : null,
-          notesVal ? '📝 *ملاحظات:* ' + notesVal : null,
-          '━━━━━━━━━━━━━━━━━━',
-          '✅ يرجى تأكيد الموعد في أقرب وقت.'
-        ].filter(Boolean).join('\n');
-
-        const waURL = 'https://wa.me/213699334500?text=' + encodeURIComponent(msgLines);
-        window.open(waURL, '_blank', 'noopener,noreferrer');
-
-        bookingForm.style.display = 'none';
-        formSuccess.style.display = 'block';
-      }
-    });
-
-    // Real-time validation
-    document.querySelectorAll('.form-input, .form-select').forEach(input => {
-      input.addEventListener('blur', () => {
-        if (input.required && !input.value.trim()) {
-          input.classList.add('is-error');
-          input.classList.remove('is-valid');
-        } else if (input.value.trim()) {
-          input.classList.remove('is-error');
-          input.classList.add('is-valid');
-        }
-      });
-    });
-
-    // ===== PWA SERVICE WORKER =====
+    // ===========================
+    // 7. PWA Service Worker Registration
+    // ===========================
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        const swCode = `
-          const CACHE = 'clinic-v1';
-          const ASSETS = ['/'];
-          self.addEventListener('install', e => e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS))));
-          self.addEventListener('fetch', e => e.respondWith(fetch(e.request).catch(() => caches.match(e.request))));
-        `;
-        const blob = new Blob([swCode], { type: 'application/javascript' });
-        const swUrl = URL.createObjectURL(blob);
-        navigator.serviceWorker.register(swUrl).catch(() => {});
+        navigator.serviceWorker.register('/service-worker.js')
+          .then(reg => console.log('✅ Service Worker registered:', reg.scope))
+          .catch(err => console.warn('⚠️ SW registration failed:', err));
       });
     }
   </script>
+
+  <!-- ===== PWA MANIFEST NOTE =====
+  Create manifest.json file with this content:
+  {
+    "name": "عيادة الابتسامة النقية",
+    "short_name": "الابتسامة",
+    "description": "احجز موعدك في عيادة طب الأسنان",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#f4f9f9",
+    "theme_color": "#0a6e6e",
+    "orientation": "portrait",
+    "icons": [
+      { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+      { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png" }
+    ]
+  }
+
+  Create service-worker.js file with this content:
+  const CACHE = 'clinic-v1';
+  const ASSETS = ['/', '/index.html'];
+  self.addEventListener('install', e =>
+    e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)))
+  );
+  self.addEventListener('fetch', e =>
+    e.respondWith(caches.match(e.request).then(r => r || fetch(e.request)))
+  );
+  ============================ -->
+
 </body>
 </html>
