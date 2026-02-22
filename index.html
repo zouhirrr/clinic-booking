@@ -695,58 +695,351 @@
     .btn-submit > * { position: relative; z-index: 1; }
 
     /* ============================================
-       MODAL
+       MODAL OVERLAY
     ============================================ */
     .modal-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(10,22,40,0.6);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+      background: rgba(6, 14, 30, 0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       z-index: 9999;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 20px;
+      padding: 16px;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.3s ease;
+      transition: opacity 0.35s ease;
     }
     .modal-overlay.active { opacity: 1; pointer-events: all; }
-    .modal-card {
-      background: var(--white);
-      border-radius: var(--radius-lg);
-      padding: 48px 40px;
-      max-width: 480px;
+
+    /* Outer wrapper — scrollable on small screens */
+    .modal-wrapper {
       width: 100%;
-      text-align: center;
-      transform: scale(0.85) translateY(20px);
-      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      position: relative;
+      max-width: 560px;
+      max-height: 96vh;
+      overflow-y: auto;
+      border-radius: var(--radius-lg);
+      transform: scale(0.88) translateY(28px);
+      transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      scrollbar-width: none;
     }
-    .modal-overlay.active .modal-card { transform: scale(1) translateY(0); }
-    .modal-icon {
-      width: 80px; height: 80px;
-      background: linear-gradient(135deg, #48bb78, #38a169);
+    .modal-wrapper::-webkit-scrollbar { display: none; }
+    .modal-overlay.active .modal-wrapper { transform: scale(1) translateY(0); }
+
+    /* ── Success Banner ── */
+    .modal-success-banner {
+      background: linear-gradient(135deg, #1a7a4a 0%, #22a060 100%);
+      padding: 28px 32px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    }
+    .modal-success-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% -20%, rgba(255,255,255,0.15) 0%, transparent 65%);
+    }
+    .msb-check {
+      width: 64px; height: 64px;
+      background: rgba(255,255,255,0.2);
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      font-size: 36px;
-      margin: 0 auto 20px;
-      box-shadow: 0 8px 25px rgba(72,187,120,0.3);
+      margin: 0 auto 12px;
+      position: relative;
+      z-index: 1;
     }
-    .modal-title { font-size: 1.5rem; font-weight: 800; color: var(--navy); margin-bottom: 10px; }
-    .modal-desc { font-size: 0.92rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 24px; }
-    .modal-close {
-      background: linear-gradient(135deg, var(--navy), var(--navy-light));
-      color: var(--white);
-      padding: 12px 32px;
-      border-radius: 50px;
+    .msb-check svg { width: 32px; height: 32px; }
+    .msb-title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #fff;
+      position: relative; z-index: 1;
+      margin-bottom: 4px;
+    }
+    .msb-sub {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.75);
+      position: relative; z-index: 1;
+    }
+
+    /* ── Digital Receipt Card ── */
+    #receiptCard {
+      background: #fff;
+      position: relative;
+    }
+
+    /* Clinic header bar inside receipt */
+    .rc-clinic-header {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+      padding: 20px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .rc-clinic-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .rc-logo-icon {
+      width: 40px; height: 40px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+    }
+    .rc-clinic-name {
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 800;
+      line-height: 1.25;
+    }
+    .rc-clinic-name span {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.6);
+      margin-top: 1px;
+    }
+    .rc-appt-id-badge {
+      background: rgba(201,168,76,0.18);
+      border: 1px solid rgba(201,168,76,0.4);
+      border-radius: 8px;
+      padding: 6px 12px;
+      text-align: center;
+    }
+    .rc-appt-id-badge .id-label {
+      font-size: 0.65rem;
+      color: rgba(255,255,255,0.5);
+      display: block;
+      letter-spacing: 0.06em;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+    .rc-appt-id-badge .id-value {
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: var(--gold-light);
+      letter-spacing: 0.08em;
+    }
+
+    /* Gold separator line */
+    .rc-gold-line {
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
+    }
+
+    /* Receipt title row */
+    .rc-title-row {
+      padding: 16px 28px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .rc-doc-title {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .rc-issued-date {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    /* Info rows grid */
+    .rc-fields {
+      padding: 4px 28px 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+    .rc-field {
+      padding: 12px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .rc-field:nth-child(odd) { padding-left: 0; padding-right: 16px; border-left: none; }
+    .rc-field:nth-child(even) { padding-right: 0; padding-left: 16px; border-right: none; }
+    .rc-field.full-width {
+      grid-column: 1 / -1;
+      padding-right: 0;
+      padding-left: 0;
+    }
+    .rc-field:last-child, .rc-field:nth-last-child(2):not(.full-width) { border-bottom: none; }
+    .rc-field-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .rc-field-value {
       font-size: 0.92rem;
       font-weight: 700;
+      color: var(--navy);
+    }
+    .rc-field-value.service-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, rgba(10,22,40,0.06), rgba(10,22,40,0.03));
+      border: 1px solid rgba(201,168,76,0.25);
+      padding: 4px 12px;
+      border-radius: 50px;
+      font-size: 0.82rem;
+      color: var(--navy);
+    }
+
+    /* Status chip */
+    .rc-status-row {
+      padding: 12px 28px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(135deg, rgba(10,22,40,0.03), rgba(201,168,76,0.04));
+      border-top: 1px dashed rgba(201,168,76,0.3);
+      border-bottom: 1px dashed rgba(201,168,76,0.3);
+      margin: 0 28px 20px;
+      border-radius: var(--radius-sm);
+    }
+    .rc-status-chip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,165,0,0.1);
+      border: 1px solid rgba(255,165,0,0.3);
+      padding: 6px 14px;
+      border-radius: 50px;
+    }
+    .rc-status-dot {
+      width: 8px; height: 8px;
+      background: #f6ad55;
+      border-radius: 50%;
+      animation: pulse-dot 2s infinite;
+    }
+    .rc-status-text {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #c05621;
+    }
+    .rc-qr-placeholder {
+      width: 52px; height: 52px;
+      border: 2px solid rgba(201,168,76,0.3);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column;
+      gap: 2px;
+      overflow: hidden;
+    }
+    /* Fake QR grid */
+    .qr-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1.5px;
+      padding: 4px;
+      width: 100%; height: 100%;
+    }
+    .qr-cell {
+      border-radius: 1px;
+      background: var(--navy);
+    }
+    .qr-cell.w { background: transparent; }
+
+    /* Clinic footer in receipt */
+    .rc-clinic-footer {
+      padding: 12px 28px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .rc-footer-addr {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .rc-footer-addr strong {
+      display: block;
+      color: var(--navy);
+      font-size: 0.75rem;
+      margin-bottom: 2px;
+    }
+    .rc-watermark {
+      font-size: 0.65rem;
+      color: rgba(201,168,76,0.35);
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      writing-mode: vertical-rl;
+      user-select: none;
+    }
+
+    /* ── Modal Action Buttons ── */
+    .modal-actions {
+      background: #f9f7f3;
+      padding: 20px 28px;
+      display: flex;
+      gap: 12px;
+      border-top: 1px solid #f0ece4;
+      border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+    }
+    .btn-download {
+      flex: 1;
+      padding: 14px 20px;
+      background: linear-gradient(135deg, var(--navy), var(--navy-light));
+      color: #fff;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 700;
       font-family: var(--font);
+      display: flex; align-items: center; justify-content: center;
+      gap: 8px;
       transition: var(--transition);
     }
-    .modal-close:hover { transform: translateY(-2px); box-shadow: var(--shadow-navy); }
+    .btn-download:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(10,22,40,0.25); }
+    .btn-download.gold {
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: var(--navy);
+    }
+    .btn-download.gold:hover { box-shadow: 0 8px 25px rgba(201,168,76,0.35); }
+    .btn-modal-close-sm {
+      padding: 14px 20px;
+      background: transparent;
+      border: 1.5px solid #ddd;
+      color: var(--text-secondary);
+      border-radius: 50px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      font-family: var(--font);
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+    .btn-modal-close-sm:hover { border-color: var(--navy); color: var(--navy); }
+
+    /* ── Print Styles ── */
+    @media print {
+      body > *:not(#printArea) { display: none !important; }
+      #printArea {
+        display: block !important;
+        position: fixed !important;
+        inset: 0 !important;
+        z-index: 99999 !important;
+        background: #fff !important;
+      }
+      #printArea .modal-actions,
+      #printArea .modal-success-banner { display: none !important; }
+      #receiptCard { box-shadow: none !important; }
+      .rc-clinic-header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .rc-gold-line { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
 
     /* ============================================
        WHATSAPP FAB
@@ -1247,18 +1540,116 @@
   </div>
 
   <!-- ============================================
-       SUCCESS MODAL
+       SUCCESS MODAL — DIGITAL RECEIPT
   ============================================ -->
   <div class="modal-overlay" id="successModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    <div class="modal-card">
-      <div class="modal-icon" aria-hidden="true">✅</div>
-      <h2 class="modal-title" id="modalTitle">تم إرسال طلبك!</h2>
-      <p class="modal-desc">
-        شكراً لك! تم إرسال طلب حجزك عبر الواتساب بنجاح.<br />
-        سيتواصل معك فريقنا في أقرب وقت لتأكيد موعدك.
-      </p>
-      <button class="modal-close" id="modalClose">حسناً</button>
-    </div>
+    <div class="modal-wrapper" id="printArea">
+
+      <!-- ① Green Success Banner -->
+      <div class="modal-success-banner">
+        <div class="msb-check">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+        <div class="msb-title" id="modalTitle">تم إرسال طلبك بنجاح! 🎉</div>
+        <div class="msb-sub">تمّ إرسال الحجز عبر الواتساب — احتفظ بهذه البطاقة</div>
+      </div>
+
+      <!-- ② Digital Appointment Receipt Card -->
+      <div id="receiptCard">
+
+        <!-- Clinic Header -->
+        <div class="rc-clinic-header">
+          <div class="rc-clinic-logo">
+            <div class="rc-logo-icon">🦷</div>
+            <div class="rc-clinic-name">
+              عيادة د. [اسم الطبيب]
+              <span>جراحة وتجميل الأسنان • الجزائر</span>
+            </div>
+          </div>
+          <div class="rc-appt-id-badge">
+            <span class="id-label">رقم الموعد</span>
+            <span class="id-value" id="rc-appt-id">—</span>
+          </div>
+        </div>
+
+        <!-- Gold accent line -->
+        <div class="rc-gold-line"></div>
+
+        <!-- Document Title Row -->
+        <div class="rc-title-row">
+          <span class="rc-doc-title">🗓 بطاقة موعد طبي</span>
+          <span class="rc-issued-date" id="rc-issued-date">—</span>
+        </div>
+
+        <!-- Patient & Appointment Fields -->
+        <div class="rc-fields">
+          <div class="rc-field">
+            <div class="rc-field-label">👤 اسم المريض</div>
+            <div class="rc-field-value" id="rc-patient-name">—</div>
+          </div>
+          <div class="rc-field">
+            <div class="rc-field-label">📞 رقم الهاتف</div>
+            <div class="rc-field-value" id="rc-phone">—</div>
+          </div>
+          <div class="rc-field full-width">
+            <div class="rc-field-label">🩺 الخدمة المطلوبة</div>
+            <div class="rc-field-value">
+              <span class="service-badge" id="rc-service">—</span>
+            </div>
+          </div>
+          <div class="rc-field">
+            <div class="rc-field-label">📅 تاريخ الموعد</div>
+            <div class="rc-field-value" id="rc-date">—</div>
+          </div>
+          <div class="rc-field">
+            <div class="rc-field-label">🕐 وقت الموعد</div>
+            <div class="rc-field-value" id="rc-time">—</div>
+          </div>
+        </div>
+
+        <!-- Status & QR Placeholder Row -->
+        <div class="rc-status-row">
+          <div>
+            <div style="font-size:0.68rem;color:var(--text-muted);font-weight:700;letter-spacing:0.06em;margin-bottom:6px;">حالة الموعد</div>
+            <div class="rc-status-chip">
+              <span class="rc-status-dot"></span>
+              <span class="rc-status-text">بانتظار التأكيد من العيادة</span>
+            </div>
+          </div>
+          <!-- Fake micro-QR for visual flair -->
+          <div class="rc-qr-placeholder" title="رمز التحقق">
+            <div class="qr-grid" id="qrGrid"></div>
+          </div>
+        </div>
+
+        <!-- Clinic Footer / Address -->
+        <div class="rc-clinic-footer">
+          <div class="rc-footer-addr">
+            <strong>عيادة د. [اسم الطبيب]</strong>
+            📍 [العنوان الكامل]، الجزائر<br/>
+            📞 +213 XXX XXX XXX &nbsp;|&nbsp; 🌐 www.clinic.dz
+          </div>
+          <div class="rc-watermark">OFFICIAL</div>
+        </div>
+
+      </div><!-- /#receiptCard -->
+
+      <!-- ③ Action Buttons -->
+      <div class="modal-actions">
+        <button class="btn-download gold" id="btnDownloadPDF" title="تحميل كـ PDF">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          تحميل الوصل
+        </button>
+        <button class="btn-download" id="btnPrint" title="طباعة">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+          طباعة
+        </button>
+        <button class="btn-modal-close-sm" id="modalClose">إغلاق</button>
+      </div>
+
+    </div><!-- /.modal-wrapper -->
   </div>
 
   <!-- ============================================
@@ -1268,14 +1659,18 @@
     'use strict';
 
     /* ============================================
-       CONFIG - عدّل هذه القيم
+       CONFIG — عدّل هذه القيم
     ============================================ */
     const CONFIG = {
-      whatsappNumber: '213XXXXXXXXX', // ← ضع رقم الواتساب هنا بدون +
+      whatsappNumber: '213XXXXXXXXX',       // ← رقم الواتساب بدون +
+      clinicName:     'عيادة د. [اسم الطبيب]',
+      clinicAddress:  '[العنوان]، الجزائر',
+      clinicPhone:    '+213 XXX XXX XXX',
+      clinicWeb:      'www.clinic.dz',
     };
 
     /* ============================================
-       NAVBAR SCROLL EFFECT
+       NAVBAR SCROLL
     ============================================ */
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
@@ -1286,189 +1681,291 @@
        MOBILE MENU
     ============================================ */
     const hamburger = document.getElementById('hamburger');
-    const navLinks = document.getElementById('navLinks');
-
+    const navLinks  = document.getElementById('navLinks');
     hamburger.addEventListener('click', () => {
-      const isOpen = navLinks.classList.toggle('open');
-      hamburger.classList.toggle('active', isOpen);
-      hamburger.setAttribute('aria-expanded', isOpen);
-      document.body.style.overflow = isOpen ? 'hidden' : '';
+      const open = navLinks.classList.toggle('open');
+      hamburger.classList.toggle('active', open);
+      hamburger.setAttribute('aria-expanded', open);
+      document.body.style.overflow = open ? 'hidden' : '';
     });
-
-    navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('open');
-        hamburger.classList.remove('active');
-        hamburger.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
-      });
-    });
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      hamburger.classList.remove('active');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }));
 
     /* ============================================
-       INTERSECTION OBSERVER - SCROLL REVEAL
+       SCROLL REVEAL
     ============================================ */
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          revealObserver.unobserve(entry.target);
-        }
-      });
+    const revealObs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-
-    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
-      revealObserver.observe(el);
-    });
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => revealObs.observe(el));
 
     /* ============================================
-       COUNTER ANIMATION
+       COUNTERS
     ============================================ */
     const animateCounters = () => {
       document.querySelectorAll('[data-count]').forEach(el => {
-        const target = parseInt(el.dataset.count);
-        const duration = 1800;
-        const steps = 60;
-        const increment = target / steps;
-        let current = 0;
-        const timer = setInterval(() => {
-          current = Math.min(current + increment, target);
-          el.textContent = Math.floor(current).toLocaleString('ar-DZ');
-          if (current >= target) clearInterval(timer);
-        }, duration / steps);
+        const target = parseInt(el.dataset.count), steps = 60;
+        let cur = 0;
+        const t = setInterval(() => {
+          cur = Math.min(cur + target / steps, target);
+          el.textContent = Math.floor(cur).toLocaleString('ar-DZ');
+          if (cur >= target) clearInterval(t);
+        }, 1800 / steps);
       });
     };
-
-    const statsSection = document.querySelector('.hero-stats');
-    const statsObserver = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        animateCounters();
-        statsObserver.disconnect();
-      }
-    }, { threshold: 0.5 });
-    if (statsSection) statsObserver.observe(statsSection);
-
-    /* ============================================
-       DATE PICKER - DISABLE PAST DATES
-    ============================================ */
-    const dateInput = document.getElementById('appt-date');
-    if (dateInput) {
-      const today = new Date().toISOString().split('T')[0];
-      dateInput.setAttribute('min', today);
+    const statsEl = document.querySelector('.hero-stats');
+    if (statsEl) {
+      new IntersectionObserver(e => { if (e[0].isIntersecting) { animateCounters(); e[0].target.__obs?.disconnect(); } }, { threshold: 0.5 }).observe(statsEl);
     }
 
     /* ============================================
-       PHONE VALIDATION (ALGERIAN FORMAT)
+       DATE — DISABLE PAST
     ============================================ */
-    const validateAlgerianPhone = (phone) => {
-      const cleaned = phone.replace(/\s/g, '');
-      return /^(05|06|07)\d{8}$/.test(cleaned);
+    const dateInput = document.getElementById('appt-date');
+    if (dateInput) dateInput.setAttribute('min', new Date().toISOString().split('T')[0]);
+
+    /* ============================================
+       PHONE VALIDATION
+    ============================================ */
+    const validatePhone = p => /^(05|06|07)\d{8}$/.test(p.replace(/\s/g, ''));
+
+    /* ============================================
+       FORM HELPERS
+    ============================================ */
+    const setError = (fId, eId, show) => {
+      document.getElementById(fId).classList.toggle('error', show);
+      document.getElementById(eId).classList.toggle('show', show);
+    };
+    document.getElementById('phone').addEventListener('input', function () {
+      this.value = this.value.replace(/\D/g, '').slice(0, 10);
+    });
+
+    /* ============================================
+       APPOINTMENT ID GENERATOR
+    ============================================ */
+    const genApptId = () => {
+      const ts   = Date.now().toString(36).toUpperCase().slice(-4);
+      const rand = Math.random().toString(36).substring(2, 5).toUpperCase();
+      return `DZ-${ts}-${rand}`;
     };
 
     /* ============================================
-       BOOKING FORM - VALIDATION & WHATSAPP
+       FAKE QR PATTERN (seeded from apptId)
     ============================================ */
-    const bookingForm = document.getElementById('bookingForm');
-
-    const setError = (fieldId, errorId, show) => {
-      const field = document.getElementById(fieldId);
-      const error = document.getElementById(errorId);
-      if (show) {
-        field.classList.add('error');
-        error.classList.add('show');
-      } else {
-        field.classList.remove('error');
-        error.classList.remove('show');
+    const buildQR = (seed) => {
+      const grid = document.getElementById('qrGrid');
+      if (!grid) return;
+      grid.innerHTML = '';
+      // Simple deterministic pattern from char codes
+      let hash = 0;
+      for (let i = 0; i < seed.length; i++) hash = ((hash << 5) - hash + seed.charCodeAt(i)) | 0;
+      const corners = [0,1,2,5,6,7,10,14,20,24]; // always dark for QR feel
+      for (let i = 0; i < 25; i++) {
+        const cell = document.createElement('div');
+        cell.className = 'qr-cell' + (corners.includes(i) || ((hash >>> i) & 1) ? '' : ' w');
+        grid.appendChild(cell);
       }
     };
 
-    // Real-time phone format
-    const phoneInput = document.getElementById('phone');
-    phoneInput.addEventListener('input', () => {
-      phoneInput.value = phoneInput.value.replace(/\D/g, '').slice(0, 10);
-    });
+    /* ============================================
+       POPULATE RECEIPT CARD
+    ============================================ */
+    const populateReceipt = (data) => {
+      const { fname, phone, service, date, time, apptId } = data;
+
+      const formattedDate = new Date(date).toLocaleDateString('ar-DZ', {
+        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+      });
+      const issuedNow = new Date().toLocaleString('ar-DZ', {
+        year: 'numeric', month: '2-digit', day: '2-digit',
+        hour: '2-digit', minute: '2-digit'
+      });
+
+      document.getElementById('rc-appt-id').textContent    = apptId;
+      document.getElementById('rc-patient-name').textContent = fname;
+      document.getElementById('rc-phone').textContent      = phone;
+      document.getElementById('rc-service').textContent    = '🩺 ' + service;
+      document.getElementById('rc-date').textContent       = formattedDate;
+      document.getElementById('rc-time').textContent       = time;
+      document.getElementById('rc-issued-date').textContent = 'صدر: ' + issuedNow;
+
+      buildQR(apptId);
+    };
+
+    /* ============================================
+       CANVAS-BASED JPG DOWNLOAD
+       Renders #receiptCard via html-to-canvas technique
+       using an inline iframe + canvas approach
+    ============================================ */
+    const downloadReceiptAsImage = async (apptId) => {
+      const card = document.getElementById('receiptCard');
+
+      // Clone card HTML for isolated rendering
+      const clone = card.cloneNode(true);
+      clone.style.cssText = `
+        width: 520px;
+        font-family: 'Cairo', sans-serif;
+        direction: rtl;
+        background: #fff;
+        position: absolute;
+        top: -9999px; left: -9999px;
+      `;
+      document.body.appendChild(clone);
+
+      // Use browser print-to-PDF as the reliable download path
+      // (canvas approach requires html2canvas lib which we're avoiding)
+      // Instead we open a clean print window with just the receipt
+      const printWin = window.open('', '_blank', 'width=620,height=800');
+      if (!printWin) { document.body.removeChild(clone); triggerPrint(); return; }
+
+      const styles = Array.from(document.styleSheets)
+        .map(s => { try { return Array.from(s.cssRules).map(r => r.cssText).join('\n'); } catch { return ''; } })
+        .join('\n');
+
+      printWin.document.write(`<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<title>وصل الحجز — ${apptId}</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Cairo', sans-serif; direction: rtl; background: #fff; display: flex; justify-content: center; padding: 32px; }
+  ${styles}
+  /* print overrides */
+  .modal-success-banner, .modal-actions { display: none !important; }
+  #receiptCard { max-width: 480px; width: 100%; box-shadow: 0 4px 24px rgba(0,0,0,0.12); border-radius: 20px; overflow: hidden; }
+  @media print {
+    body { padding: 0; }
+    #receiptCard { box-shadow: none; border-radius: 0; max-width: 100%; }
+    .rc-clinic-header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .rc-gold-line { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+  ${card.outerHTML}
+  <script>
+    // Rebuild QR in print window
+    window.onload = () => {
+      const seed = '${apptId}';
+      const grid = document.getElementById('qrGrid');
+      if (grid) {
+        grid.innerHTML = '';
+        let hash = 0;
+        for (let i = 0; i < seed.length; i++) hash = ((hash << 5) - hash + seed.charCodeAt(i)) | 0;
+        const corners = [0,1,2,5,6,7,10,14,20,24];
+        for (let i = 0; i < 25; i++) {
+          const c = document.createElement('div');
+          c.className = 'qr-cell' + (corners.includes(i) || ((hash >>> i) & 1) ? '' : ' w');
+          grid.appendChild(c);
+        }
+      }
+      setTimeout(() => { window.print(); window.close(); }, 800);
+    };
+  <\/script>
+</body></html>`);
+      printWin.document.close();
+      document.body.removeChild(clone);
+    };
+
+    /* Print via @media print on main page */
+    const triggerPrint = () => {
+      document.getElementById('printArea').style.display = 'block';
+      window.print();
+    };
+
+    /* ============================================
+       BOOKING FORM SUBMIT
+    ============================================ */
+    const bookingForm = document.getElementById('bookingForm');
 
     bookingForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      let isValid = true;
+      let valid = true;
 
-      const fname = document.getElementById('fname').value.trim();
-      const phone = document.getElementById('phone').value.trim();
+      const fname   = document.getElementById('fname').value.trim();
+      const phone   = document.getElementById('phone').value.trim();
       const service = document.getElementById('service').value;
-      const date = document.getElementById('appt-date').value;
-      const time = document.getElementById('appt-time').value;
-      const notes = document.getElementById('notes').value.trim();
+      const date    = document.getElementById('appt-date').value;
+      const time    = document.getElementById('appt-time').value;
+      const notes   = document.getElementById('notes').value.trim();
 
-      // Validate name
-      if (fname.length < 3) { setError('fname', 'fname-error', true); isValid = false; }
-      else { setError('fname', 'fname-error', false); }
+      if (fname.length < 3)       { setError('fname', 'fname-error', true);     valid = false; } else setError('fname', 'fname-error', false);
+      if (!validatePhone(phone))  { setError('phone', 'phone-error', true);     valid = false; } else setError('phone', 'phone-error', false);
+      if (!service)               { setError('service', 'service-error', true); valid = false; } else setError('service', 'service-error', false);
+      if (!date)                  { setError('appt-date', 'date-error', true);  valid = false; } else setError('appt-date', 'date-error', false);
+      if (!time)                  { setError('appt-time', 'time-error', true);  valid = false; } else setError('appt-time', 'time-error', false);
+      if (!valid) return;
 
-      // Validate phone
-      if (!validateAlgerianPhone(phone)) { setError('phone', 'phone-error', true); isValid = false; }
-      else { setError('phone', 'phone-error', false); }
+      // Generate unique appointment ID
+      const apptId = genApptId();
 
-      // Validate service
-      if (!service) { setError('service', 'service-error', true); isValid = false; }
-      else { setError('service', 'service-error', false); }
+      // Populate the digital receipt card
+      populateReceipt({ fname, phone, service, date, time, apptId });
 
-      // Validate date
-      if (!date) { setError('appt-date', 'date-error', true); isValid = false; }
-      else { setError('appt-date', 'date-error', false); }
-
-      // Validate time
-      if (!time) { setError('appt-time', 'time-error', true); isValid = false; }
-      else { setError('appt-time', 'time-error', false); }
-
-      if (!isValid) return;
-
-      // Format date in Arabic
-      const formattedDate = new Date(date).toLocaleDateString('ar-DZ', {
+      // Format date for WhatsApp
+      const fmtDate = new Date(date).toLocaleDateString('ar-DZ', {
         weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
       });
 
       // Build WhatsApp message
-      const message = [
-        `🦷 *طلب حجز موعد - عيادة د. [اسم الطبيب]*`,
+      const msg = [
+        `🦷 *طلب حجز موعد — ${CONFIG.clinicName}*`,
         `━━━━━━━━━━━━━━━━━`,
+        `🔖 *رقم الموعد:* \`${apptId}\``,
         `👤 *الاسم:* ${fname}`,
         `📞 *الهاتف:* ${phone}`,
         `🩺 *الخدمة:* ${service}`,
-        `📅 *التاريخ:* ${formattedDate}`,
+        `📅 *التاريخ:* ${fmtDate}`,
         `🕐 *الوقت:* ${time}`,
         notes ? `📝 *ملاحظات:* ${notes}` : '',
         `━━━━━━━━━━━━━━━━━`,
-        `✅ _يرجى تأكيد الموعد في أقرب وقت ممكن_`
+        `✅ _يرجى تأكيد الموعد في أقرب وقت ممكن_`,
       ].filter(Boolean).join('\n');
 
-      const waURL = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(message)}`;
+      const waURL = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(msg)}`;
 
-      // Show modal
-      const modal = document.getElementById('successModal');
-      modal.classList.add('active');
+      // Show receipt modal
+      document.getElementById('successModal').classList.add('active');
 
-      // Open WhatsApp after small delay
-      setTimeout(() => {
-        window.open(waURL, '_blank', 'noopener,noreferrer');
-      }, 600);
+      // Fire WhatsApp
+      setTimeout(() => window.open(waURL, '_blank', 'noopener,noreferrer'), 700);
+
+      // Store current apptId for download buttons
+      document.getElementById('btnDownloadPDF')._apptId = apptId;
 
       bookingForm.reset();
     });
 
     /* ============================================
-       SUCCESS MODAL CLOSE
+       MODAL — DOWNLOAD & PRINT BUTTONS
     ============================================ */
-    const modalClose = document.getElementById('modalClose');
-    const modal = document.getElementById('successModal');
-
-    modalClose.addEventListener('click', () => modal.classList.remove('active'));
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) modal.classList.remove('active');
+    document.getElementById('btnDownloadPDF').addEventListener('click', function () {
+      downloadReceiptAsImage(this._apptId || 'DZ-XXXX');
     });
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') modal.classList.remove('active');
+
+    document.getElementById('btnPrint').addEventListener('click', () => {
+      triggerPrint();
     });
 
     /* ============================================
-       SERVICE WORKER REGISTRATION
+       MODAL — CLOSE
+    ============================================ */
+    const modal      = document.getElementById('successModal');
+    const modalClose = document.getElementById('modalClose');
+
+    const closeModal = () => modal.classList.remove('active');
+    modalClose.addEventListener('click', closeModal);
+    modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+    /* ============================================
+       SERVICE WORKER
     ============================================ */
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
