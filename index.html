@@ -1,1334 +1,202 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#0a6e6e" />
-  <title>عيادة الابتسامة النقية - طب الأسنان</title>
-  <meta name="description" content="عيادة طب أسنان متخصصة - ابتسامتك هي مهمتنا" />
-  <link rel="manifest" href="manifest.json" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0f172a">
+    
+    <title>عيادة النخبة لطب الأسنان | د. سليم محمد</title>
+    <meta name="description" content="احجز موعدك الآن في عيادة النخبة لطب الأسنان. خدمات طبية متميزة بأحدث التقنيات.">
+    
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon-192.png">
 
-  <!-- Cairo Font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;800&display=swap" rel="stylesheet">
 
-  <style>
-    /* ===========================
-       CSS Variables & Reset
-    =========================== */
-    :root {
-      --primary: #0a6e6e;
-      --primary-light: #0d8f8f;
-      --primary-dark: #074f4f;
-      --accent: #2de1c2;
-      --accent-warm: #f0a500;
-      --bg: #f4f9f9;
-      --surface: #ffffff;
-      --surface-2: #eaf4f4;
-      --text: #0f2a2a;
-      --text-muted: #5a7a7a;
-      --border: rgba(10, 110, 110, 0.12);
-      --shadow-sm: 0 2px 12px rgba(10,110,110,0.08);
-      --shadow-md: 0 8px 32px rgba(10,110,110,0.14);
-      --shadow-lg: 0 20px 60px rgba(10,110,110,0.18);
-      --radius: 18px;
-      --radius-sm: 10px;
-      --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-    }
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #3b82f6;
+            --accent: #22c55e;
+            --bg: #f8fafc;
+            --surface: rgba(255, 255, 255, 0.8);
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --radius: 20px;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.3);
+        }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0f172a;
+                --surface: rgba(30, 41, 59, 0.7);
+                --text-main: #f8fafc;
+                --text-muted: #94a3b8;
+                --glass-border: rgba(255, 255, 255, 0.1);
+            }
+        }
 
-    html { scroll-behavior: smooth; font-size: 16px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
+        body { background: var(--bg); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
 
-    body {
-      font-family: 'Cairo', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      direction: rtl;
-      overflow-x: hidden;
-      line-height: 1.7;
-    }
+        /* Modern Background Blobs */
+        .blob { position: fixed; width: 500px; height: 500px; background: radial-gradient(circle, rgba(37,99,235,0.1) 0%, transparent 70%); z-index: -1; border-radius: 50%; }
+        .blob-1 { top: -200px; right: -100px; }
+        .blob-2 { bottom: -200px; left: -100px; }
 
-    img { max-width: 100%; display: block; }
-    a { text-decoration: none; color: inherit; }
-    ul { list-style: none; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
-    /* ===========================
-       Utility Classes
-    =========================== */
-    .container { max-width: 1140px; margin: 0 auto; padding: 0 1.5rem; }
-    .section-pad { padding: 90px 0; }
-    .text-center { text-align: center; }
+        /* Hero Section */
+        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding-top: 80px; }
+        .glass-card { background: var(--surface); backdrop-filter: blur(12px); border: 1px solid var(--glass-border); border-radius: 40px; padding: 60px 40px; box-shadow: var(--shadow); max-width: 800px; }
+        
+        .hero-img { width: 150px; height: 150px; border-radius: 50px; object-fit: cover; border: 4px solid var(--primary); margin-bottom: 24px; animation: float 6s infinite ease-in-out; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
 
-    .reveal {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .reveal-delay-1 { transition-delay: 0.1s; }
-    .reveal-delay-2 { transition-delay: 0.2s; }
-    .reveal-delay-3 { transition-delay: 0.3s; }
-    .reveal-delay-4 { transition-delay: 0.4s; }
+        h1 { font-size: 3rem; font-weight: 800; margin-bottom: 16px; background: linear-gradient(to left, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-    /* ===========================
-       Buttons
-    =========================== */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.85rem 2rem;
-      border-radius: 50px;
-      font-family: 'Cairo', sans-serif;
-      font-size: 1rem;
-      font-weight: 700;
-      cursor: pointer;
-      border: none;
-      transition: var(--transition);
-      white-space: nowrap;
-    }
-    .btn-primary {
-      background: var(--primary);
-      color: #fff;
-      box-shadow: 0 4px 20px rgba(10,110,110,0.3);
-    }
-    .btn-primary:hover {
-      background: var(--primary-light);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 28px rgba(10,110,110,0.4);
-    }
-    .btn-outline {
-      background: transparent;
-      color: var(--primary);
-      border: 2px solid var(--primary);
-    }
-    .btn-outline:hover {
-      background: var(--primary);
-      color: #fff;
-      transform: translateY(-2px);
-    }
-    .btn-whatsapp {
-      background: #25d366;
-      color: #fff;
-      box-shadow: 0 4px 20px rgba(37,211,102,0.35);
-    }
-    .btn-whatsapp:hover {
-      background: #1ebe5d;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 28px rgba(37,211,102,0.45);
-    }
+        /* Services Grid */
+        .section { padding: 100px 0; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+        .card { background: var(--surface); padding: 40px; border-radius: var(--radius); border: 1px solid var(--glass-border); transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .card:hover { transform: translateY(-12px); border-color: var(--primary); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .card i { font-size: 2.5rem; color: var(--primary); margin-bottom: 20px; display: block; }
 
-    /* ===========================
-       Section Titles
-    =========================== */
-    .section-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      background: var(--surface-2);
-      color: var(--primary);
-      padding: 0.35rem 1rem;
-      border-radius: 50px;
-      font-size: 0.85rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      border: 1px solid var(--border);
-    }
-    .section-title {
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      font-weight: 800;
-      line-height: 1.3;
-      color: var(--text);
-      margin-bottom: 1rem;
-    }
-    .section-title span { color: var(--primary); }
-    .section-desc {
-      font-size: 1.05rem;
-      color: var(--text-muted);
-      max-width: 560px;
-      margin: 0 auto 2.5rem;
-    }
+        /* Booking Form */
+        .booking-box { max-width: 600px; margin: 0 auto; background: var(--surface); padding: 40px; border-radius: 30px; border: 1px solid var(--glass-border); }
+        .input-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; font-weight: 600; opacity: 0.9; }
+        input, select { width: 100%; padding: 16px; border-radius: 12px; border: 1px solid var(--glass-border); background: rgba(255,255,255,0.05); color: var(--text-main); font-size: 1rem; }
+        input:focus { outline: 2px solid var(--primary); }
 
-    /* ===========================
-       Header / Navbar
-    =========================== */
-    header {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 1000;
-      transition: var(--transition);
-      padding: 1rem 0;
-    }
-    header.scrolled {
-      background: rgba(255,255,255,0.92);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      box-shadow: var(--shadow-sm);
-      padding: 0.6rem 0;
-    }
-    .nav-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-    }
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      font-size: 1.3rem;
-      font-weight: 900;
-      color: var(--primary);
-    }
-    .logo-icon {
-      width: 44px; height: 44px;
-      background: var(--primary);
-      border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.3rem;
-    }
-    nav { display: flex; align-items: center; gap: 0.2rem; }
-    nav a {
-      padding: 0.5rem 1rem;
-      border-radius: 50px;
-      font-weight: 600;
-      font-size: 0.95rem;
-      color: var(--text);
-      transition: var(--transition);
-    }
-    nav a:hover { background: var(--surface-2); color: var(--primary); }
-    .nav-cta { margin-right: auto; }
+        .btn-send { width: 100%; padding: 20px; border: none; border-radius: 15px; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; font-weight: 800; font-size: 1.1rem; cursor: pointer; transition: 0.3s; margin-top: 10px; }
+        .btn-send:hover { opacity: 0.9; transform: scale(1.02); box-shadow: 0 10px 20px rgba(37,99,235,0.3); }
 
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      padding: 0.5rem;
-      background: none;
-      border: none;
-    }
-    .hamburger span {
-      width: 24px; height: 2px;
-      background: var(--text);
-      border-radius: 2px;
-      transition: var(--transition);
-      display: block;
-    }
+        /* Floating WhatsApp */
+        .wa-fab { position: fixed; bottom: 30px; left: 30px; width: 65px; height: 65px; background: var(--accent); color: white; border-radius: 22px; display: flex; align-items: center; justify-content: center; font-size: 32px; box-shadow: 0 10px 25px rgba(34,197,94,0.4); text-decoration: none; z-index: 1000; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(34,197,94,0.7); } 70% { box-shadow: 0 0 0 20px rgba(34,197,94,0); } 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0); } }
 
-    /* Mobile Menu */
-    .mobile-menu {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(255,255,255,0.97);
-      backdrop-filter: blur(20px);
-      z-index: 999;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 1.5rem;
-    }
-    .mobile-menu.open { display: flex; }
-    .mobile-menu a {
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--text);
-      padding: 0.5rem 2rem;
-      border-radius: 50px;
-      transition: var(--transition);
-    }
-    .mobile-menu a:hover { background: var(--surface-2); color: var(--primary); }
-    .mobile-menu-close {
-      position: absolute;
-      top: 1.5rem; left: 1.5rem;
-      font-size: 1.8rem;
-      cursor: pointer;
-      background: none; border: none;
-      color: var(--text);
-    }
+        /* Reveal Animation Classes */
+        .reveal { opacity: 0; transform: translateY(40px); transition: 1s all ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
-    /* ===========================
-       Hero Section
-    =========================== */
-    .hero {
-      min-height: 100vh;
-      padding-top: 100px;
-      background: linear-gradient(135deg, #e8f5f5 0%, #f4f9f9 50%, #d4efef 100%);
-      display: flex;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -200px; left: -200px;
-      width: 700px; height: 700px;
-      background: radial-gradient(circle, rgba(10,110,110,0.06) 0%, transparent 70%);
-      border-radius: 50%;
-    }
-    .hero::after {
-      content: '';
-      position: absolute;
-      bottom: -150px; right: -150px;
-      width: 500px; height: 500px;
-      background: radial-gradient(circle, rgba(45,225,194,0.08) 0%, transparent 70%);
-      border-radius: 50%;
-    }
-    .hero-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-      position: relative;
-      z-index: 1;
-    }
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(10,110,110,0.1);
-      color: var(--primary);
-      padding: 0.4rem 1.2rem;
-      border-radius: 50px;
-      font-size: 0.85rem;
-      font-weight: 700;
-      margin-bottom: 1.2rem;
-      border: 1px solid rgba(10,110,110,0.2);
-    }
-    .hero-title {
-      font-size: clamp(2.2rem, 5vw, 3.5rem);
-      font-weight: 900;
-      line-height: 1.2;
-      margin-bottom: 1.2rem;
-      color: var(--text);
-    }
-    .hero-title span {
-      color: var(--primary);
-      position: relative;
-    }
-    .hero-title span::after {
-      content: '';
-      position: absolute;
-      bottom: -4px; right: 0;
-      width: 100%;
-      height: 3px;
-      background: var(--accent);
-      border-radius: 2px;
-    }
-    .hero-desc {
-      font-size: 1.1rem;
-      color: var(--text-muted);
-      margin-bottom: 2rem;
-      max-width: 480px;
-    }
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2.5rem; }
-    .hero-stats {
-      display: flex;
-      gap: 2rem;
-      flex-wrap: wrap;
-    }
-    .stat-item { }
-    .stat-number {
-      font-size: 1.8rem;
-      font-weight: 900;
-      color: var(--primary);
-      line-height: 1;
-    }
-    .stat-label {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      font-weight: 500;
-    }
-    .stat-divider {
-      width: 1px;
-      height: 40px;
-      background: var(--border);
-      align-self: center;
-    }
-
-    /* Hero Visual */
-    .hero-visual {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .hero-img-wrapper {
-      position: relative;
-      width: 100%;
-      max-width: 460px;
-    }
-    .hero-img-main {
-      width: 100%;
-      aspect-ratio: 4/5;
-      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-      border-radius: 32px 32px 120px 32px;
-      overflow: hidden;
-      box-shadow: var(--shadow-lg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 8rem;
-      color: rgba(255,255,255,0.25);
-      position: relative;
-    }
-    .hero-img-main::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    }
-    .hero-doctor-placeholder {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-      color: rgba(255,255,255,0.6);
-      font-size: 1rem;
-      font-weight: 600;
-      position: relative;
-      z-index: 1;
-    }
-    .hero-doctor-placeholder .doctor-icon { font-size: 5rem; }
-
-    .hero-card-float {
-      position: absolute;
-      background: white;
-      border-radius: var(--radius);
-      padding: 1rem 1.2rem;
-      box-shadow: var(--shadow-md);
-      display: flex;
-      align-items: center;
-      gap: 0.7rem;
-    }
-    .hero-card-float.card-1 {
-      bottom: 30px;
-      right: -20px;
-      animation: float1 4s ease-in-out infinite;
-    }
-    .hero-card-float.card-2 {
-      top: 40px;
-      left: -20px;
-      animation: float2 5s ease-in-out infinite;
-    }
-    .float-icon {
-      width: 42px; height: 42px;
-      border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.3rem;
-    }
-    .float-icon.green { background: #e8faf0; }
-    .float-icon.blue { background: #e8f4fb; }
-    .float-text strong { display: block; font-size: 0.9rem; font-weight: 800; }
-    .float-text span { font-size: 0.75rem; color: var(--text-muted); }
-
-    @keyframes float1 {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
-    }
-    @keyframes float2 {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(8px); }
-    }
-
-    /* ===========================
-       Services Section
-    =========================== */
-    .services { background: var(--surface); }
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-    .service-card {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 2rem;
-      transition: var(--transition);
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-    }
-    .service-card::before {
-      content: '';
-      position: absolute;
-      bottom: 0; right: 0;
-      width: 100px; height: 100px;
-      background: radial-gradient(circle, rgba(10,110,110,0.06), transparent);
-      border-radius: 50%;
-      transition: var(--transition);
-    }
-    .service-card:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--shadow-md);
-      border-color: rgba(10,110,110,0.25);
-      background: var(--surface);
-    }
-    .service-card:hover::before {
-      width: 200px; height: 200px;
-      bottom: -30px; right: -30px;
-    }
-    .service-icon {
-      width: 60px; height: 60px;
-      background: linear-gradient(135deg, var(--primary), var(--primary-light));
-      border-radius: 16px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.7rem;
-      margin-bottom: 1.2rem;
-      transition: var(--transition);
-    }
-    .service-card:hover .service-icon { transform: scale(1.08) rotate(-3deg); }
-    .service-card h3 {
-      font-size: 1.15rem;
-      font-weight: 800;
-      margin-bottom: 0.5rem;
-    }
-    .service-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
-    .service-arrow {
-      margin-top: 1.2rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-      color: var(--primary);
-      font-size: 0.88rem;
-      font-weight: 700;
-      opacity: 0;
-      transform: translateX(-8px);
-      transition: var(--transition);
-    }
-    .service-card:hover .service-arrow { opacity: 1; transform: translateX(0); }
-
-    /* ===========================
-       Why Us Section
-    =========================== */
-    .why-us { background: var(--surface-2); }
-    .why-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: center;
-    }
-    .why-visual {
-      position: relative;
-    }
-    .why-img-box {
-      width: 100%;
-      aspect-ratio: 1;
-      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-      border-radius: 40px 40px 40px 120px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 6rem;
-      color: rgba(255,255,255,0.2);
-      box-shadow: var(--shadow-lg);
-      position: relative;
-      overflow: hidden;
-    }
-    .why-img-box::after {
-      content: '🏥';
-      font-size: 7rem;
-      position: absolute;
-      opacity: 0.15;
-      bottom: -10px;
-      left: -10px;
-    }
-    .why-badge-float {
-      position: absolute;
-      bottom: -20px; left: 50%;
-      transform: translateX(-50%);
-      background: white;
-      border-radius: var(--radius);
-      padding: 1rem 2rem;
-      box-shadow: var(--shadow-md);
-      text-align: center;
-      white-space: nowrap;
-    }
-    .why-badge-float strong { display: block; font-size: 1.4rem; color: var(--primary); }
-    .why-badge-float span { font-size: 0.82rem; color: var(--text-muted); }
-
-    .features-list { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 2rem; }
-    .feature-item {
-      display: flex;
-      gap: 1rem;
-      align-items: flex-start;
-      padding: 1.2rem;
-      background: white;
-      border-radius: var(--radius-sm);
-      border: 1px solid var(--border);
-      transition: var(--transition);
-    }
-    .feature-item:hover { box-shadow: var(--shadow-sm); transform: translateX(-4px); }
-    .feature-icon-box {
-      width: 46px; height: 46px; min-width: 46px;
-      background: var(--surface-2);
-      border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.3rem;
-    }
-    .feature-text h4 { font-weight: 800; font-size: 0.95rem; margin-bottom: 0.2rem; }
-    .feature-text p { font-size: 0.85rem; color: var(--text-muted); }
-
-    /* ===========================
-       Testimonials
-    =========================== */
-    .testimonials { background: var(--surface); }
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-    .testimonial-card {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.8rem;
-      transition: var(--transition);
-    }
-    .testimonial-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
-    .stars { color: var(--accent-warm); font-size: 1rem; margin-bottom: 1rem; letter-spacing: 2px; }
-    .testimonial-card p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 1.2rem; }
-    .t-author { display: flex; align-items: center; gap: 0.8rem; }
-    .t-avatar {
-      width: 44px; height: 44px;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.3rem;
-      color: white;
-      font-weight: 700;
-    }
-    .t-avatar.a { background: var(--primary); }
-    .t-avatar.b { background: #e07b54; }
-    .t-avatar.c { background: #6c5ce7; }
-    .t-name { font-weight: 800; font-size: 0.92rem; }
-    .t-title { font-size: 0.78rem; color: var(--text-muted); }
-
-    /* ===========================
-       Booking Section
-    =========================== */
-    .booking {
-      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
-      position: relative;
-      overflow: hidden;
-    }
-    .booking::before {
-      content: '';
-      position: absolute;
-      top: -200px; right: -200px;
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
-      border-radius: 50%;
-    }
-    .booking-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-      position: relative;
-      z-index: 1;
-    }
-    .booking-info { color: white; }
-    .booking-info .section-tag { background: rgba(255,255,255,0.15); color: white; border-color: rgba(255,255,255,0.2); }
-    .booking-info .section-title { color: white; }
-    .booking-info .section-title span { color: var(--accent); }
-    .booking-info p { color: rgba(255,255,255,0.75); margin-bottom: 2rem; }
-    .booking-features { display: flex; flex-direction: column; gap: 0.8rem; }
-    .booking-feature {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      color: rgba(255,255,255,0.85);
-      font-size: 0.92rem;
-      font-weight: 600;
-    }
-    .booking-feature::before { content: '✓'; color: var(--accent); font-weight: 900; }
-
-    /* Form */
-    .booking-form-card {
-      background: white;
-      border-radius: calc(var(--radius) * 1.5);
-      padding: 2.5rem;
-      box-shadow: 0 30px 80px rgba(0,0,0,0.2);
-    }
-    .booking-form-card h3 {
-      font-size: 1.3rem;
-      font-weight: 800;
-      margin-bottom: 1.5rem;
-      color: var(--text);
-    }
-    .form-group { margin-bottom: 1.2rem; }
-    .form-group label {
-      display: block;
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: var(--text-muted);
-      margin-bottom: 0.4rem;
-    }
-    .form-group input,
-    .form-group select {
-      width: 100%;
-      padding: 0.85rem 1rem;
-      border: 1.5px solid var(--border);
-      border-radius: var(--radius-sm);
-      font-family: 'Cairo', sans-serif;
-      font-size: 0.95rem;
-      color: var(--text);
-      background: var(--bg);
-      transition: var(--transition);
-      outline: none;
-      direction: rtl;
-    }
-    .form-group input:focus,
-    .form-group select:focus {
-      border-color: var(--primary);
-      background: white;
-      box-shadow: 0 0 0 3px rgba(10,110,110,0.1);
-    }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    .btn-submit {
-      width: 100%;
-      justify-content: center;
-      font-size: 1.05rem;
-      padding: 1rem 2rem;
-      margin-top: 0.5rem;
-    }
-    .form-note {
-      text-align: center;
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      margin-top: 0.8rem;
-    }
-
-    /* ===========================
-       Footer
-    =========================== */
-    footer {
-      background: var(--text);
-      color: rgba(255,255,255,0.7);
-      padding: 3rem 0 1.5rem;
-    }
-    .footer-inner {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      gap: 3rem;
-      margin-bottom: 2rem;
-    }
-    .footer-brand .logo { color: white; margin-bottom: 0.8rem; }
-    .footer-brand p { font-size: 0.88rem; line-height: 1.7; max-width: 280px; }
-    .footer-col h4 {
-      color: white;
-      font-weight: 800;
-      font-size: 0.95rem;
-      margin-bottom: 1rem;
-    }
-    .footer-col ul { display: flex; flex-direction: column; gap: 0.5rem; }
-    .footer-col ul a {
-      font-size: 0.88rem;
-      color: rgba(255,255,255,0.55);
-      transition: var(--transition);
-    }
-    .footer-col ul a:hover { color: white; }
-    .footer-bottom {
-      border-top: 1px solid rgba(255,255,255,0.08);
-      padding-top: 1.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      font-size: 0.82rem;
-    }
-    .social-links { display: flex; gap: 0.8rem; }
-    .social-link {
-      width: 36px; height: 36px;
-      background: rgba(255,255,255,0.08);
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1rem;
-      transition: var(--transition);
-    }
-    .social-link:hover { background: var(--primary); }
-
-    /* ===========================
-       Floating WhatsApp Button
-    =========================== */
-    .wa-fab {
-      position: fixed;
-      bottom: 2rem;
-      left: 2rem;
-      z-index: 999;
-      width: 62px; height: 62px;
-      background: #25d366;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.8rem;
-      box-shadow: 0 4px 20px rgba(37,211,102,0.5);
-      cursor: pointer;
-      transition: var(--transition);
-      text-decoration: none;
-    }
-    .wa-fab:hover { transform: scale(1.1); box-shadow: 0 8px 32px rgba(37,211,102,0.6); }
-    .wa-fab::before {
-      content: '';
-      position: absolute;
-      inset: -6px;
-      border-radius: 50%;
-      background: rgba(37,211,102,0.3);
-      animation: pulse-ring 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
-    }
-    @keyframes pulse-ring {
-      0% { transform: scale(0.8); opacity: 1; }
-      100% { transform: scale(1.4); opacity: 0; }
-    }
-    .wa-tooltip {
-      position: absolute;
-      left: calc(100% + 12px);
-      top: 50%;
-      transform: translateY(-50%);
-      background: white;
-      color: var(--text);
-      padding: 0.4rem 0.8rem;
-      border-radius: 8px;
-      font-size: 0.8rem;
-      font-weight: 700;
-      white-space: nowrap;
-      box-shadow: var(--shadow-sm);
-      opacity: 0;
-      pointer-events: none;
-      transition: var(--transition);
-      font-family: 'Cairo', sans-serif;
-    }
-    .wa-fab:hover .wa-tooltip { opacity: 1; }
-
-    /* ===========================
-       Responsive
-    =========================== */
-    @media (max-width: 768px) {
-      nav, .nav-cta { display: none; }
-      .hamburger { display: flex; }
-      .hero-inner { grid-template-columns: 1fr; text-align: center; }
-      .hero-actions { justify-content: center; }
-      .hero-stats { justify-content: center; }
-      .hero-visual { order: -1; }
-      .hero-img-wrapper { max-width: 320px; margin: 0 auto; }
-      .hero-card-float.card-1 { right: -10px; }
-      .hero-card-float.card-2 { left: -10px; }
-      .why-inner { grid-template-columns: 1fr; }
-      .why-visual { order: -1; }
-      .why-badge-float { position: relative; bottom: auto; left: auto; transform: none; margin-top: 1rem; display: inline-block; }
-      .booking-inner { grid-template-columns: 1fr; }
-      .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
-      .form-row { grid-template-columns: 1fr; }
-      .section-pad { padding: 60px 0; }
-    }
-  </style>
+        @media (max-width: 768px) { h1 { font-size: 2.2rem; } .hero { padding-top: 40px; } }
+    </style>
 </head>
 <body>
 
-  <!-- ===== HEADER ===== -->
-  <header id="header">
-    <div class="container">
-      <div class="nav-inner">
-        <a href="#" class="logo">
-          <div class="logo-icon">🦷</div>
-          <span>عيادة الابتسامة</span>
-        </a>
-        <nav>
-          <a href="#services">خدماتنا</a>
-          <a href="#why-us">لماذا نحن</a>
-          <a href="#testimonials">آراء المرضى</a>
-          <a href="#booking">احجز الآن</a>
-        </nav>
-        <a href="#booking" class="btn btn-primary nav-cta">احجز موعد 📅</a>
-        <button class="hamburger" id="hamburgerBtn" aria-label="فتح القائمة">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-    </div>
-  </header>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
 
-  <!-- Mobile Menu -->
-  <div class="mobile-menu" id="mobileMenu">
-    <button class="mobile-menu-close" id="mobileMenuClose">✕</button>
-    <a href="#services" class="mobile-link">خدماتنا</a>
-    <a href="#why-us" class="mobile-link">لماذا نحن</a>
-    <a href="#testimonials" class="mobile-link">آراء المرضى</a>
-    <a href="#booking" class="mobile-link">احجز الآن</a>
-    <a href="#booking" class="btn btn-primary">احجز موعد 📅</a>
-  </div>
-
-  <!-- ===== HERO ===== -->
-  <section class="hero" id="home">
-    <div class="container">
-      <div class="hero-inner">
-
-        <!-- Content -->
-        <div class="hero-content">
-          <div class="hero-badge reveal">
-            <span>⭐</span> التميّز في طب الأسنان منذ 2010
-          </div>
-          <h1 class="hero-title reveal reveal-delay-1">
-            ابتسامتك تستحق<br/><span>أفضل رعاية</span>
-          </h1>
-          <p class="hero-desc reveal reveal-delay-2">
-            نقدم خدمات متكاملة لطب الأسنان والتجميل بأحدث التقنيات وفريق طبي متخصص، لنمنحك الثقة والابتسامة التي تحلم بها.
-          </p>
-          <div class="hero-actions reveal reveal-delay-3">
-            <a href="#booking" class="btn btn-primary">📅 احجز موعدك الآن</a>
-            <a href="#services" class="btn btn-outline">💡 اكتشف خدماتنا</a>
-          </div>
-          <div class="hero-stats reveal reveal-delay-4">
-            <div class="stat-item">
-              <div class="stat-number">+5000</div>
-              <div class="stat-label">مريض سعيد</div>
+    <header class="hero">
+        <div class="container">
+            <div class="glass-card">
+                <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=400&h=400&auto=format&fit=crop" class="hero-img" alt="د. سليم محمد">
+                <h1>ابتسامتك هي شغفنا</h1>
+                <p style="color: var(--text-muted); font-size: 1.2rem;">نقدم أحدث حلول طب وجراحة الأسنان بمعايير عالمية وتقنيات رقمية متطورة.</p>
+                <div style="margin-top: 30px;">
+                    <a href="#book" class="btn-send" style="text-decoration:none; padding: 15px 40px;">احجز موعدك الآن</a>
+                </div>
             </div>
-            <div class="stat-divider"></div>
-            <div class="stat-item">
-              <div class="stat-number">15+</div>
-              <div class="stat-label">سنة خبرة</div>
+        </div>
+    </header>
+
+    <section class="section container">
+        <div class="grid">
+            <div class="card reveal">
+                <i class="fas fa-tooth"></i>
+                <h3>تجميل الأسنان</h3>
+                <p>ابتسامة هوليود، تبييض الأسنان بالليزر، والقشور الخزفية بأعلى جودة.</p>
             </div>
-            <div class="stat-divider"></div>
-            <div class="stat-item">
-              <div class="stat-number">98%</div>
-              <div class="stat-label">رضا المرضى</div>
+            <div class="card reveal">
+                <i class="fas fa-implants"></i>
+                <h3>زراعة الأسنان</h3>
+                <p>تعويض الأسنان المفقودة بزراعات ألمانية وسويسرية تدوم مدى الحياة.</p>
             </div>
-          </div>
-        </div>
-
-        <!-- Visual -->
-        <div class="hero-visual reveal reveal-delay-2">
-          <div class="hero-img-wrapper">
-            <div class="hero-img-main">
-              <div class="hero-doctor-placeholder">
-                <span class="doctor-icon">👨‍⚕️</span>
-                <span>د. أحمد الكريم</span>
-              </div>
+            <div class="card reveal">
+                <i class="fas fa-shield-halved"></i>
+                <h3>علاج اللثة</h3>
+                <p>تنظيف عميق وعلاج تراجع اللثة بأحدث تقنيات الموجات الصوتية.</p>
             </div>
-
-            <!-- Floating Cards -->
-            <div class="hero-card-float card-1">
-              <div class="float-icon green">✅</div>
-              <div class="float-text">
-                <strong>موعد محجوز</strong>
-                <span>اليوم 10:30 ص</span>
-              </div>
-            </div>
-            <div class="hero-card-float card-2">
-              <div class="float-icon blue">🏆</div>
-              <div class="float-text">
-                <strong>أفضل عيادة 2024</strong>
-                <span>جائزة التميّز الطبي</span>
-              </div>
-            </div>
-          </div>
         </div>
+    </section>
 
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== SERVICES ===== -->
-  <section class="services section-pad" id="services">
-    <div class="container">
-      <div class="text-center reveal">
-        <div class="section-tag">🦷 خدماتنا</div>
-        <h2 class="section-title">كل ما يحتاجه <span>أسنانك</span></h2>
-        <p class="section-desc">نوفر طيفاً واسعاً من الخدمات المتخصصة في بيئة مريحة وآمنة</p>
-      </div>
-      <div class="services-grid">
-
-        <div class="service-card reveal reveal-delay-1">
-          <div class="service-icon">✨</div>
-          <h3>تبييض الأسنان</h3>
-          <p>تقنيات متطورة لتبييض احترافي يمنحك ابتسامة أكثر إشراقاً في جلسة واحدة فقط.</p>
-          <div class="service-arrow">احجز الآن ←</div>
+    <section id="book" class="section container">
+        <div class="booking-box reveal">
+            <h2 style="text-align: center; margin-bottom: 30px;">طلب حجز موعد</h2>
+            <form id="waForm">
+                <div class="input-group">
+                    <label>الاسم بالكامل</label>
+                    <input type="text" id="name" placeholder="مثال: محمد أحمد" required>
+                </div>
+                <div class="input-group">
+                    <label>رقم الهاتف</label>
+                    <input type="tel" id="phone" placeholder="05 / 06 / 07" required>
+                </div>
+                <div class="input-group">
+                    <label>نوع الخدمة</label>
+                    <select id="service">
+                        <option>كشف عام</option>
+                        <option>تجميل أسنان</option>
+                        <option>زراعة أسنان</option>
+                        <option>حالة مستعجلة</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>تاريخ الموعد</label>
+                    <input type="date" id="date" required>
+                </div>
+                <button type="submit" class="btn-send">إرسال الطلب للعيادة <i class="fab fa-whatsapp" style="margin-right: 8px;"></i></button>
+            </form>
         </div>
+    </section>
 
-        <div class="service-card reveal reveal-delay-2">
-          <div class="service-icon">😁</div>
-          <h3>تقويم الأسنان</h3>
-          <p>حلول تقويم للكبار والأطفال، بما في ذلك التقويم الشفاف للحياة اليومية.</p>
-          <div class="service-arrow">احجز الآن ←</div>
-        </div>
+    <a href="https://wa.me/213699334500" class="wa-fab" aria-label="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
-        <div class="service-card reveal reveal-delay-3">
-          <div class="service-icon">🦷</div>
-          <h3>زراعة الأسنان</h3>
-          <p>زراعة دائمة بتقنية 3D لاستعادة وظيفة وجمال أسنانك بشكل طبيعي تماماً.</p>
-          <div class="service-arrow">احجز الآن ←</div>
-        </div>
+    <script>
+        // 1. WhatsApp Booking Logic
+        document.getElementById('waForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const payload = {
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value,
+                service: document.getElementById('service').value,
+                date: document.getElementById('date').value
+            };
 
-        <div class="service-card reveal reveal-delay-1">
-          <div class="service-icon">🔍</div>
-          <h3>فحص دوري شامل</h3>
-          <p>كشف مبكر للمشكلات وتنظيف احترافي للحفاظ على صحة أسنانك على المدى البعيد.</p>
-          <div class="service-arrow">احجز الآن ←</div>
-        </div>
+            const msg = `*طلب حجز موعد جديد*\n\n` +
+                        `👤 *المريض:* ${payload.name}\n` +
+                        `📞 *الهاتف:* ${payload.phone}\n` +
+                        `🦷 *الخدمة:* ${payload.service}\n` +
+                        `📅 *التاريخ:* ${payload.date}\n\n` +
+                        `_تم الإرسال عبر البوابة الإلكترونية للعيادة_`;
 
-        <div class="service-card reveal reveal-delay-2">
-          <div class="service-icon">💎</div>
-          <h3>قشور الأسنان</h3>
-          <p>قشور بورسلان رفيعة لتحسين شكل ولون أسنانك بنتائج طبيعية وجذابة.</p>
-          <div class="service-arrow">احجز الآن ←</div>
-        </div>
+            window.open(`https://wa.me/213699334500?text=${encodeURIComponent(msg)}`, '_blank');
+        });
 
-        <div class="service-card reveal reveal-delay-3">
-          <div class="service-icon">🩺</div>
-          <h3>علاج اللثة</h3>
-          <p>علاج شامل لأمراض اللثة بأحدث الأساليب لضمان أساس صحي لأسنانك.</p>
-          <div class="service-arrow">احجز الآن ←</div>
-        </div>
+        // 2. Intersection Observer (Reveal Animation)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
 
-      </div>
-    </div>
-  </section>
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  <!-- ===== WHY US ===== -->
-  <section class="why-us section-pad" id="why-us">
-    <div class="container">
-      <div class="why-inner">
-        <div class="why-visual reveal">
-          <div class="why-img-box">🦷</div>
-          <div class="why-badge-float">
-            <strong>ISO 9001</strong>
-            <span>معتمدون دولياً</span>
-          </div>
-        </div>
-        <div class="why-content">
-          <div class="section-tag reveal">⭐ لماذا نحن؟</div>
-          <h2 class="section-title reveal">رعاية <span>استثنائية</span><br/>تستحقها</h2>
-          <p class="section-desc reveal" style="margin: 0 0 0 0; text-align: right;">
-            نجمع بين الخبرة الطبية العميقة والتقنيات الحديثة في بيئة دافئة تجعل زيارتك للعيادة تجربة ممتعة.
-          </p>
-          <div class="features-list">
-            <div class="feature-item reveal reveal-delay-1">
-              <div class="feature-icon-box">🔬</div>
-              <div class="feature-text">
-                <h4>تقنيات متطورة</h4>
-                <p>أجهزة تصوير ثلاثي الأبعاد وليزر طبي لنتائج دقيقة وآمنة</p>
-              </div>
-            </div>
-            <div class="feature-item reveal reveal-delay-2">
-              <div class="feature-icon-box">👨‍⚕️</div>
-              <div class="feature-text">
-                <h4>فريق طبي متخصص</h4>
-                <p>أطباء حاصلون على أعلى الشهادات الدولية في تخصصاتهم</p>
-              </div>
-            </div>
-            <div class="feature-item reveal reveal-delay-3">
-              <div class="feature-icon-box">💉</div>
-              <div class="feature-text">
-                <h4>معايير تعقيم صارمة</h4>
-                <p>بروتوكولات تعقيم تفوق المعايير الدولية لسلامتك الكاملة</p>
-              </div>
-            </div>
-            <div class="feature-item reveal reveal-delay-4">
-              <div class="feature-icon-box">💳</div>
-              <div class="feature-text">
-                <h4>خطط دفع مرنة</h4>
-                <p>نقدم تقسيطاً ميسراً وتغطية لمعظم شركات التأمين</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+        // 3. Date Restriction (No past dates)
+        document.getElementById('date').min = new Date().toISOString().split('T')[0];
 
-  <!-- ===== TESTIMONIALS ===== -->
-  <section class="testimonials section-pad" id="testimonials">
-    <div class="container">
-      <div class="text-center reveal">
-        <div class="section-tag">💬 تجارب مرضانا</div>
-        <h2 class="section-title">ماذا يقول <span>مرضانا</span>؟</h2>
-        <p class="section-desc">أكثر من 5000 مريض وثقوا بنا — اقرأ تجاربهم الحقيقية</p>
-      </div>
-      <div class="testimonials-grid">
-
-        <div class="testimonial-card reveal reveal-delay-1">
-          <div class="stars">★★★★★</div>
-          <p>"أفضل عيادة أسنان جربتها على الإطلاق! الدكتور محترف جداً والنتيجة تخطّت توقعاتي. ابتسامتي تغيّرت بالكامل."</p>
-          <div class="t-author">
-            <div class="t-avatar a">س</div>
-            <div>
-              <div class="t-name">سارة المنصور</div>
-              <div class="t-title">مريضة — تبييض الأسنان</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="testimonial-card reveal reveal-delay-2">
-          <div class="stars">★★★★★</div>
-          <p>"عملت زراعة كاملة للأسنان وكانت تجربة رائعة. لا ألم تقريباً، والنتيجة طبيعية جداً. أنصح كل شخص بزيارة هذه العيادة."</p>
-          <div class="t-author">
-            <div class="t-avatar b">م</div>
-            <div>
-              <div class="t-name">محمد الزهراني</div>
-              <div class="t-title">مريض — زراعة الأسنان</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="testimonial-card reveal reveal-delay-3">
-          <div class="stars">★★★★★</div>
-          <p>"رهاب الأسنان كان يمنعني من الذهاب للطبيب. هنا الجو مريح جداً والفريق صبور ومتفهّم. شكراً جزيلاً!"</p>
-          <div class="t-author">
-            <div class="t-avatar c">ل</div>
-            <div>
-              <div class="t-name">لينا العمري</div>
-              <div class="t-title">مريضة — تقويم الأسنان</div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== BOOKING ===== -->
-  <section class="booking section-pad" id="booking">
-    <div class="container">
-      <div class="booking-inner">
-
-        <div class="booking-info reveal">
-          <div class="section-tag">📅 احجز موعدك</div>
-          <h2 class="section-title">ابدأ رحلتك نحو<br/><span>ابتسامة مثالية</span></h2>
-          <p>احجز موعدك الآن بكل سهولة عبر واتساب. فريقنا سيتواصل معك فوراً لتأكيد الحجز.</p>
-          <div class="booking-features">
-            <div class="booking-feature">كشف مجاني للمرضى الجدد</div>
-            <div class="booking-feature">مواعيد مرنة صباحاً ومساءً</div>
-            <div class="booking-feature">تأكيد فوري عبر واتساب</div>
-            <div class="booking-feature">إمكانية إلغاء الموعد مجاناً</div>
-          </div>
-        </div>
-
-        <div class="booking-form-card reveal reveal-delay-2">
-          <h3>📋 بيانات الحجز</h3>
-
-          <div class="form-group">
-            <label for="patientName">الاسم الكامل *</label>
-            <input type="text" id="patientName" placeholder="مثال: أحمد محمد" required />
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label for="patientPhone">رقم الهاتف *</label>
-              <input type="tel" id="patientPhone" placeholder="+966 5X XXX XXXX" required />
-            </div>
-            <div class="form-group">
-              <label for="appointmentDate">التاريخ المفضّل *</label>
-              <input type="date" id="appointmentDate" required />
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="serviceType">نوع الخدمة *</label>
-            <select id="serviceType" required>
-              <option value="">اختر الخدمة المطلوبة</option>
-              <option value="تبييض الأسنان">✨ تبييض الأسنان</option>
-              <option value="تقويم الأسنان">😁 تقويم الأسنان</option>
-              <option value="زراعة الأسنان">🦷 زراعة الأسنان</option>
-              <option value="فحص دوري شامل">🔍 فحص دوري شامل</option>
-              <option value="قشور الأسنان">💎 قشور الأسنان</option>
-              <option value="علاج اللثة">🩺 علاج اللثة</option>
-            </select>
-          </div>
-
-          <button class="btn btn-whatsapp btn-submit" id="bookBtn" type="button">
-            <span>📲</span> احجز عبر واتساب
-          </button>
-          <p class="form-note">🔒 بياناتك آمنة ومحمية تماماً</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== FOOTER ===== -->
-  <footer>
-    <div class="container">
-      <div class="footer-inner">
-        <div class="footer-brand">
-          <div class="logo">
-            <div class="logo-icon">🦷</div>
-            <span>عيادة الابتسامة</span>
-          </div>
-          <p>نلتزم بتقديم أفضل رعاية لأسنانك، لأن ابتسامتك هي انعكاس لصحتك وثقتك بنفسك.</p>
-        </div>
-        <div class="footer-col">
-          <h4>روابط سريعة</h4>
-          <ul>
-            <li><a href="#home">الرئيسية</a></li>
-            <li><a href="#services">خدماتنا</a></li>
-            <li><a href="#why-us">لماذا نحن؟</a></li>
-            <li><a href="#booking">احجز موعد</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>تواصل معنا</h4>
-          <ul>
-            <li><a href="tel:+966501234567">📞 +966 50 123 4567</a></li>
-            <li><a href="mailto:info@smile-clinic.sa">✉️ info@smile-clinic.sa</a></li>
-            <li><a href="#">📍 الرياض، حي النخيل</a></li>
-            <li><a href="#">🕒 ٩ص - ٩م (إجازة الجمعة)</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <span>© 2025 عيادة الابتسامة النقية — جميع الحقوق محفوظة</span>
-        <div class="social-links">
-          <a href="#" class="social-link">📘</a>
-          <a href="#" class="social-link">📸</a>
-          <a href="#" class="social-link">🐦</a>
-          <a href="#" class="social-link">▶️</a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- ===== WHATSAPP FAB ===== -->
-  <a href="#" class="wa-fab" id="waFab" aria-label="تواصل عبر واتساب">
-    💬
-    <span class="wa-tooltip">تحدث معنا الآن!</span>
-  </a>
-
-  <!-- ===== JAVASCRIPT ===== -->
-  <script>
-    // ===========================
-    // 1. Header Scroll Behavior
-    // ===========================
-    const header = document.getElementById('header');
-    window.addEventListener('scroll', () => {
-      header.classList.toggle('scrolled', window.scrollY > 50);
-    }, { passive: true });
-
-    // ===========================
-    // 2. Mobile Menu
-    // ===========================
-    const hamburgerBtn = document.getElementById('hamburgerBtn');
-    const mobileMenu   = document.getElementById('mobileMenu');
-    const mobileClose  = document.getElementById('mobileMenuClose');
-
-    hamburgerBtn.addEventListener('click', () => mobileMenu.classList.add('open'));
-    mobileClose.addEventListener('click',  () => mobileMenu.classList.remove('open'));
-
-    document.querySelectorAll('.mobile-link').forEach(link => {
-      link.addEventListener('click', () => mobileMenu.classList.remove('open'));
-    });
-
-    // ===========================
-    // 3. Intersection Observer — Reveal on Scroll
-    // ===========================
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          revealObserver.unobserve(entry.target);
+        // 4. PWA Registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js').then(() => console.log('PWA Registered'));
+            });
         }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-
-    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-    // ===========================
-    // 4. WhatsApp Booking Engine
-    // ===========================
-    const WHATSAPP_NUMBER = '966501234567'; // ← غيّر هذا الرقم لرقمك
-
-    document.getElementById('bookBtn').addEventListener('click', () => {
-      const name    = document.getElementById('patientName').value.trim();
-      const phone   = document.getElementById('patientPhone').value.trim();
-      const date    = document.getElementById('appointmentDate').value;
-      const service = document.getElementById('serviceType').value;
-
-      // Validation
-      if (!name || !phone || !date || !service) {
-        alert('⚠️ يرجى تعبئة جميع الحقول المطلوبة قبل المتابعة.');
-        return;
-      }
-
-      // Format date to Arabic readable
-      const dateObj = new Date(date);
-      const formattedDate = dateObj.toLocaleDateString('ar-SA', {
-        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
-      });
-
-      // Build professional WhatsApp message
-      const message =
-        `🦷 *طلب حجز موعد — عيادة الابتسامة النقية*\n` +
-        `━━━━━━━━━━━━━━━━━━━━\n\n` +
-        `👤 *الاسم:* ${name}\n` +
-        `📱 *رقم التواصل:* ${phone}\n` +
-        `📅 *التاريخ المفضّل:* ${formattedDate}\n` +
-        `🩺 *الخدمة المطلوبة:* ${service}\n\n` +
-        `━━━━━━━━━━━━━━━━━━━━\n` +
-        `_تم الإرسال من الموقع الإلكتروني_`;
-
-      const encodedMsg = encodeURIComponent(message);
-      const waURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMsg}`;
-
-      window.open(waURL, '_blank');
-    });
-
-    // ===========================
-    // 5. WhatsApp FAB — Dynamic link
-    // ===========================
-    document.getElementById('waFab').href =
-      `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('مرحباً 👋 أود الاستفسار عن المواعيد المتاحة.')}`;
-
-    // ===========================
-    // 6. Set min date for date input
-    // ===========================
-    const dateInput = document.getElementById('appointmentDate');
-    const today = new Date().toISOString().split('T')[0];
-    dateInput.min = today;
-
-    // ===========================
-    // 7. PWA Service Worker Registration
-    // ===========================
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/service-worker.js')
-          .then(reg => console.log('✅ Service Worker registered:', reg.scope))
-          .catch(err => console.warn('⚠️ SW registration failed:', err));
-      });
-    }
-  </script>
-
-  <!-- ===== PWA MANIFEST NOTE =====
-  Create manifest.json file with this content:
-  {
-    "name": "عيادة الابتسامة النقية",
-    "short_name": "الابتسامة",
-    "description": "احجز موعدك في عيادة طب الأسنان",
-    "start_url": "/",
-    "display": "standalone",
-    "background_color": "#f4f9f9",
-    "theme_color": "#0a6e6e",
-    "orientation": "portrait",
-    "icons": [
-      { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
-      { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png" }
-    ]
-  }
-
-  Create service-worker.js file with this content:
-  const CACHE = 'clinic-v1';
-  const ASSETS = ['/', '/index.html'];
-  self.addEventListener('install', e =>
-    e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)))
-  );
-  self.addEventListener('fetch', e =>
-    e.respondWith(caches.match(e.request).then(r => r || fetch(e.request)))
-  );
-  ============================ -->
-
+    </script>
 </body>
 </html>
