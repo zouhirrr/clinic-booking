@@ -661,6 +661,58 @@
     .testimonial-card__role { font-size: 12px; color: var(--color-text-dim); }
 
     /* ===========================
+       GALLERY SECTION
+    =========================== */
+    .gallery-section { background: rgba(255,255,255,0.015); }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: 220px 220px;
+      gap: 16px;
+    }
+    .gallery-item {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      cursor: pointer;
+      border: 1px solid var(--color-border);
+    }
+    .gallery-item--tall { grid-row: span 2; }
+    .gallery-item--wide { grid-column: span 2; }
+    .gallery-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);
+    }
+    .gallery-item:hover img { transform: scale(1.08); }
+    .gallery-item__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(5,13,26,0.85) 0%, transparent 60%);
+      display: flex;
+      align-items: flex-end;
+      padding: 20px;
+      opacity: 0;
+      transition: var(--transition);
+    }
+    .gallery-item:hover .gallery-item__overlay { opacity: 1; }
+    .gallery-item__overlay span {
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    @media (max-width: 768px) {
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+      }
+      .gallery-item--tall { grid-row: span 1; }
+      .gallery-item--wide { grid-column: span 2; }
+      .gallery-item { height: 180px; }
+    }
+
+    /* ===========================
        MAP SECTION
     =========================== */
     .map__inner { display: grid; grid-template-columns: 1fr 1.5fr; gap: 40px; align-items: center; }
@@ -918,7 +970,7 @@
           <div class="hero__image-wrapper reveal reveal--delay-2">
             <div class="hero__blob-bg" aria-hidden="true"></div>
             <div class="hero__image-card">
-              <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=800&q=80&auto=format&fit=crop" alt="د. أحمد الخالدي – طبيب أخصائي" loading="eager" />
+              <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=800&q=85&auto=format&fit=crop&crop=faces" alt="د. أحمد الخالدي – طبيب أخصائي" loading="eager" />
             </div>
             <div class="hero__floating-card hero__floating-card--1 glass">
               <div class="hero__floating-icon">✅</div>
@@ -943,7 +995,7 @@
         <div class="about__inner">
           <div class="about__image reveal">
             <div class="about__image-main">
-              <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=700&q=80&auto=format&fit=crop" alt="عيادة د. أحمد الخالدي" loading="lazy" />
+              <img src="https://images.unsplash.com/photo-1631815588090-d4bfec5b1ccb?w=700&q=85&auto=format&fit=crop" alt="عيادة د. أحمد الخالدي" loading="lazy" />
             </div>
             <div class="about__cert glass">
               <div class="about__cert-title">+15</div>
@@ -1034,6 +1086,40 @@
       </div>
     </section>
 
+    <!-- ==================== GALLERY ==================== -->
+    <section class="section gallery-section">
+      <div class="container">
+        <div class="section__header">
+          <div class="section__tag reveal">📸 معرض الصور</div>
+          <h2 class="section__title reveal reveal--delay-1">من داخل عيادتنا</h2>
+          <p class="section__desc reveal reveal--delay-2">بيئة طبية متطورة ومريحة تضمن لك أفضل تجربة علاجية</p>
+          <div class="section__divider reveal reveal--delay-3"></div>
+        </div>
+        <div class="gallery-grid reveal">
+          <div class="gallery-item gallery-item--tall">
+            <img src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?w=600&q=85&auto=format&fit=crop" alt="غرفة الفحص" loading="lazy" />
+            <div class="gallery-item__overlay"><span>غرفة الفحص الطبي</span></div>
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=600&q=85&auto=format&fit=crop" alt="معدات طبية حديثة" loading="lazy" />
+            <div class="gallery-item__overlay"><span>معدات طبية حديثة</span></div>
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=600&q=85&auto=format&fit=crop" alt="صالة الانتظار" loading="lazy" />
+            <div class="gallery-item__overlay"><span>صالة الانتظار</span></div>
+          </div>
+          <div class="gallery-item gallery-item--wide">
+            <img src="https://images.unsplash.com/photo-1551601651-2a8555f1a136?w=900&q=85&auto=format&fit=crop" alt="مختبر التحاليل" loading="lazy" />
+            <div class="gallery-item__overlay"><span>مختبر التحاليل</span></div>
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=600&q=85&auto=format&fit=crop" alt="فريق طبي متكامل" loading="lazy" />
+            <div class="gallery-item__overlay"><span>فريقنا الطبي</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ==================== BOOKING ==================== -->
     <section class="section" id="booking">
       <div class="container">
@@ -1052,14 +1138,14 @@
                 <div class="booking__info-icon">📞</div>
                 <div>
                   <div class="booking__info-label">هاتف العيادة</div>
-                  <div class="booking__info-value" dir="ltr">+966 55 123 4567</div>
+                  <div class="booking__info-value" dir="ltr">+213 699 334 500</div>
                 </div>
               </div>
               <div class="booking__info-item">
                 <div class="booking__info-icon">📍</div>
                 <div>
                   <div class="booking__info-label">العنوان</div>
-                  <div class="booking__info-value">شارع الملك فهد، الرياض، المملكة العربية السعودية</div>
+                  <div class="booking__info-value">شارع ديدوش مراد، الجزائر العاصمة، الجزائر</div>
                 </div>
               </div>
               <div class="booking__info-item">
@@ -1090,8 +1176,8 @@
                 </div>
                 <div class="form-group">
                   <label class="form-label" for="phone">رقم الجوال *</label>
-                  <input class="form-input" type="tel" id="phone" name="phone" placeholder="05XXXXXXXX" required autocomplete="tel" dir="ltr" />
-                  <span class="form-error-msg" id="phoneError">أدخل رقم جوال صحيح (10 أرقام)</span>
+                  <input class="form-input" type="tel" id="phone" name="phone" placeholder="06XXXXXXXX" required autocomplete="tel" dir="ltr" />
+                  <span class="form-error-msg" id="phoneError">أدخل رقم جوال صحيح (06/07 XXXXXXXX)</span>
                 </div>
                 <div class="form-group">
                   <label class="form-label" for="email">البريد الإلكتروني</label>
@@ -1215,7 +1301,7 @@
                 <div class="map__detail-icon">📍</div>
                 <div>
                   <div class="map__detail-label">العنوان</div>
-                  <div class="map__detail-value">برج الطبية، الطابق 5، شارع الملك فهد، الرياض 12211</div>
+                  <div class="map__detail-value">عمارة الأطباء، الطابق 3، شارع ديدوش مراد، الجزائر 16000</div>
                 </div>
               </div>
               <div class="map__detail">
@@ -1229,7 +1315,7 @@
                 <div class="map__detail-icon">📞</div>
                 <div>
                   <div class="map__detail-label">الهاتف / الواتساب</div>
-                  <div class="map__detail-value" dir="ltr">+966 55 123 4567</div>
+                  <div class="map__detail-value" dir="ltr">+213 699 334 500</div>
                 </div>
               </div>
               <div class="map__detail">
@@ -1244,7 +1330,7 @@
           <div class="map__frame reveal reveal--delay-1">
             <div class="map__overlay-label glass">📍 عيادة د. الخالدي</div>
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3623.6637673529!2d46.6752!3d24.7136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjTCsDQyJzQ5LjAiTiA0NsKwNDAnMzAuNyJF!5e0!3m2!1sar!2ssa!4v1234567890"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3197.0!2d3.0588!3d36.7525!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x128fb26977ea659f%3A0x3bec8bde2f8d9d41!2sDidouche%20Mourad%2C%20Algiers!5e0!3m2!1sar!2sdz!4v1234567890"
               allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
               title="موقع العيادة على خريطة غوغل"
               aria-label="خريطة العيادة">
@@ -1298,13 +1384,13 @@
       </div>
       <div class="footer__bottom">
         <span>© 2024 عيادة د. أحمد الخالدي. جميع الحقوق محفوظة.</span>
-        <span>صُنع بـ ❤ في المملكة العربية السعودية</span>
+        <span>صُنع بـ ❤ في الجزائر</span>
       </div>
     </div>
   </footer>
 
   <!-- ==================== WHATSAPP BTN ==================== -->
-  <a href="https://wa.me/966551234567?text=السلام عليكم، أريد حجز موعد" class="whatsapp-btn" aria-label="تواصل عبر واتساب" target="_blank" rel="noopener noreferrer">
+  <a href="https://wa.me/213699334500?text=السلام عليكم، أريد حجز موعد" class="whatsapp-btn" aria-label="تواصل عبر واتساب" target="_blank" rel="noopener noreferrer">
     <svg width="28" height="28" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2C6.477 2 2 6.477 2 12c0 1.99.584 3.842 1.591 5.398L2 22l4.741-1.562A9.943 9.943 0 0012.004 22C17.53 22 22 17.523 22 12S17.53 2 12.004 2zm0 18.117a8.098 8.098 0 01-4.124-1.125l-.295-.176-3.069 1.012.97-3.01-.193-.309A8.099 8.099 0 013.883 12c0-4.487 3.633-8.117 8.121-8.117S20.117 7.513 20.117 12c0 4.487-3.63 8.117-8.113 8.117z"/></svg>
     <span class="whatsapp-tooltip">تواصل عبر واتساب</span>
   </a>
@@ -1441,7 +1527,7 @@
       const date = document.getElementById('date').value;
 
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      const phoneRegex = /^05\d{8}$/;
+      const phoneRegex = /^0[567]\d{8}$/;
       const today = new Date(); today.setHours(0,0,0,0);
 
       let valid = true;
@@ -1458,6 +1544,36 @@
       }
 
       if (valid) {
+        const fullNameVal = document.getElementById('fullName').value.trim();
+        const phoneVal    = document.getElementById('phone').value.trim();
+        const emailVal    = document.getElementById('email').value.trim();
+        const serviceVal  = document.getElementById('service').value;
+        const dateVal     = document.getElementById('date').value;
+        const timeSlotVal = document.getElementById('timeSlot').value;
+        const notesVal    = document.getElementById('notes').value.trim();
+
+        const dateObj = new Date(dateVal);
+        const formattedDate = dateObj.toLocaleDateString('ar-DZ', {
+          weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+        });
+
+        const msgLines = [
+          '🏥 *طلب حجز موعد جديد*',
+          '━━━━━━━━━━━━━━━━━━',
+          '👤 *الاسم:* ' + fullNameVal,
+          '📞 *الهاتف:* ' + phoneVal,
+          emailVal ? '📧 *البريد:* ' + emailVal : null,
+          '🩺 *نوع الاستشارة:* ' + serviceVal,
+          '📅 *التاريخ:* ' + formattedDate,
+          timeSlotVal ? '🕐 *الوقت المفضل:* ' + timeSlotVal : null,
+          notesVal ? '📝 *ملاحظات:* ' + notesVal : null,
+          '━━━━━━━━━━━━━━━━━━',
+          '✅ يرجى تأكيد الموعد في أقرب وقت.'
+        ].filter(Boolean).join('\n');
+
+        const waURL = 'https://wa.me/213699334500?text=' + encodeURIComponent(msgLines);
+        window.open(waURL, '_blank', 'noopener,noreferrer');
+
         bookingForm.style.display = 'none';
         formSuccess.style.display = 'block';
       }
