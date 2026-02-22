@@ -1638,9 +1638,9 @@
 
       <!-- ③ Action Buttons -->
       <div class="modal-actions">
-        <button class="btn-download gold" id="btnDownloadPDF" title="تحميل كـ PDF">
+        <button class="btn-download gold" id="btnDownloadPDF" title="تحميل كـ PNG">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          تحميل الوصل
+          تحميل PNG
         </button>
         <button class="btn-download" id="btnPrint" title="طباعة">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
@@ -1797,80 +1797,195 @@
     };
 
     /* ============================================
-       CANVAS-BASED JPG DOWNLOAD
-       Renders #receiptCard via html-to-canvas technique
-       using an inline iframe + canvas approach
+       PNG DOWNLOAD — Pure Canvas API (no libs)
+       Draws the entire receipt card onto a canvas
+       then exports as a high-res PNG file.
     ============================================ */
     const downloadReceiptAsImage = async (apptId) => {
-      const card = document.getElementById('receiptCard');
+      const btn = document.getElementById('btnDownloadPDF');
+      btn.textContent = '⏳ جاري التحضير...';
+      btn.disabled = true;
 
-      // Clone card HTML for isolated rendering
-      const clone = card.cloneNode(true);
-      clone.style.cssText = `
-        width: 520px;
-        font-family: 'Cairo', sans-serif;
-        direction: rtl;
-        background: #fff;
-        position: absolute;
-        top: -9999px; left: -9999px;
-      `;
-      document.body.appendChild(clone);
+      // ── Collect live data from populated receipt DOM ──
+      const get = id => document.getElementById(id)?.textContent?.trim() || '';
+      const patientName = get('rc-patient-name');
+      const phone       = get('rc-phone');
+      const service     = get('rc-service').replace('🩺 ', '');
+      const apptDate    = get('rc-date');
+      const apptTime    = get('rc-time');
+      const issuedDate  = get('rc-issued-date');
 
-      // Use browser print-to-PDF as the reliable download path
-      // (canvas approach requires html2canvas lib which we're avoiding)
-      // Instead we open a clean print window with just the receipt
-      const printWin = window.open('', '_blank', 'width=620,height=800');
-      if (!printWin) { document.body.removeChild(clone); triggerPrint(); return; }
+      // ── Canvas setup (2× for retina sharpness) ──
+      const W = 520, H = 680, DPR = 2;
+      const canvas = document.createElement('canvas');
+      canvas.width  = W * DPR;
+      canvas.height = H * DPR;
+      const ctx = canvas.getContext('2d');
+      ctx.scale(DPR, DPR);
 
-      const styles = Array.from(document.styleSheets)
-        .map(s => { try { return Array.from(s.cssRules).map(r => r.cssText).join('\n'); } catch { return ''; } })
-        .join('\n');
+      // ── Helpers ──
+      const rect  = (x,y,w,h,r,fill) => { ctx.beginPath(); ctx.moveTo(x+r,y); ctx.lineTo(x+w-r,y); ctx.quadraticCurveTo(x+w,y,x+w,y+r); ctx.lineTo(x+w,y+h-r); ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h); ctx.lineTo(x+r,y+h); ctx.quadraticCurveTo(x,y+h,x,y+h-r); ctx.lineTo(x,y+r); ctx.quadraticCurveTo(x,y,x+r,y); ctx.closePath(); if(fill){ctx.fillStyle=fill;ctx.fill();} };
+      const text  = (t,x,y,font,color,align='right') => { ctx.font=font; ctx.fillStyle=color; ctx.textAlign=align; ctx.fillText(t,x,y); };
+      const line  = (x1,y1,x2,y2,color,w=1) => { ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.strokeStyle=color; ctx.lineWidth=w; ctx.stroke(); };
+      const rtlText = (t,x,y,font,color) => text(t,x,y,font,color,'right');
 
-      printWin.document.write(`<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-<meta charset="UTF-8"/>
-<title>وصل الحجز — ${apptId}</title>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
-<style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Cairo', sans-serif; direction: rtl; background: #fff; display: flex; justify-content: center; padding: 32px; }
-  ${styles}
-  /* print overrides */
-  .modal-success-banner, .modal-actions { display: none !important; }
-  #receiptCard { max-width: 480px; width: 100%; box-shadow: 0 4px 24px rgba(0,0,0,0.12); border-radius: 20px; overflow: hidden; }
-  @media print {
-    body { padding: 0; }
-    #receiptCard { box-shadow: none; border-radius: 0; max-width: 100%; }
-    .rc-clinic-header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    .rc-gold-line { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  }
-</style>
-</head>
-<body>
-  ${card.outerHTML}
-  <script>
-    // Rebuild QR in print window
-    window.onload = () => {
-      const seed = '${apptId}';
-      const grid = document.getElementById('qrGrid');
-      if (grid) {
-        grid.innerHTML = '';
-        let hash = 0;
-        for (let i = 0; i < seed.length; i++) hash = ((hash << 5) - hash + seed.charCodeAt(i)) | 0;
-        const corners = [0,1,2,5,6,7,10,14,20,24];
-        for (let i = 0; i < 25; i++) {
-          const c = document.createElement('div');
-          c.className = 'qr-cell' + (corners.includes(i) || ((hash >>> i) & 1) ? '' : ' w');
-          grid.appendChild(c);
+      // ── 1. White card background with shadow effect ──
+      rect(0, 0, W, H, 20, '#ffffff');
+
+      // ── 2. Clinic header — dark navy gradient ──
+      const hdrGrad = ctx.createLinearGradient(0,0,W,80);
+      hdrGrad.addColorStop(0, '#0a1628');
+      hdrGrad.addColorStop(1, '#1a3460');
+      rect(0, 0, W, 80, 0, 'transparent');
+      ctx.fillStyle = hdrGrad;
+      // manual rounded top
+      ctx.beginPath();
+      ctx.moveTo(20, 0); ctx.lineTo(W-20, 0);
+      ctx.quadraticCurveTo(W,0,W,20);
+      ctx.lineTo(W,80); ctx.lineTo(0,80); ctx.lineTo(0,20);
+      ctx.quadraticCurveTo(0,0,20,0);
+      ctx.closePath(); ctx.fill();
+
+      // Logo box
+      const lgGrad = ctx.createLinearGradient(20,20,58,58);
+      lgGrad.addColorStop(0,'#c9a84c'); lgGrad.addColorStop(1,'#e8c87a');
+      rect(20,20,38,38,8,'transparent');
+      ctx.fillStyle = lgGrad; ctx.beginPath();
+      ctx.roundRect(20,20,38,38,8); ctx.fill();
+      text('🦷', 39, 47, '20px serif', '#fff', 'center');
+
+      // Clinic name
+      rtlText('عيادة د. [اسم الطبيب]', W-20, 42, 'bold 15px Cairo,sans-serif', '#ffffff');
+      rtlText('جراحة وتجميل الأسنان • الجزائر', W-20, 60, '11px Cairo,sans-serif', 'rgba(255,255,255,0.6)');
+
+      // Appt ID badge (right→left layout so left side)
+      rect(20,22,110,36,8,'rgba(201,168,76,0.18)');
+      ctx.strokeStyle='rgba(201,168,76,0.4)'; ctx.lineWidth=1;
+      ctx.beginPath(); ctx.roundRect(20,22,110,36,8); ctx.stroke();
+      text('رقم الموعد', 75, 36, 'bold 9px Cairo,sans-serif', 'rgba(255,255,255,0.5)', 'center');
+      text(apptId, 75, 52, 'bold 11px Cairo,sans-serif', '#e8c87a', 'center');
+
+      // ── 3. Gold separator line ──
+      const goldGrad = ctx.createLinearGradient(0,80,W,80);
+      goldGrad.addColorStop(0,'#c9a84c'); goldGrad.addColorStop(0.5,'#e8c87a'); goldGrad.addColorStop(1,'#c9a84c');
+      ctx.fillStyle = goldGrad;
+      ctx.fillRect(0, 80, W, 3);
+
+      // ── 4. Document title row ──
+      text('🗓 بطاقة موعد طبي', W-20, 106, 'bold 11px Cairo,sans-serif', '#c9a84c', 'right');
+      text(issuedDate, 20, 106, '10px Cairo,sans-serif', '#718096', 'left');
+
+      // ── 5. Divider ──
+      line(20, 114, W-20, 114, '#f0f0f0', 1);
+
+      // ── 6. Fields grid ──
+      const fields = [
+        { label:'👤 اسم المريض',     value: patientName, x:W-20, col:'r' },
+        { label:'📞 رقم الهاتف',     value: phone,       x:20,   col:'l' },
+        { label:'🩺 الخدمة المطلوبة',value: service,      x:W-20, col:'r', full:true },
+        { label:'📅 تاريخ الموعد',   value: apptDate,    x:W-20, col:'r' },
+        { label:'🕐 وقت الموعد',     value: apptTime,    x:20,   col:'l' },
+      ];
+
+      let fy = 130;
+      const colW = (W - 40) / 2;
+
+      fields.forEach((f, i) => {
+        const xAlign = f.col === 'r' ? 'right' : 'left';
+        const fx     = f.full ? (f.col === 'r' ? W-20 : 20) : f.x;
+
+        // Label
+        text(f.label, fx, fy, 'bold 9.5px Cairo,sans-serif', '#718096', xAlign);
+        // Value
+        text(f.value, fx, fy+20, 'bold 13px Cairo,sans-serif', '#0a1628', xAlign);
+
+        // Divider after each pair (or after full-width)
+        const isLastInRow = f.full || (i % 2 === 1) || i === fields.length-1;
+        if (isLastInRow) {
+          fy += 48;
+          line(20, fy - 4, W-20, fy - 4, '#f0f0f0', 1);
         }
+      });
+
+      // ── 7. Status section ──
+      const sy = fy + 2;
+      // dashed border box
+      ctx.setLineDash([4,3]);
+      ctx.strokeStyle = 'rgba(201,168,76,0.35)';
+      ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.roundRect(20, sy, W-40, 56, 10); ctx.stroke();
+      ctx.setLineDash([]);
+      // subtle bg
+      ctx.fillStyle = 'rgba(201,168,76,0.04)';
+      ctx.beginPath(); ctx.roundRect(20, sy, W-40, 56, 10); ctx.fill();
+
+      // Status label
+      text('حالة الموعد', W-32, sy+16, 'bold 9px Cairo,sans-serif', '#718096', 'right');
+      // Status chip
+      ctx.fillStyle = 'rgba(255,165,0,0.12)';
+      ctx.beginPath(); ctx.roundRect(W-180, sy+24, 148, 24, 12); ctx.fill();
+      ctx.strokeStyle = 'rgba(255,165,0,0.3)'; ctx.lineWidth=1;
+      ctx.beginPath(); ctx.roundRect(W-180, sy+24, 148, 24, 12); ctx.stroke();
+      // dot
+      ctx.fillStyle = '#f6ad55';
+      ctx.beginPath(); ctx.arc(W-174, sy+36, 4, 0, Math.PI*2); ctx.fill();
+      text('بانتظار التأكيد من العيادة', W-40, sy+40, 'bold 9.5px Cairo,sans-serif', '#c05621', 'right');
+
+      // QR placeholder (right side of status box) — drawn as mini pixel grid
+      const qx = 28, qy = sy + 6, qs = 44;
+      ctx.strokeStyle='rgba(201,168,76,0.35)'; ctx.lineWidth=1;
+      ctx.beginPath(); ctx.roundRect(qx, qy, qs, qs, 6); ctx.stroke();
+      const cellS = 7, pad = 4;
+      let qHash = 0;
+      for (let c=0; c<apptId.length; c++) qHash = ((qHash<<5)-qHash+apptId.charCodeAt(c))|0;
+      const qCorners=[0,1,2,5,6,7,10,14,20,24];
+      for (let i=0;i<25;i++){
+        const row=Math.floor(i/5), col=i%5;
+        const dark = qCorners.includes(i)||((qHash>>>i)&1);
+        ctx.fillStyle = dark ? '#0a1628' : '#f0eeea';
+        ctx.fillRect(qx+pad+col*cellS, qy+pad+row*cellS, cellS-1.5, cellS-1.5);
       }
-      setTimeout(() => { window.print(); window.close(); }, 800);
-    };
-  <\/script>
-</body></html>`);
-      printWin.document.close();
-      document.body.removeChild(clone);
+
+      fy = sy + 68;
+
+      // ── 8. Footer separator ──
+      line(20, fy, W-20, fy, '#f0ece4', 1);
+      fy += 12;
+
+      // Clinic address footer
+      text('عيادة د. [اسم الطبيب]', W-20, fy+2, 'bold 10px Cairo,sans-serif', '#0a1628', 'right');
+      text('📍 [العنوان الكامل]، الجزائر', W-20, fy+17, '9.5px Cairo,sans-serif', '#718096', 'right');
+      text('📞 +213 XXX XXX XXX  |  🌐 www.clinic.dz', W-20, fy+32, '9px Cairo,sans-serif', '#718096', 'right');
+
+      // OFFICIAL watermark (rotated, subtle)
+      ctx.save();
+      ctx.translate(45, H-30);
+      ctx.rotate(-Math.PI/2);
+      text('OFFICIAL', 0, 0, 'bold 9px Cairo,sans-serif', 'rgba(201,168,76,0.2)', 'center');
+      ctx.restore();
+
+      // ── 9. Bottom gold accent line ──
+      const botGrad = ctx.createLinearGradient(0,H-4,W,H-4);
+      botGrad.addColorStop(0,'#c9a84c'); botGrad.addColorStop(0.5,'#e8c87a'); botGrad.addColorStop(1,'#c9a84c');
+      ctx.fillStyle = botGrad;
+      // rounded bottom
+      ctx.beginPath();
+      ctx.moveTo(0,H-6); ctx.lineTo(W,H-6); ctx.lineTo(W,H-20);
+      ctx.quadraticCurveTo(W,H,W-20,H); ctx.lineTo(20,H);
+      ctx.quadraticCurveTo(0,H,0,H-20); ctx.closePath();
+      ctx.fillStyle=botGrad; ctx.fill();
+
+      // ── Export PNG ──
+      canvas.toBlob(blob => {
+        const url = URL.createObjectURL(blob);
+        const a   = document.createElement('a');
+        a.href     = url;
+        a.download = `موعد-${apptId}.png`;
+        a.click();
+        URL.revokeObjectURL(url);
+        btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> تحميل PNG';
+        btn.disabled = false;
+      }, 'image/png');
     };
 
     /* Print via @media print on main page */
