@@ -1,2093 +1,1180 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#0a1628" />
-  <meta name="description" content="عيادة جراحة الأسنان المتخصصة - رعاية صحية متميزة في الجزائر" />
-  <meta property="og:title" content="عيادة د. الأسنان - جراحة وتجميل الأسنان" />
-  <meta property="og:description" content="خبرة تزيد عن 15 عاماً في جراحة وتجميل الأسنان - احجز موعدك اليوم" />
-  <link rel="manifest" href="manifest.json" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-  <title>عيادة د. [اسم الطبيب] - جراحة وتجميل الأسنان</title>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="عيادة د. [اسم الطبيب] — طب وجراحة الأسنان في الجزائر"/>
+<title>عيادة د. [اسم الطبيب] — طب الأسنان</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
 
-  <style>
-    /* ============================================
-       CSS VARIABLES & DESIGN TOKENS
-    ============================================ */
-    :root {
-      --navy: #0a1628;
-      --navy-mid: #112240;
-      --navy-light: #1a3460;
-      --gold: #c9a84c;
-      --gold-light: #e8c87a;
-      --gold-pale: #f5e6b8;
-      --white: #ffffff;
-      --off-white: #f8f6f1;
-      --text-primary: #0a1628;
-      --text-secondary: #4a5568;
-      --text-muted: #718096;
-      --glass-bg: rgba(255, 255, 255, 0.08);
-      --glass-border: rgba(201, 168, 76, 0.25);
-      --shadow-gold: 0 8px 40px rgba(201, 168, 76, 0.15);
-      --shadow-navy: 0 20px 60px rgba(10, 22, 40, 0.3);
-      --radius-sm: 12px;
-      --radius-md: 20px;
-      --radius-lg: 32px;
-      --radius-xl: 48px;
-      --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      --font: 'Cairo', sans-serif;
-    }
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   TOKENS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+:root {
+  --teal:       #0891b2;
+  --teal-dark:  #0e7490;
+  --teal-light: #e0f2fe;
+  --teal-pale:  #f0f9ff;
+  --green:      #059669;
+  --white:      #ffffff;
+  --gray-50:    #f8fafc;
+  --gray-100:   #f1f5f9;
+  --gray-200:   #e2e8f0;
+  --gray-400:   #94a3b8;
+  --gray-600:   #475569;
+  --gray-800:   #1e293b;
+  --gray-900:   #0f172a;
+  --red:        #ef4444;
+  --font:       'Cairo', sans-serif;
+  --radius:     12px;
+  --radius-lg:  20px;
+  --shadow:     0 1px 3px rgba(0,0,0,.08), 0 4px 16px rgba(0,0,0,.06);
+  --shadow-md:  0 4px 12px rgba(0,0,0,.1),  0 12px 32px rgba(0,0,0,.08);
+  --trans:      all .25s ease;
+}
 
-    /* ============================================
-       RESET & BASE
-    ============================================ */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; font-size: 16px; }
-    body {
-      font-family: var(--font);
-      background: var(--off-white);
-      color: var(--text-primary);
-      overflow-x: hidden;
-      direction: rtl;
-    }
-    img { max-width: 100%; display: block; }
-    a { text-decoration: none; color: inherit; }
-    button { cursor: pointer; font-family: var(--font); border: none; outline: none; }
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   RESET
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { font-family: var(--font); background: var(--white); color: var(--gray-800); overflow-x: hidden; }
+a { text-decoration: none; color: inherit; }
+button { cursor: pointer; font-family: var(--font); border: none; outline: none; }
+img { max-width: 100%; display: block; }
+ul { list-style: none; }
 
-    /* ============================================
-       SCROLL REVEAL ANIMATIONS
-    ============================================ */
-    .reveal {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .reveal-left {
-      opacity: 0;
-      transform: translateX(40px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .reveal-left.visible { opacity: 1; transform: translateX(0); }
-    .reveal-right {
-      opacity: 0;
-      transform: translateX(-40px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .reveal-right.visible { opacity: 1; transform: translateX(0); }
-    .delay-1 { transition-delay: 0.1s !important; }
-    .delay-2 { transition-delay: 0.2s !important; }
-    .delay-3 { transition-delay: 0.3s !important; }
-    .delay-4 { transition-delay: 0.4s !important; }
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SCROLL REVEAL
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.fade { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+.fade.show { opacity: 1; transform: translateY(0); }
+.fade.d1 { transition-delay: .1s; }
+.fade.d2 { transition-delay: .2s; }
+.fade.d3 { transition-delay: .3s; }
+.fade.d4 { transition-delay: .4s; }
 
-    /* ============================================
-       NAVBAR
-    ============================================ */
-    .navbar {
-      position: fixed;
-      top: 0; right: 0; left: 0;
-      z-index: 1000;
-      padding: 18px 5%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      transition: var(--transition);
-    }
-    .navbar.scrolled {
-      background: rgba(10, 22, 40, 0.95);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      padding: 12px 5%;
-      box-shadow: 0 4px 30px rgba(0,0,0,0.2);
-    }
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .logo-icon {
-      width: 44px; height: 44px;
-      background: linear-gradient(135deg, var(--gold), var(--gold-light));
-      border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 22px;
-    }
-    .logo-text {
-      color: var(--white);
-      font-weight: 700;
-      font-size: 1rem;
-      line-height: 1.3;
-    }
-    .logo-text span { color: var(--gold-light); display: block; font-size: 0.75rem; font-weight: 400; }
-    .nav-links {
-      display: flex;
-      gap: 32px;
-      list-style: none;
-    }
-    .nav-links a {
-      color: rgba(255,255,255,0.8);
-      font-size: 0.9rem;
-      font-weight: 500;
-      transition: var(--transition);
-      position: relative;
-      padding-bottom: 4px;
-    }
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: 0; right: 0;
-      width: 0; height: 2px;
-      background: var(--gold);
-      transition: width 0.3s ease;
-    }
-    .nav-links a:hover { color: var(--gold-light); }
-    .nav-links a:hover::after { width: 100%; }
-    .nav-cta {
-      background: linear-gradient(135deg, var(--gold), var(--gold-light));
-      color: var(--navy) !important;
-      padding: 10px 24px;
-      border-radius: 50px;
-      font-weight: 700 !important;
-      font-size: 0.85rem !important;
-      transition: var(--transition) !important;
-      box-shadow: 0 4px 15px rgba(201,168,76,0.3);
-    }
-    .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(201,168,76,0.4) !important; }
-    .nav-cta::after { display: none !important; }
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      background: none;
-      padding: 8px;
-    }
-    .hamburger span {
-      width: 24px; height: 2px;
-      background: var(--white);
-      border-radius: 2px;
-      transition: var(--transition);
-    }
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   LAYOUT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+section { padding: 80px 0; }
 
-    /* ============================================
-       HERO SECTION
-    ============================================ */
-    .hero {
-      min-height: 100vh;
-      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 50%, #0d1f3c 100%);
-      position: relative;
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-      padding: 100px 5% 60px;
-    }
-    /* Mesh gradient blobs */
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -200px; left: -200px;
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%);
-      border-radius: 50%;
-      animation: blobFloat 8s ease-in-out infinite;
-    }
-    .hero::after {
-      content: '';
-      position: absolute;
-      bottom: -100px; right: 10%;
-      width: 400px; height: 400px;
-      background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
-      border-radius: 50%;
-      animation: blobFloat 10s ease-in-out infinite reverse;
-    }
-    @keyframes blobFloat {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      50% { transform: translate(30px, -30px) scale(1.05); }
-    }
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
-      position: relative;
-      z-index: 1;
-      max-width: 1200px;
-      margin: 0 auto;
-      width: 100%;
-    }
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(201,168,76,0.15);
-      border: 1px solid rgba(201,168,76,0.3);
-      border-radius: 50px;
-      padding: 8px 18px;
-      margin-bottom: 24px;
-      font-size: 0.8rem;
-      color: var(--gold-light);
-      font-weight: 600;
-    }
-    .hero-badge .dot {
-      width: 8px; height: 8px;
-      background: var(--gold);
-      border-radius: 50%;
-      animation: pulse-dot 2s infinite;
-    }
-    @keyframes pulse-dot {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(1.3); }
-    }
-    .hero-title {
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      font-weight: 900;
-      color: var(--white);
-      line-height: 1.2;
-      margin-bottom: 20px;
-    }
-    .hero-title .highlight {
-      background: linear-gradient(135deg, var(--gold), var(--gold-light));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .hero-desc {
-      font-size: 1.05rem;
-      color: rgba(255,255,255,0.7);
-      line-height: 1.8;
-      margin-bottom: 36px;
-      font-weight: 400;
-    }
-    .hero-actions {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-    .btn-primary {
-      background: linear-gradient(135deg, var(--gold), var(--gold-light));
-      color: var(--navy);
-      padding: 15px 32px;
-      border-radius: 50px;
-      font-weight: 700;
-      font-size: 1rem;
-      font-family: var(--font);
-      transition: var(--transition);
-      box-shadow: 0 8px 25px rgba(201,168,76,0.35);
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 35px rgba(201,168,76,0.5);
-    }
-    .btn-primary:active { transform: translateY(-1px); }
-    .btn-secondary {
-      background: transparent;
-      color: var(--white);
-      padding: 15px 32px;
-      border-radius: 50px;
-      font-weight: 600;
-      font-size: 1rem;
-      font-family: var(--font);
-      border: 1.5px solid rgba(255,255,255,0.3);
-      transition: var(--transition);
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .btn-secondary:hover {
-      border-color: var(--gold);
-      color: var(--gold-light);
-      transform: translateY(-2px);
-    }
-    .hero-stats {
-      display: flex;
-      gap: 32px;
-      margin-top: 48px;
-      padding-top: 32px;
-      border-top: 1px solid rgba(255,255,255,0.1);
-    }
-    .stat { text-align: center; }
-    .stat-num {
-      font-size: 1.8rem;
-      font-weight: 900;
-      color: var(--gold-light);
-      display: block;
-    }
-    .stat-label {
-      font-size: 0.78rem;
-      color: rgba(255,255,255,0.5);
-      font-weight: 400;
-    }
-    /* Hero image */
-    .hero-visual {
-      position: relative;
-      display: flex;
-      justify-content: center;
-    }
-    .hero-img-wrap {
-      position: relative;
-      width: 100%;
-      max-width: 440px;
-    }
-    .hero-img-card {
-      width: 100%;
-      aspect-ratio: 3/4;
-      background: linear-gradient(135deg, var(--navy-light) 0%, #1e4080 100%);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      position: relative;
-      box-shadow: var(--shadow-navy), 0 0 0 1px rgba(201,168,76,0.15);
-    }
-    .img-placeholder {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      color: rgba(255,255,255,0.4);
-    }
-    .img-placeholder .placeholder-icon { font-size: 80px; }
-    .img-placeholder p { font-size: 0.9rem; text-align: center; }
-    /* Floating cards on image */
-    .hero-float-card {
-      position: absolute;
-      background: rgba(255,255,255,0.1);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: var(--radius-md);
-      padding: 14px 18px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-    }
-    .hero-float-card.card-1 {
-      bottom: 32px;
-      right: -30px;
-      animation: floatCard1 4s ease-in-out infinite;
-    }
-    .hero-float-card.card-2 {
-      top: 40px;
-      left: -30px;
-      animation: floatCard1 5s ease-in-out infinite reverse;
-    }
-    @keyframes floatCard1 {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-    .fc-icon { font-size: 28px; }
-    .fc-text strong { display: block; color: var(--white); font-size: 0.9rem; font-weight: 700; }
-    .fc-text span { color: rgba(255,255,255,0.6); font-size: 0.75rem; }
-    /* Gold ring decoration */
-    .ring-deco {
-      position: absolute;
-      width: 120px; height: 120px;
-      border: 2px solid rgba(201,168,76,0.2);
-      border-radius: 50%;
-      top: -20px; right: -20px;
-      animation: rotateSlow 15s linear infinite;
-    }
-    .ring-deco::after {
-      content: '';
-      position: absolute;
-      width: 80px; height: 80px;
-      border: 1px dashed rgba(201,168,76,0.15);
-      border-radius: 50%;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-    }
-    @keyframes rotateSlow { to { transform: rotate(360deg); } }
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   NAVBAR
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.navbar {
+  position: fixed; top: 0; inset-inline: 0; z-index: 900;
+  background: var(--white);
+  border-bottom: 1px solid var(--gray-200);
+  padding: 0 24px; height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+  transition: box-shadow .3s ease;
+}
+.navbar.elevated { box-shadow: var(--shadow); }
+.nav-brand { display: flex; align-items: center; gap: 10px; }
+.nav-icon {
+  width: 38px; height: 38px;
+  background: var(--teal); border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+}
+.nav-name { font-size: .95rem; font-weight: 700; color: var(--gray-900); line-height: 1.2; }
+.nav-name span { display: block; font-size: .65rem; font-weight: 400; color: var(--gray-400); }
+.nav-links { display: flex; align-items: center; gap: 8px; }
+.nav-links a {
+  font-size: .82rem; font-weight: 500; color: var(--gray-600);
+  padding: 6px 12px; border-radius: 8px;
+  transition: var(--trans);
+}
+.nav-links a:hover { background: var(--teal-pale); color: var(--teal-dark); }
+.nav-cta {
+  font-size: .82rem; font-weight: 700; color: var(--white) !important;
+  background: var(--teal); padding: 8px 18px !important;
+  border-radius: 8px !important;
+  transition: var(--trans) !important;
+}
+.nav-cta:hover { background: var(--teal-dark) !important; transform: translateY(-1px); }
+.hamburger { display: none; flex-direction: column; gap: 5px; background: none; padding: 6px; }
+.hamburger span { width: 22px; height: 2px; background: var(--gray-800); border-radius: 2px; transition: var(--trans); display: block; }
 
-    /* ============================================
-       SECTION COMMONS
-    ============================================ */
-    section { padding: 90px 5%; }
-    .section-label {
-      display: inline-block;
-      background: linear-gradient(135deg, rgba(201,168,76,0.15), rgba(232,200,122,0.1));
-      border: 1px solid rgba(201,168,76,0.3);
-      color: var(--gold);
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      padding: 6px 16px;
-      border-radius: 50px;
-      margin-bottom: 16px;
-    }
-    .section-title {
-      font-size: clamp(1.8rem, 3vw, 2.6rem);
-      font-weight: 900;
-      color: var(--navy);
-      line-height: 1.25;
-      margin-bottom: 16px;
-    }
-    .section-title .gold-text {
-      background: linear-gradient(135deg, var(--gold), #b8883c);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .section-subtitle {
-      font-size: 1rem;
-      color: var(--text-secondary);
-      line-height: 1.8;
-      max-width: 540px;
-    }
-    .section-header { margin-bottom: 56px; }
-    .container { max-width: 1200px; margin: 0 auto; }
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   HERO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.hero {
+  padding-top: 64px;
+  background: linear-gradient(160deg, var(--teal-pale) 0%, var(--white) 60%);
+  min-height: 90vh;
+  display: flex; align-items: center;
+}
+.hero-inner {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 64px; align-items: center;
+  padding: 64px 0;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--teal-light); color: var(--teal-dark);
+  font-size: .72rem; font-weight: 700; padding: 5px 14px;
+  border-radius: 50px; margin-bottom: 20px;
+}
+.badge-dot { width: 7px; height: 7px; background: var(--teal); border-radius: 50%; animation: blink 2s infinite; }
+@keyframes blink { 0%,100%{opacity:1;} 50%{opacity:.3;} }
+.hero-title { font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 800; color: var(--gray-900); line-height: 1.2; margin-bottom: 16px; }
+.hero-title span { color: var(--teal); }
+.hero-desc { font-size: 1rem; font-weight: 400; color: var(--gray-600); line-height: 1.9; margin-bottom: 36px; }
+.hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--teal); color: var(--white);
+  font-family: var(--font); font-size: .9rem; font-weight: 700;
+  padding: 13px 28px; border-radius: var(--radius);
+  transition: var(--trans); box-shadow: 0 4px 14px rgba(8,145,178,.3);
+}
+.btn-primary:hover { background: var(--teal-dark); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(8,145,178,.4); }
+.btn-outline {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--white); color: var(--teal);
+  font-family: var(--font); font-size: .9rem; font-weight: 700;
+  padding: 12px 26px; border-radius: var(--radius);
+  border: 1.5px solid var(--teal);
+  transition: var(--trans);
+}
+.btn-outline:hover { background: var(--teal-pale); transform: translateY(-2px); }
+.hero-stats {
+  display: flex; gap: 0; margin-top: 48px;
+  background: var(--white); border-radius: var(--radius-lg);
+  box-shadow: var(--shadow); overflow: hidden;
+  border: 1px solid var(--gray-200);
+}
+.h-stat { flex: 1; padding: 18px 16px; text-align: center; border-right: 1px solid var(--gray-200); }
+.h-stat:last-child { border-right: none; }
+.h-stat-num { font-size: 1.6rem; font-weight: 800; color: var(--teal); display: block; }
+.h-stat-label { font-size: .68rem; color: var(--gray-400); font-weight: 500; margin-top: 2px; }
 
-    /* ============================================
-       SERVICES SECTION
-    ============================================ */
-    #services { background: var(--off-white); }
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
-    }
-    .service-card {
-      background: var(--white);
-      border-radius: var(--radius-md);
-      padding: 36px 28px;
-      transition: var(--transition);
-      border: 1px solid rgba(201,168,76,0.1);
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-    }
-    .service-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, var(--navy), var(--navy-light));
-      opacity: 0;
-      transition: opacity 0.4s ease;
-    }
-    .service-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-gold); }
-    .service-card:hover::before { opacity: 1; }
-    .service-card > * { position: relative; z-index: 1; }
-    .service-card:hover .svc-icon { background: rgba(201,168,76,0.2); }
-    .service-card:hover .svc-title { color: var(--white); }
-    .service-card:hover .svc-desc { color: rgba(255,255,255,0.7); }
-    .service-card:hover .svc-link { color: var(--gold-light); }
-    .svc-icon {
-      width: 60px; height: 60px;
-      background: linear-gradient(135deg, rgba(201,168,76,0.12), rgba(201,168,76,0.06));
-      border-radius: var(--radius-sm);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 28px;
-      margin-bottom: 20px;
-      transition: var(--transition);
-    }
-    .svc-title {
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--navy);
-      margin-bottom: 10px;
-      transition: var(--transition);
-    }
-    .svc-desc {
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-      line-height: 1.7;
-      margin-bottom: 20px;
-      transition: var(--transition);
-    }
-    .svc-link {
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: var(--gold);
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: var(--transition);
-    }
+/* Hero visual */
+.hero-visual { display: flex; justify-content: center; position: relative; }
+.hero-card {
+  width: 100%; max-width: 400px;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  border: 1px solid var(--gray-200);
+}
+.hero-card-top {
+  background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+  padding: 40px 32px; text-align: center;
+}
+.hct-icon { font-size: 64px; margin-bottom: 12px; }
+.hct-title { font-size: 1.15rem; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+.hct-sub { font-size: .78rem; color: rgba(255,255,255,.75); }
+.hero-card-body { padding: 24px; }
+.mini-info-row {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 0; border-bottom: 1px solid var(--gray-100);
+  font-size: .82rem; color: var(--gray-600);
+}
+.mini-info-row:last-child { border-bottom: none; }
+.mir-icon { font-size: 1rem; }
+.mir-label { font-weight: 500; }
+/* Float badge */
+.float-badge {
+  position: absolute; top: 20px; left: -16px;
+  background: var(--white); border-radius: var(--radius);
+  box-shadow: var(--shadow-md); padding: 10px 14px;
+  display: flex; align-items: center; gap: 10px;
+  border: 1px solid var(--gray-200);
+  animation: floatY 3s ease-in-out infinite;
+}
+@keyframes floatY { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-8px);} }
+.fb-icon { font-size: 1.5rem; }
+.fb-num { font-size: 1rem; font-weight: 800; color: var(--green); }
+.fb-text { font-size: .65rem; color: var(--gray-400); }
 
-    /* ============================================
-       WHY US SECTION
-    ============================================ */
-    #why-us {
-      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
-      position: relative;
-      overflow: hidden;
-    }
-    #why-us::before {
-      content: '';
-      position: absolute;
-      top: 0; right: 0;
-      width: 500px; height: 500px;
-      background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 70%);
-      border-radius: 50%;
-    }
-    #why-us .section-title { color: var(--white); }
-    #why-us .section-subtitle { color: rgba(255,255,255,0.6); }
-    .why-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
-    }
-    .trust-items { display: flex; flex-direction: column; gap: 20px; }
-    .trust-item {
-      display: flex;
-      gap: 16px;
-      align-items: flex-start;
-      padding: 20px;
-      background: rgba(255,255,255,0.05);
-      border-radius: var(--radius-sm);
-      border: 1px solid rgba(201,168,76,0.1);
-      transition: var(--transition);
-    }
-    .trust-item:hover { background: rgba(201,168,76,0.08); border-color: rgba(201,168,76,0.25); }
-    .trust-icon {
-      width: 48px; height: 48px; min-width: 48px;
-      background: linear-gradient(135deg, rgba(201,168,76,0.2), rgba(201,168,76,0.1));
-      border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 22px;
-    }
-    .trust-text strong { display: block; color: var(--white); font-size: 1rem; margin-bottom: 4px; }
-    .trust-text p { color: rgba(255,255,255,0.55); font-size: 0.88rem; line-height: 1.6; }
-    .certs-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-    .cert-card {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(201,168,76,0.15);
-      border-radius: var(--radius-md);
-      padding: 28px 20px;
-      text-align: center;
-      transition: var(--transition);
-    }
-    .cert-card:hover { background: rgba(201,168,76,0.08); transform: translateY(-4px); }
-    .cert-card .cert-icon { font-size: 40px; margin-bottom: 12px; }
-    .cert-card .cert-num {
-      font-size: 2rem;
-      font-weight: 900;
-      background: linear-gradient(135deg, var(--gold), var(--gold-light));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .cert-card p { font-size: 0.82rem; color: rgba(255,255,255,0.55); margin-top: 4px; }
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SECTION HEADER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.sec-header { margin-bottom: 48px; }
+.sec-tag {
+  display: inline-block; font-size: .68rem; font-weight: 700;
+  color: var(--teal); background: var(--teal-light);
+  padding: 4px 14px; border-radius: 50px;
+  margin-bottom: 12px; letter-spacing: .05em;
+}
+.sec-title { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800; color: var(--gray-900); margin-bottom: 10px; line-height: 1.25; }
+.sec-title span { color: var(--teal); }
+.sec-desc { font-size: .92rem; color: var(--gray-600); line-height: 1.8; max-width: 520px; }
 
-    /* ============================================
-       BOOKING FORM SECTION
-    ============================================ */
-    #booking { background: var(--off-white); }
-    .booking-wrap {
-      display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: 60px;
-      align-items: start;
-    }
-    .booking-info { padding-top: 8px; }
-    .booking-info .section-header { margin-bottom: 32px; }
-    .info-points { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; }
-    .info-point {
-      display: flex;
-      gap: 14px;
-      align-items: center;
-      padding: 16px;
-      background: var(--white);
-      border-radius: var(--radius-sm);
-      border: 1px solid rgba(201,168,76,0.1);
-    }
-    .info-point span:first-child { font-size: 22px; }
-    .info-point span:last-child { font-size: 0.9rem; color: var(--text-secondary); font-weight: 500; }
-    /* The Form */
-    .booking-form-card {
-      background: var(--white);
-      border-radius: var(--radius-lg);
-      padding: 40px;
-      box-shadow: 0 20px 60px rgba(10,22,40,0.08);
-      border: 1px solid rgba(201,168,76,0.1);
-    }
-    .form-title {
-      font-size: 1.3rem;
-      font-weight: 800;
-      color: var(--navy);
-      margin-bottom: 8px;
-    }
-    .form-subtitle {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      margin-bottom: 28px;
-    }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .form-group { margin-bottom: 20px; }
-    .form-group label {
-      display: block;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--navy);
-      margin-bottom: 8px;
-    }
-    .form-group label span.req { color: var(--gold); }
-    .form-control {
-      width: 100%;
-      padding: 13px 16px;
-      border: 1.5px solid #e2e8f0;
-      border-radius: var(--radius-sm);
-      font-family: var(--font);
-      font-size: 0.92rem;
-      color: var(--text-primary);
-      background: #fafafa;
-      transition: var(--transition);
-      direction: rtl;
-    }
-    .form-control:focus {
-      outline: none;
-      border-color: var(--gold);
-      background: var(--white);
-      box-shadow: 0 0 0 4px rgba(201,168,76,0.1);
-    }
-    .form-control.error { border-color: #e53e3e; box-shadow: 0 0 0 4px rgba(229,62,62,0.1); }
-    .form-control option { direction: rtl; }
-    .error-msg {
-      display: none;
-      font-size: 0.78rem;
-      color: #e53e3e;
-      margin-top: 5px;
-      font-weight: 500;
-    }
-    .error-msg.show { display: block; }
-    .btn-submit {
-      width: 100%;
-      padding: 16px;
-      background: linear-gradient(135deg, var(--navy), var(--navy-light));
-      color: var(--white);
-      border-radius: 50px;
-      font-size: 1rem;
-      font-weight: 700;
-      font-family: var(--font);
-      transition: var(--transition);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      position: relative;
-      overflow: hidden;
-    }
-    .btn-submit::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, var(--gold), var(--gold-light));
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-    .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(10,22,40,0.25); }
-    .btn-submit:hover::before { opacity: 1; }
-    .btn-submit:hover { color: var(--navy); }
-    .btn-submit > * { position: relative; z-index: 1; }
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SERVICES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+#services { background: var(--gray-50); }
+.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.svc-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 28px 24px;
+  border: 1px solid var(--gray-200);
+  transition: var(--trans);
+  cursor: default;
+}
+.svc-card:hover { box-shadow: var(--shadow-md); transform: translateY(-4px); border-color: var(--teal-light); }
+.svc-card-icon {
+  width: 52px; height: 52px;
+  background: var(--teal-pale); border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px; margin-bottom: 16px;
+}
+.svc-card-title { font-size: 1rem; font-weight: 700; color: var(--gray-900); margin-bottom: 8px; }
+.svc-card-desc { font-size: .82rem; color: var(--gray-600); line-height: 1.7; }
 
-    /* ============================================
-       MODAL OVERLAY
-    ============================================ */
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(6, 14, 30, 0.75);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      z-index: 9999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 16px;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.35s ease;
-    }
-    .modal-overlay.active { opacity: 1; pointer-events: all; }
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   ABOUT / WHY US
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+#about { background: var(--white); }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+.about-features { display: flex; flex-direction: column; gap: 0; margin-top: 36px; }
+.feat-row {
+  display: flex; align-items: flex-start; gap: 16px;
+  padding: 18px 0; border-bottom: 1px solid var(--gray-100);
+}
+.feat-row:last-child { border-bottom: none; }
+.feat-icon {
+  width: 44px; height: 44px; min-width: 44px;
+  background: var(--teal-pale); border-radius: 10px;
+  display: flex; align-items: center; justify-content: center; font-size: 20px;
+}
+.feat-title { font-size: .9rem; font-weight: 700; color: var(--gray-900); margin-bottom: 4px; }
+.feat-desc { font-size: .8rem; color: var(--gray-600); line-height: 1.6; }
+/* Visual side */
+.about-visual { display: flex; flex-direction: column; gap: 16px; }
+.av-card {
+  background: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  display: flex; align-items: center; gap: 20px;
+  transition: var(--trans);
+}
+.av-card:hover { box-shadow: var(--shadow); border-color: var(--teal-light); }
+.av-card-icon {
+  width: 56px; height: 56px; min-width: 56px;
+  background: var(--teal); border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 26px;
+}
+.av-card-num { font-size: 1.8rem; font-weight: 800; color: var(--teal); line-height: 1; }
+.av-card-label { font-size: .8rem; color: var(--gray-600); margin-top: 3px; }
 
-    /* Outer wrapper — scrollable on small screens */
-    .modal-wrapper {
-      width: 100%;
-      max-width: 560px;
-      max-height: 96vh;
-      overflow-y: auto;
-      border-radius: var(--radius-lg);
-      transform: scale(0.88) translateY(28px);
-      transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      scrollbar-width: none;
-    }
-    .modal-wrapper::-webkit-scrollbar { display: none; }
-    .modal-overlay.active .modal-wrapper { transform: scale(1) translateY(0); }
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   TESTIMONIALS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+#testimonials { background: var(--gray-50); }
+.testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.testi-card {
+  background: var(--white); border-radius: var(--radius-lg);
+  padding: 28px 24px; border: 1px solid var(--gray-200);
+  transition: var(--trans);
+}
+.testi-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+.testi-stars { color: #f59e0b; font-size: .8rem; letter-spacing: 2px; margin-bottom: 14px; }
+.testi-text { font-size: .85rem; color: var(--gray-600); line-height: 1.8; font-style: italic; margin-bottom: 20px; }
+.testi-author { display: flex; align-items: center; gap: 12px; }
+.testi-av {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+  display: flex; align-items: center; justify-content: center;
+  font-size: .9rem; font-weight: 700; color: var(--white);
+}
+.testi-name { font-size: .85rem; font-weight: 700; color: var(--gray-900); }
+.testi-city { font-size: .72rem; color: var(--gray-400); }
 
-    /* ── Success Banner ── */
-    .modal-success-banner {
-      background: linear-gradient(135deg, #1a7a4a 0%, #22a060 100%);
-      padding: 28px 32px 24px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-    }
-    .modal-success-banner::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at 50% -20%, rgba(255,255,255,0.15) 0%, transparent 65%);
-    }
-    .msb-check {
-      width: 64px; height: 64px;
-      background: rgba(255,255,255,0.2);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 12px;
-      position: relative;
-      z-index: 1;
-    }
-    .msb-check svg { width: 32px; height: 32px; }
-    .msb-title {
-      font-size: 1.3rem;
-      font-weight: 800;
-      color: #fff;
-      position: relative; z-index: 1;
-      margin-bottom: 4px;
-    }
-    .msb-sub {
-      font-size: 0.82rem;
-      color: rgba(255,255,255,0.75);
-      position: relative; z-index: 1;
-    }
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   BOOKING
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+#booking { background: var(--white); }
+.booking-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+.booking-info .sec-desc { margin-bottom: 32px; }
+.info-list { display: flex; flex-direction: column; gap: 14px; }
+.info-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 16px;
+  background: var(--gray-50); border-radius: var(--radius);
+  border: 1px solid var(--gray-200); font-size: .85rem;
+  color: var(--gray-700); font-weight: 500;
+}
+.info-item-icon { font-size: 1.1rem; }
 
-    /* ── Digital Receipt Card ── */
-    #receiptCard {
-      background: #fff;
-      position: relative;
-    }
+/* Form card */
+.form-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: 36px 32px;
+  border: 1px solid var(--gray-200);
+}
+.form-card-title { font-size: 1.1rem; font-weight: 800; color: var(--gray-900); margin-bottom: 4px; }
+.form-card-sub { font-size: .8rem; color: var(--gray-400); margin-bottom: 28px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.fg { margin-bottom: 18px; }
+.fg label { display: block; font-size: .72rem; font-weight: 700; color: var(--gray-700); margin-bottom: 7px; letter-spacing: .03em; }
+.fg label .req { color: var(--teal); }
+.fg input, .fg select, .fg textarea {
+  width: 100%; padding: 11px 14px;
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius);
+  font-family: var(--font); font-size: .88rem;
+  color: var(--gray-900); background: var(--white);
+  transition: var(--trans); direction: rtl;
+  appearance: none; -webkit-appearance: none;
+}
+.fg input:focus, .fg select:focus, .fg textarea:focus {
+  outline: none; border-color: var(--teal);
+  box-shadow: 0 0 0 3px rgba(8,145,178,.1);
+}
+.fg input.err, .fg select.err { border-color: var(--red); }
+.fg .err-msg { font-size: .7rem; color: var(--red); margin-top: 5px; display: none; font-weight: 500; }
+.fg .err-msg.show { display: block; }
+.fg select option { direction: rtl; }
+.fg textarea { resize: none; }
+.btn-submit {
+  width: 100%; padding: 14px;
+  background: var(--teal); color: var(--white);
+  font-family: var(--font); font-size: .92rem; font-weight: 700;
+  border-radius: var(--radius);
+  transition: var(--trans);
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  box-shadow: 0 4px 14px rgba(8,145,178,.3);
+}
+.btn-submit:hover { background: var(--teal-dark); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(8,145,178,.4); }
 
-    /* Clinic header bar inside receipt */
-    .rc-clinic-header {
-      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
-      padding: 20px 28px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-    .rc-clinic-logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .rc-logo-icon {
-      width: 40px; height: 40px;
-      background: linear-gradient(135deg, var(--gold), var(--gold-light));
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 20px;
-    }
-    .rc-clinic-name {
-      color: #fff;
-      font-size: 0.95rem;
-      font-weight: 800;
-      line-height: 1.25;
-    }
-    .rc-clinic-name span {
-      display: block;
-      font-size: 0.72rem;
-      font-weight: 400;
-      color: rgba(255,255,255,0.6);
-      margin-top: 1px;
-    }
-    .rc-appt-id-badge {
-      background: rgba(201,168,76,0.18);
-      border: 1px solid rgba(201,168,76,0.4);
-      border-radius: 8px;
-      padding: 6px 12px;
-      text-align: center;
-    }
-    .rc-appt-id-badge .id-label {
-      font-size: 0.65rem;
-      color: rgba(255,255,255,0.5);
-      display: block;
-      letter-spacing: 0.06em;
-      font-weight: 600;
-      margin-bottom: 2px;
-    }
-    .rc-appt-id-badge .id-value {
-      font-size: 0.88rem;
-      font-weight: 800;
-      color: var(--gold-light);
-      letter-spacing: 0.08em;
-    }
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   CONTACT BAR
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.contact-bar {
+  background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+  padding: 48px 0;
+}
+.contact-inner {
+  display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap;
+}
+.contact-text { color: var(--white); }
+.contact-text h3 { font-size: 1.3rem; font-weight: 800; margin-bottom: 6px; }
+.contact-text p { font-size: .88rem; color: rgba(255,255,255,.8); }
+.contact-items { display: flex; gap: 16px; flex-wrap: wrap; }
+.contact-chip {
+  display: flex; align-items: center; gap: 10px;
+  background: rgba(255,255,255,.15); backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,.25);
+  padding: 12px 18px; border-radius: var(--radius);
+  color: var(--white); font-size: .85rem; font-weight: 600;
+  transition: var(--trans); text-decoration: none;
+}
+.contact-chip:hover { background: rgba(255,255,255,.25); transform: translateY(-2px); }
 
-    /* Gold separator line */
-    .rc-gold-line {
-      height: 3px;
-      background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
-    }
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   FOOTER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+footer {
+  background: var(--gray-900); color: var(--gray-400);
+  padding: 48px 0 24px;
+}
+.footer-inner {
+  display: grid; grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 48px; margin-bottom: 40px;
+}
+.footer-brand-name { font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+.footer-brand-desc { font-size: .8rem; line-height: 1.7; }
+.footer-col h4 { font-size: .78rem; font-weight: 700; color: var(--white); margin-bottom: 16px; letter-spacing: .08em; text-transform: uppercase; }
+.footer-col ul { display: flex; flex-direction: column; gap: 10px; }
+.footer-col a { font-size: .8rem; transition: color .2s ease; }
+.footer-col a:hover { color: var(--white); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,.08);
+  padding-top: 20px;
+  display: flex; justify-content: space-between;
+  font-size: .75rem;
+}
 
-    /* Receipt title row */
-    .rc-title-row {
-      padding: 16px 28px 12px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .rc-doc-title {
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: var(--gold);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-    .rc-issued-date {
-      font-size: 0.72rem;
-      color: var(--text-muted);
-    }
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   WHATSAPP FAB
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.wa-fab {
+  position: fixed; bottom: 28px; left: 28px; z-index: 800;
+  display: flex; align-items: center; gap: 0;
+}
+.wa-btn {
+  width: 54px; height: 54px;
+  background: linear-gradient(135deg, #25d366, #128c7e);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 20px rgba(37,211,102,.4);
+  position: relative; transition: transform .3s ease;
+}
+.wa-btn::before, .wa-btn::after {
+  content: ''; position: absolute; inset: 0; border-radius: 50%;
+  background: rgba(37,211,102,.25);
+  animation: waPulse 2.5s ease-out infinite;
+}
+.wa-btn::after { animation-delay: 1.25s; }
+@keyframes waPulse { 0%{transform:scale(1);opacity:.7;} 100%{transform:scale(2.2);opacity:0;} }
+.wa-btn:hover { transform: scale(1.08); }
+.wa-tip {
+  background: var(--white); color: var(--gray-900);
+  font-size: .72rem; font-weight: 700; padding: 7px 14px;
+  border-radius: 8px; box-shadow: var(--shadow);
+  margin-right: 12px; white-space: nowrap;
+  opacity: 0; pointer-events: none;
+  transform: translateX(-8px);
+  transition: opacity .3s ease, transform .3s ease;
+}
+.wa-fab:hover .wa-tip { opacity: 1; transform: translateX(0); }
 
-    /* Info rows grid */
-    .rc-fields {
-      padding: 4px 28px 20px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
-    }
-    .rc-field {
-      padding: 12px 0;
-      border-bottom: 1px solid #f0f0f0;
-    }
-    .rc-field:nth-child(odd) { padding-left: 0; padding-right: 16px; border-left: none; }
-    .rc-field:nth-child(even) { padding-right: 0; padding-left: 16px; border-right: none; }
-    .rc-field.full-width {
-      grid-column: 1 / -1;
-      padding-right: 0;
-      padding-left: 0;
-    }
-    .rc-field:last-child, .rc-field:nth-last-child(2):not(.full-width) { border-bottom: none; }
-    .rc-field-label {
-      font-size: 0.68rem;
-      font-weight: 700;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      margin-bottom: 4px;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-    .rc-field-value {
-      font-size: 0.92rem;
-      font-weight: 700;
-      color: var(--navy);
-    }
-    .rc-field-value.service-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: linear-gradient(135deg, rgba(10,22,40,0.06), rgba(10,22,40,0.03));
-      border: 1px solid rgba(201,168,76,0.25);
-      padding: 4px 12px;
-      border-radius: 50px;
-      font-size: 0.82rem;
-      color: var(--navy);
-    }
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   MODAL — RECEIPT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.modal-bg {
+  position: fixed; inset: 0; z-index: 9999;
+  background: rgba(15,23,42,.5);
+  backdrop-filter: blur(6px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 16px;
+  opacity: 0; pointer-events: none;
+  transition: opacity .3s ease;
+}
+.modal-bg.open { opacity: 1; pointer-events: all; }
+.modal-box {
+  width: 100%; max-width: 480px; max-height: 96vh;
+  overflow-y: auto; border-radius: var(--radius-lg);
+  transform: scale(.93) translateY(16px);
+  transition: transform .4s cubic-bezier(.25,.46,.45,.94);
+  scrollbar-width: none;
+}
+.modal-box::-webkit-scrollbar { display: none; }
+.modal-bg.open .modal-box { transform: scale(1) translateY(0); }
 
-    /* Status chip */
-    .rc-status-row {
-      padding: 12px 28px 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: linear-gradient(135deg, rgba(10,22,40,0.03), rgba(201,168,76,0.04));
-      border-top: 1px dashed rgba(201,168,76,0.3);
-      border-bottom: 1px dashed rgba(201,168,76,0.3);
-      margin: 0 28px 20px;
-      border-radius: var(--radius-sm);
-    }
-    .rc-status-chip {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(255,165,0,0.1);
-      border: 1px solid rgba(255,165,0,0.3);
-      padding: 6px 14px;
-      border-radius: 50px;
-    }
-    .rc-status-dot {
-      width: 8px; height: 8px;
-      background: #f6ad55;
-      border-radius: 50%;
-      animation: pulse-dot 2s infinite;
-    }
-    .rc-status-text {
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: #c05621;
-    }
-    .rc-qr-placeholder {
-      width: 52px; height: 52px;
-      border: 2px solid rgba(201,168,76,0.3);
-      border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-      flex-direction: column;
-      gap: 2px;
-      overflow: hidden;
-    }
-    /* Fake QR grid */
-    .qr-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 1.5px;
-      padding: 4px;
-      width: 100%; height: 100%;
-    }
-    .qr-cell {
-      border-radius: 1px;
-      background: var(--navy);
-    }
-    .qr-cell.w { background: transparent; }
+/* Success banner */
+.modal-banner {
+  background: linear-gradient(135deg, #065f46, #059669);
+  padding: 28px 28px 22px; text-align: center;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+.modal-check {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: rgba(255,255,255,.2);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 12px;
+}
+.modal-banner h3 { font-size: 1.1rem; font-weight: 800; color: var(--white); margin-bottom: 4px; }
+.modal-banner p { font-size: .78rem; color: rgba(255,255,255,.75); }
 
-    /* Clinic footer in receipt */
-    .rc-clinic-footer {
-      padding: 12px 28px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .rc-footer-addr {
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
-    .rc-footer-addr strong {
-      display: block;
-      color: var(--navy);
-      font-size: 0.75rem;
-      margin-bottom: 2px;
-    }
-    .rc-watermark {
-      font-size: 0.65rem;
-      color: rgba(201,168,76,0.35);
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      writing-mode: vertical-rl;
-      user-select: none;
-    }
+/* Receipt card */
+#receiptCard { background: var(--white); }
+.rc-header {
+  background: linear-gradient(135deg, #0e7490, #0891b2);
+  padding: 18px 24px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.rc-logo { display: flex; align-items: center; gap: 10px; }
+.rc-logo-icon { width: 34px; height: 34px; background: rgba(255,255,255,.2); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+.rc-clinic { color: var(--white); font-size: .88rem; font-weight: 700; line-height: 1.2; }
+.rc-clinic span { display: block; font-size: .62rem; color: rgba(255,255,255,.6); font-weight: 400; }
+.rc-id-box { background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.25); border-radius: 8px; padding: 5px 12px; text-align: center; }
+.rc-id-box .il { font-size: .58rem; color: rgba(255,255,255,.6); display: block; }
+.rc-id-box .iv { font-size: .82rem; font-weight: 800; color: var(--white); }
+.rc-bar { height: 3px; background: linear-gradient(90deg, var(--teal), #67e8f9, var(--teal)); }
+.rc-title-row { padding: 12px 24px 8px; display: flex; justify-content: space-between; align-items: center; }
+.rc-doc-title { font-size: .68rem; font-weight: 700; color: var(--teal); letter-spacing: .08em; text-transform: uppercase; }
+.rc-issued { font-size: .65rem; color: var(--gray-400); }
+.rc-fields { padding: 4px 24px 16px; display: grid; grid-template-columns: 1fr 1fr; }
+.rcf { padding: 10px 0; border-bottom: 1px solid var(--gray-100); }
+.rcf:nth-child(odd){ padding-right: 12px; }
+.rcf:nth-child(even){ padding-left: 12px; }
+.rcf.full { grid-column: 1/-1; padding: 10px 0; }
+.rcf-l { font-size: .62rem; font-weight: 700; color: var(--gray-400); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 3px; }
+.rcf-v { font-size: .88rem; font-weight: 700; color: var(--gray-900); }
+.rcf-v.badge { display: inline-flex; align-items: center; gap: 6px; background: var(--teal-pale); border: 1px solid var(--teal-light); padding: 3px 10px; border-radius: 50px; font-size: .78rem; color: var(--teal-dark); }
+.rc-status-row { margin: 0 24px 16px; padding: 12px 16px; background: #fffbeb; border: 1px dashed #fcd34d; border-radius: 10px; display: flex; align-items: center; justify-content: space-between; }
+.rc-pill { display: flex; align-items: center; gap: 8px; background: #fef3c7; border: 1px solid #fcd34d; padding: 4px 12px; border-radius: 50px; }
+.rc-pill-dot { width: 6px; height: 6px; border-radius: 50%; background: #f59e0b; animation: blink 2s infinite; }
+.rc-pill-txt { font-size: .72rem; font-weight: 700; color: #92400e; }
+.rc-qr { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2px; width: 44px; height: 44px; padding: 3px; border: 1px solid var(--gray-200); border-radius: 6px; }
+.qc { background: var(--gray-800); border-radius: 1px; }
+.qc.w { background: transparent; }
+.rc-footer { padding: 10px 24px 18px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--gray-100); }
+.rc-addr { font-size: .68rem; color: var(--gray-400); line-height: 1.6; }
+.rc-addr strong { color: var(--gray-700); font-size: .72rem; display: block; margin-bottom: 2px; }
+.rc-wm { font-size: .6rem; color: var(--teal-light); font-weight: 800; letter-spacing: .12em; writing-mode: vertical-rl; user-select: none; }
+/* Modal buttons */
+.modal-btns { background: var(--gray-50); padding: 16px 20px; display: flex; gap: 10px; border-radius: 0 0 var(--radius-lg) var(--radius-lg); border-top: 1px solid var(--gray-200); }
+.m-btn { flex: 1; padding: 12px 14px; font-family: var(--font); font-size: .82rem; font-weight: 700; border-radius: var(--radius); cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 7px; transition: var(--trans); border: none; }
+.m-btn:hover { transform: translateY(-1px); }
+.m-btn.teal { background: var(--teal); color: var(--white); }
+.m-btn.teal:hover { background: var(--teal-dark); box-shadow: 0 4px 14px rgba(8,145,178,.3); }
+.m-btn.dark { background: var(--gray-800); color: var(--white); }
+.m-btn.dark:hover { background: var(--gray-900); }
+.m-btn.ghost { background: var(--white); color: var(--gray-600); border: 1.5px solid var(--gray-200); flex: .6; }
+.m-btn.ghost:hover { border-color: var(--gray-400); color: var(--gray-900); }
 
-    /* ── Modal Action Buttons ── */
-    .modal-actions {
-      background: #f9f7f3;
-      padding: 20px 28px;
-      display: flex;
-      gap: 12px;
-      border-top: 1px solid #f0ece4;
-      border-radius: 0 0 var(--radius-lg) var(--radius-lg);
-    }
-    .btn-download {
-      flex: 1;
-      padding: 14px 20px;
-      background: linear-gradient(135deg, var(--navy), var(--navy-light));
-      color: #fff;
-      border-radius: 50px;
-      font-size: 0.9rem;
-      font-weight: 700;
-      font-family: var(--font);
-      display: flex; align-items: center; justify-content: center;
-      gap: 8px;
-      transition: var(--transition);
-    }
-    .btn-download:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(10,22,40,0.25); }
-    .btn-download.gold {
-      background: linear-gradient(135deg, var(--gold), var(--gold-light));
-      color: var(--navy);
-    }
-    .btn-download.gold:hover { box-shadow: 0 8px 25px rgba(201,168,76,0.35); }
-    .btn-modal-close-sm {
-      padding: 14px 20px;
-      background: transparent;
-      border: 1.5px solid #ddd;
-      color: var(--text-secondary);
-      border-radius: 50px;
-      font-size: 0.88rem;
-      font-weight: 600;
-      font-family: var(--font);
-      transition: var(--transition);
-      white-space: nowrap;
-    }
-    .btn-modal-close-sm:hover { border-color: var(--navy); color: var(--navy); }
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   RESPONSIVE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+@media (max-width: 768px) {
+  .nav-links { position: fixed; inset: 64px 0 0; background: var(--white); flex-direction: column; align-items: center; justify-content: center; gap: 20px; transform: translateX(100%); transition: transform .35s ease; border-top: 1px solid var(--gray-200); z-index: 899; }
+  .nav-links.open { transform: translateX(0); }
+  .hamburger { display: flex; }
+  .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+  .hamburger.active span:nth-child(2) { opacity: 0; }
+  .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+  .hero-inner { grid-template-columns: 1fr; gap: 40px; padding: 40px 0; }
+  .hero-visual { order: -1; }
+  .float-badge { left: 0; top: 10px; }
+  .hero-stats { flex-wrap: wrap; }
+  .h-stat { flex: 1 1 45%; border-bottom: 1px solid var(--gray-200); }
+  .services-grid { grid-template-columns: 1fr; }
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .testi-grid { grid-template-columns: 1fr; }
+  .booking-grid { grid-template-columns: 1fr; gap: 40px; }
+  .form-row { grid-template-columns: 1fr; }
+  .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+  .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+  .contact-inner { flex-direction: column; text-align: center; }
+  .contact-items { justify-content: center; }
+  .form-card { padding: 24px 18px; }
+}
 
-    /* ── Print Styles ── */
-    @media print {
-      body > *:not(#printArea) { display: none !important; }
-      #printArea {
-        display: block !important;
-        position: fixed !important;
-        inset: 0 !important;
-        z-index: 99999 !important;
-        background: #fff !important;
-      }
-      #printArea .modal-actions,
-      #printArea .modal-success-banner { display: none !important; }
-      #receiptCard { box-shadow: none !important; }
-      .rc-clinic-header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-      .rc-gold-line { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    }
+@media (max-width: 500px) {
+  .services-grid { grid-template-columns: 1fr; }
+  .modal-btns { flex-wrap: wrap; }
+  .m-btn.ghost { flex: 1 1 100%; }
+}
 
-    /* ============================================
-       WHATSAPP FAB
-    ============================================ */
-    .whatsapp-fab {
-      position: fixed;
-      bottom: 30px;
-      left: 30px;
-      z-index: 999;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .fab-btn {
-      width: 58px; height: 58px;
-      background: linear-gradient(135deg, #25d366, #128c7e);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 26px;
-      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
-      transition: var(--transition);
-      position: relative;
-    }
-    .fab-btn::before, .fab-btn::after {
-      content: '';
-      position: absolute;
-      width: 100%; height: 100%;
-      border-radius: 50%;
-      background: rgba(37,211,102,0.3);
-      animation: pulseFab 2.5s ease-out infinite;
-    }
-    .fab-btn::after { animation-delay: 1.25s; }
-    @keyframes pulseFab {
-      0% { transform: scale(1); opacity: 0.8; }
-      100% { transform: scale(2.2); opacity: 0; }
-    }
-    .fab-btn:hover { transform: scale(1.1); box-shadow: 0 6px 25px rgba(37,211,102,0.5); }
-    .fab-tooltip {
-      background: var(--white);
-      color: var(--navy);
-      font-size: 0.82rem;
-      font-weight: 700;
-      padding: 8px 14px;
-      border-radius: 50px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      white-space: nowrap;
-      opacity: 0;
-      transform: translateX(-10px);
-      transition: var(--transition);
-      pointer-events: none;
-    }
-    .whatsapp-fab:hover .fab-tooltip { opacity: 1; transform: translateX(0); }
-
-    /* ============================================
-       FOOTER
-    ============================================ */
-    footer {
-      background: var(--navy);
-      color: rgba(255,255,255,0.6);
-      padding: 50px 5% 30px;
-    }
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 1.5fr 1fr 1fr;
-      gap: 48px;
-      margin-bottom: 40px;
-    }
-    .footer-brand .logo-text { font-size: 1.1rem; margin-bottom: 4px; }
-    .footer-brand p { font-size: 0.85rem; line-height: 1.7; margin-top: 12px; }
-    .footer-col h4 { color: var(--white); font-size: 0.95rem; font-weight: 700; margin-bottom: 16px; }
-    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-    .footer-col ul a { font-size: 0.85rem; transition: var(--transition); }
-    .footer-col ul a:hover { color: var(--gold-light); }
-    .footer-bottom {
-      border-top: 1px solid rgba(255,255,255,0.08);
-      padding-top: 24px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.8rem;
-    }
-
-    /* ============================================
-       MOBILE MENU
-    ============================================ */
-    @media (max-width: 768px) {
-      .nav-links {
-        position: fixed;
-        top: 0; right: 0; left: 0;
-        background: rgba(10, 22, 40, 0.98);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 80px 20px 40px;
-        gap: 24px;
-        transform: translateY(-100%);
-        transition: transform 0.4s ease;
-        z-index: 998;
-        height: 100vh;
-      }
-      .nav-links.open { transform: translateY(0); }
-      .nav-links a { font-size: 1.1rem; }
-      .hamburger { display: flex; z-index: 1001; }
-      .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-      .hamburger.active span:nth-child(2) { opacity: 0; }
-      .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-      .hero-grid { grid-template-columns: 1fr; gap: 40px; padding-top: 20px; }
-      .hero-visual { order: -1; }
-      .hero-img-card { aspect-ratio: 4/3; }
-      .hero-float-card.card-1 { right: -10px; }
-      .hero-float-card.card-2 { left: -10px; }
-      .hero-stats { gap: 16px; }
-      .why-grid { grid-template-columns: 1fr; gap: 40px; }
-      .certs-grid { grid-template-columns: 1fr 1fr; }
-      .booking-wrap { grid-template-columns: 1fr; }
-      .form-row { grid-template-columns: 1fr; }
-      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
-      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
-      .booking-form-card { padding: 28px 20px; }
-    }
-  </style>
+/* Print */
+@media print {
+  body > *:not(#printArea) { display: none !important; }
+  #printArea { display: block !important; position: fixed !important; inset: 0 !important; background: #fff !important; z-index: 99999 !important; }
+  .modal-banner, .modal-btns { display: none !important; }
+  .rc-header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .rc-bar { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+</style>
 </head>
 <body>
 
-  <!-- ============================================
-       NAVBAR
-  ============================================ -->
-  <nav class="navbar" id="navbar" role="navigation" aria-label="القائمة الرئيسية">
-    <div class="nav-logo">
-      <div class="logo-icon" aria-hidden="true">🦷</div>
-      <div class="logo-text">
-        د. [اسم الطبيب]
-        <span>جراحة وتجميل الأسنان</span>
-      </div>
-    </div>
-    <ul class="nav-links" id="navLinks" role="list">
-      <li><a href="#services">خدماتنا</a></li>
-      <li><a href="#why-us">لماذا نحن</a></li>
-      <li><a href="#booking">احجز موعد</a></li>
-      <li><a href="#booking" class="nav-cta">احجز الآن ✨</a></li>
-    </ul>
-    <button class="hamburger" id="hamburger" aria-label="فتح القائمة" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
+<!-- ══════════════ NAVBAR ══════════════ -->
+<nav class="navbar" id="navbar">
+  <div class="nav-brand">
+    <div class="nav-icon">🦷</div>
+    <div class="nav-name">د. [اسم الطبيب]<span>طب وجراحة الأسنان</span></div>
+  </div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#services">الخدمات</a></li>
+    <li><a href="#about">عن العيادة</a></li>
+    <li><a href="#testimonials">آراء المرضى</a></li>
+    <li><a href="#booking" class="nav-cta">احجز موعد</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="القائمة">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
 
-  <!-- ============================================
-       HERO SECTION
-  ============================================ -->
-  <section class="hero" id="home" aria-label="الرئيسية">
-    <div class="hero-grid container">
-      <!-- Content -->
-      <div class="hero-content">
-        <div class="hero-badge reveal">
-          <span class="dot"></span>
-          العيادة متاحة للحجز الآن
-        </div>
-        <h1 class="hero-title reveal delay-1">
-          ابتسامتك تستحق<br />
-          <span class="highlight">أفضل رعاية</span><br />
-          ممكنة
-        </h1>
-        <p class="hero-desc reveal delay-2">
-          عيادة متخصصة في جراحة وتجميل الأسنان بخبرة تزيد عن 15 عاماً في الجزائر. 
-          نقدم أحدث التقنيات لضمان ابتسامة أجمل وصحة أسنان دائمة.
+<!-- ══════════════ HERO ══════════════ -->
+<section class="hero" id="home">
+  <div class="wrap">
+    <div class="hero-inner">
+
+      <div class="hero-text">
+        <div class="hero-badge fade"><span class="badge-dot"></span>العيادة متاحة للحجز الآن</div>
+        <h1 class="hero-title fade d1">ابتسامة أجمل<br/>تبدأ من <span>عيادتنا</span></h1>
+        <p class="hero-desc fade d2">
+          رعاية متكاملة لأسنانك بأحدث التقنيات وأيدٍ متخصصة. نقدم بيئة مريحة وآمنة لكل أفراد العائلة في قلب الجزائر.
         </p>
-        <div class="hero-actions reveal delay-3">
-          <a href="#booking" class="btn-primary">
-            📅 احجز موعدك الآن
-          </a>
-          <a href="tel:+213XXXXXXXXX" class="btn-secondary">
-            📞 اتصل بنا
-          </a>
+        <div class="hero-btns fade d3">
+          <a href="#booking" class="btn-primary">📅 احجز موعدك الآن</a>
+          <a href="tel:+213XXXXXXXXX" class="btn-outline">📞 اتصل بنا</a>
         </div>
-        <div class="hero-stats reveal delay-4">
-          <div class="stat">
-            <span class="stat-num" data-count="2500">0</span>
-            <span class="stat-label">مريض راضٍ</span>
+        <div class="hero-stats fade d4">
+          <div class="h-stat">
+            <span class="h-stat-num" data-count="2500">0</span>
+            <span class="h-stat-label">مريض راضٍ</span>
           </div>
-          <div class="stat">
-            <span class="stat-num" data-count="15">0</span>
-            <span class="stat-label">سنة خبرة</span>
+          <div class="h-stat">
+            <span class="h-stat-num" data-count="15">0</span>
+            <span class="h-stat-label">سنة خبرة</span>
           </div>
-          <div class="stat">
-            <span class="stat-num" data-count="98">0</span>
-            <span class="stat-label">% رضا المرضى</span>
+          <div class="h-stat">
+            <span class="h-stat-num" data-count="98">0</span>
+            <span class="h-stat-label">% رضا المرضى</span>
           </div>
         </div>
       </div>
 
-      <!-- Visual -->
-      <div class="hero-visual">
-        <div class="hero-img-wrap">
-          <div class="ring-deco" aria-hidden="true"></div>
-          <div class="hero-img-card">
-            <!-- REPLACE: أضف صورة الطبيب هنا -->
-            <div class="img-placeholder">
-              <div class="placeholder-icon">🦷</div>
-              <p>أضف صورة الطبيب<br/>(600×800 px)</p>
-            </div>
-            <!-- <img src="doctor.jpg" alt="د. [اسم الطبيب] - جراح الأسنان" loading="eager" /> -->
-          </div>
-          <div class="hero-float-card card-1" aria-hidden="true">
-            <span class="fc-icon">⭐</span>
-            <div class="fc-text">
-              <strong>تقييم 4.9/5</strong>
-              <span>+500 تقييم</span>
-            </div>
-          </div>
-          <div class="hero-float-card card-2" aria-hidden="true">
-            <span class="fc-icon">🏆</span>
-            <div class="fc-text">
-              <strong>معتمد دولياً</strong>
-              <span>شهادات دولية</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================
-       SERVICES SECTION
-  ============================================ -->
-  <section id="services" aria-label="خدماتنا">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-label">خدماتنا</span>
-        <h2 class="section-title">رعاية <span class="gold-text">شاملة</span> لأسنانك</h2>
-        <p class="section-subtitle">نقدم طيفاً واسعاً من الخدمات السنية المتخصصة باستخدام أحدث التقنيات</p>
-      </div>
-      <div class="services-grid">
-        <article class="service-card reveal delay-1">
-          <div class="svc-icon">🦷</div>
-          <h3 class="svc-title">جراحة الأسنان</h3>
-          <p class="svc-desc">خلع الأسنان وزراعتها بأحدث التقنيات الجراحية مع ضمان الراحة الكاملة للمريض.</p>
-          <span class="svc-link">اعرف أكثر ←</span>
-        </article>
-        <article class="service-card reveal delay-2">
-          <div class="svc-icon">✨</div>
-          <h3 class="svc-title">تبييض الأسنان</h3>
-          <p class="svc-desc">تبييض مهني آمن وفعّال يمنحك ابتسامة مشرقة في جلسة واحدة فقط.</p>
-          <span class="svc-link">اعرف أكثر ←</span>
-        </article>
-        <article class="service-card reveal delay-3">
-          <div class="svc-icon">👑</div>
-          <h3 class="svc-title">تركيبات وتيجان</h3>
-          <p class="svc-desc">تركيبات فنية عالية الجودة من الزركون والبورسلين لابتسامة طبيعية وجميلة.</p>
-          <span class="svc-link">اعرف أكثر ←</span>
-        </article>
-        <article class="service-card reveal delay-1">
-          <div class="svc-icon">🔬</div>
-          <h3 class="svc-title">علاج قنوات الجذر</h3>
-          <p class="svc-desc">علاج عصب الأسنان بدقة عالية وبدون ألم بفضل التقنيات الحديثة.</p>
-          <span class="svc-link">اعرف أكثر ←</span>
-        </article>
-        <article class="service-card reveal delay-2">
-          <div class="svc-icon">😁</div>
-          <h3 class="svc-title">تقويم الأسنان</h3>
-          <p class="svc-desc">تقويم تقليدي وشفاف (Invisalign) لأسنان مستقيمة وجميلة بشكل دائم.</p>
-          <span class="svc-link">اعرف أكثر ←</span>
-        </article>
-        <article class="service-card reveal delay-3">
-          <div class="svc-icon">🧒</div>
-          <h3 class="svc-title">طب أسنان الأطفال</h3>
-          <p class="svc-desc">بيئة ودية وآمنة لأطفالك مع تجربة علاجية مريحة وخالية من الخوف.</p>
-          <span class="svc-link">اعرف أكثر ←</span>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================
-       WHY US SECTION
-  ============================================ -->
-  <section id="why-us" aria-label="لماذا تختارنا">
-    <div class="container">
-      <div class="why-grid">
-        <div>
-          <div class="section-header">
-            <span class="section-label" style="background:rgba(201,168,76,0.2); color:var(--gold-light);">لماذا نحن</span>
-            <h2 class="section-title reveal">ثقتك <span class="gold-text">أولويتنا</span> دائماً</h2>
-            <p class="section-subtitle" style="color:rgba(255,255,255,0.6);" class="reveal">نلتزم بأعلى معايير الرعاية الصحية لضمان سلامتك وراحتك في كل زيارة.</p>
-          </div>
-          <div class="trust-items">
-            <div class="trust-item reveal delay-1">
-              <div class="trust-icon">🏅</div>
-              <div class="trust-text">
-                <strong>خبرة تزيد عن 15 عاماً</strong>
-                <p>خبرة واسعة في مختلف حالات جراحة وتجميل الأسنان على المستوى الوطني.</p>
-              </div>
-            </div>
-            <div class="trust-item reveal delay-2">
-              <div class="trust-icon">🔬</div>
-              <div class="trust-text">
-                <strong>أحدث التقنيات الطبية</strong>
-                <p>أجهزة CBCT للفحص ثلاثي الأبعاد ومعدات رقمية حديثة من أفضل العلامات الأوروبية.</p>
-              </div>
-            </div>
-            <div class="trust-item reveal delay-3">
-              <div class="trust-icon">❤️</div>
-              <div class="trust-text">
-                <strong>راحة المريض أولاً</strong>
-                <p>بروتوكول خاص للمرضى الخائفين، مع ضمان تجربة علاجية خالية من الألم والقلق.</p>
-              </div>
-            </div>
-            <div class="trust-item reveal delay-4">
-              <div class="trust-icon">🛡️</div>
-              <div class="trust-text">
-                <strong>معايير تعقيم عالمية</strong>
-                <p>التزام صارم بمعايير التعقيم الدولية وبروتوكولات السلامة الصحية المعتمدة.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="certs-grid reveal">
-          <div class="cert-card">
-            <div class="cert-icon">👥</div>
-            <div class="cert-num" data-count="2500">0</div>
-            <p>مريض راضٍ</p>
-          </div>
-          <div class="cert-card">
-            <div class="cert-icon">🏆</div>
-            <div class="cert-num" data-count="15">0</div>
-            <p>سنة خبرة</p>
-          </div>
-          <div class="cert-card">
-            <div class="cert-icon">📜</div>
-            <div class="cert-num" data-count="8">0</div>
-            <p>شهادات دولية</p>
-          </div>
-          <div class="cert-card">
-            <div class="cert-icon">⭐</div>
-            <div class="cert-num" data-count="98">0</div>
-            <p>% نسبة الرضا</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================
-       BOOKING FORM
-  ============================================ -->
-  <section id="booking" aria-label="احجز موعدك">
-    <div class="container">
-      <div class="booking-wrap">
-        <div class="booking-info">
-          <div class="section-header reveal">
-            <span class="section-label">الحجز</span>
-            <h2 class="section-title">احجز موعدك<br /><span class="gold-text">الآن</span></h2>
-            <p class="section-subtitle">أرسل لنا طلب الحجز وسيتواصل معك فريقنا لتأكيد الموعد فوراً.</p>
-          </div>
-          <div class="info-points reveal">
-            <div class="info-point">
-              <span>📞</span>
-              <span>ردّ فوري عبر الواتساب خلال دقائق</span>
-            </div>
-            <div class="info-point">
-              <span>📅</span>
-              <span>مواعيد مرنة من السبت إلى الخميس</span>
-            </div>
-            <div class="info-point">
-              <span>🅿️</span>
-              <span>مواقف سيارات مجانية أمام العيادة</span>
-            </div>
-            <div class="info-point">
-              <span>💳</span>
-              <span>تسهيلات في الدفع وخطط تقسيط ميسّرة</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Form Card -->
-        <div class="booking-form-card reveal">
-          <h3 class="form-title">طلب حجز موعد</h3>
-          <p class="form-subtitle">يرجى تعبئة البيانات وسيُرسَل طلبك مباشرة عبر الواتساب ✅</p>
-
-          <form id="bookingForm" novalidate>
-            <div class="form-row">
-              <div class="form-group">
-                <label for="fname">الاسم الكامل <span class="req">*</span></label>
-                <input type="text" id="fname" name="fname" class="form-control" placeholder="أحمد بن عمر" required />
-                <span class="error-msg" id="fname-error">الرجاء إدخال الاسم الكامل</span>
-              </div>
-              <div class="form-group">
-                <label for="phone">رقم الهاتف <span class="req">*</span></label>
-                <input type="tel" id="phone" name="phone" class="form-control" placeholder="0555 123 456" required maxlength="10" inputmode="numeric" />
-                <span class="error-msg" id="phone-error">أدخل رقم جزائري صحيح (05/06/07 + 8 أرقام)</span>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="service">الخدمة المطلوبة <span class="req">*</span></label>
-              <select id="service" name="service" class="form-control" required>
-                <option value="" disabled selected>اختر الخدمة المطلوبة</option>
-                <option value="جراحة الأسنان">جراحة الأسنان</option>
-                <option value="تبييض الأسنان">تبييض الأسنان</option>
-                <option value="تركيبات وتيجان">تركيبات وتيجان</option>
-                <option value="علاج قنوات الجذر">علاج قنوات الجذر</option>
-                <option value="تقويم الأسنان">تقويم الأسنان</option>
-                <option value="طب أسنان الأطفال">طب أسنان الأطفال</option>
-                <option value="استشارة عامة">استشارة عامة</option>
-              </select>
-              <span class="error-msg" id="service-error">الرجاء اختيار الخدمة</span>
-            </div>
-
-            <div class="form-row">
-              <div class="form-group">
-                <label for="appt-date">التاريخ المفضل <span class="req">*</span></label>
-                <input type="date" id="appt-date" name="appt-date" class="form-control" required />
-                <span class="error-msg" id="date-error">الرجاء اختيار تاريخ صحيح</span>
-              </div>
-              <div class="form-group">
-                <label for="appt-time">الوقت المفضل <span class="req">*</span></label>
-                <select id="appt-time" name="appt-time" class="form-control" required>
-                  <option value="" disabled selected>اختر الوقت</option>
-                  <option value="09:00 - 10:00">09:00 - 10:00</option>
-                  <option value="10:00 - 11:00">10:00 - 11:00</option>
-                  <option value="11:00 - 12:00">11:00 - 12:00</option>
-                  <option value="14:00 - 15:00">14:00 - 15:00</option>
-                  <option value="15:00 - 16:00">15:00 - 16:00</option>
-                  <option value="16:00 - 17:00">16:00 - 17:00</option>
-                </select>
-                <span class="error-msg" id="time-error">الرجاء اختيار الوقت</span>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="notes">ملاحظات إضافية</label>
-              <textarea id="notes" name="notes" class="form-control" rows="3" placeholder="أي تفاصيل أو استفسارات إضافية..."></textarea>
-            </div>
-
-            <button type="submit" class="btn-submit">
-              <span>📲 إرسال الحجز عبر الواتساب</span>
-            </button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================
-       FOOTER
-  ============================================ -->
-  <footer role="contentinfo">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <div class="nav-logo" style="margin-bottom: 12px;">
-            <div class="logo-icon">🦷</div>
-            <div class="logo-text">
-              د. [اسم الطبيب]
-              <span>جراحة وتجميل الأسنان</span>
-            </div>
-          </div>
-          <p>عيادة متخصصة تقدم أعلى مستويات الرعاية الصحية لأسنانك في بيئة حديثة ومريحة.</p>
-        </div>
-        <div class="footer-col">
-          <h4>روابط سريعة</h4>
-          <ul>
-            <li><a href="#home">الرئيسية</a></li>
-            <li><a href="#services">خدماتنا</a></li>
-            <li><a href="#why-us">لماذا نحن</a></li>
-            <li><a href="#booking">احجز موعد</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>تواصل معنا</h4>
-          <ul>
-            <li><a href="tel:+213XXXXXXXXX">📞 +213 XXX XXX XXX</a></li>
-            <li><a href="https://wa.me/213XXXXXXXXX">💬 واتساب</a></li>
-            <li><a href="#">📍 العنوان، الجزائر</a></li>
-            <li><a href="#">🕐 السبت - الخميس: 09:00 - 17:00</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <span>© 2025 عيادة د. [اسم الطبيب] - جميع الحقوق محفوظة</span>
-        <span style="color: var(--gold);">صُمِّم بـ ❤️ للجزائريين</span>
-      </div>
-    </div>
-  </footer>
-
-  <!-- ============================================
-       WHATSAPP FAB
-  ============================================ -->
-  <div class="whatsapp-fab" aria-label="تحدث معنا عبر الواتساب">
-    <a href="https://wa.me/213XXXXXXXXX" target="_blank" rel="noopener noreferrer" class="fab-btn" aria-label="واتساب">
-      <!-- WhatsApp SVG Icon -->
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
-        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-      </svg>
-    </a>
-    <span class="fab-tooltip">تحدث معنا</span>
-  </div>
-
-  <!-- ============================================
-       SUCCESS MODAL — DIGITAL RECEIPT
-  ============================================ -->
-  <div class="modal-overlay" id="successModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    <div class="modal-wrapper" id="printArea">
-
-      <!-- ① Green Success Banner -->
-      <div class="modal-success-banner">
-        <div class="msb-check">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="20 6 9 17 4 12"/>
-          </svg>
-        </div>
-        <div class="msb-title" id="modalTitle">تم إرسال طلبك بنجاح! 🎉</div>
-        <div class="msb-sub">تمّ إرسال الحجز عبر الواتساب — احتفظ بهذه البطاقة</div>
-      </div>
-
-      <!-- ② Digital Appointment Receipt Card -->
-      <div id="receiptCard">
-
-        <!-- Clinic Header -->
-        <div class="rc-clinic-header">
-          <div class="rc-clinic-logo">
-            <div class="rc-logo-icon">🦷</div>
-            <div class="rc-clinic-name">
-              عيادة د. [اسم الطبيب]
-              <span>جراحة وتجميل الأسنان • الجزائر</span>
-            </div>
-          </div>
-          <div class="rc-appt-id-badge">
-            <span class="id-label">رقم الموعد</span>
-            <span class="id-value" id="rc-appt-id">—</span>
-          </div>
-        </div>
-
-        <!-- Gold accent line -->
-        <div class="rc-gold-line"></div>
-
-        <!-- Document Title Row -->
-        <div class="rc-title-row">
-          <span class="rc-doc-title">🗓 بطاقة موعد طبي</span>
-          <span class="rc-issued-date" id="rc-issued-date">—</span>
-        </div>
-
-        <!-- Patient & Appointment Fields -->
-        <div class="rc-fields">
-          <div class="rc-field">
-            <div class="rc-field-label">👤 اسم المريض</div>
-            <div class="rc-field-value" id="rc-patient-name">—</div>
-          </div>
-          <div class="rc-field">
-            <div class="rc-field-label">📞 رقم الهاتف</div>
-            <div class="rc-field-value" id="rc-phone">—</div>
-          </div>
-          <div class="rc-field full-width">
-            <div class="rc-field-label">🩺 الخدمة المطلوبة</div>
-            <div class="rc-field-value">
-              <span class="service-badge" id="rc-service">—</span>
-            </div>
-          </div>
-          <div class="rc-field">
-            <div class="rc-field-label">📅 تاريخ الموعد</div>
-            <div class="rc-field-value" id="rc-date">—</div>
-          </div>
-          <div class="rc-field">
-            <div class="rc-field-label">🕐 وقت الموعد</div>
-            <div class="rc-field-value" id="rc-time">—</div>
-          </div>
-        </div>
-
-        <!-- Status & QR Placeholder Row -->
-        <div class="rc-status-row">
+      <div class="hero-visual fade d2">
+        <div class="float-badge">
+          <span class="fb-icon">⭐</span>
           <div>
-            <div style="font-size:0.68rem;color:var(--text-muted);font-weight:700;letter-spacing:0.06em;margin-bottom:6px;">حالة الموعد</div>
-            <div class="rc-status-chip">
-              <span class="rc-status-dot"></span>
-              <span class="rc-status-text">بانتظار التأكيد من العيادة</span>
-            </div>
-          </div>
-          <!-- Fake micro-QR for visual flair -->
-          <div class="rc-qr-placeholder" title="رمز التحقق">
-            <div class="qr-grid" id="qrGrid"></div>
+            <div class="fb-num">4.9/5</div>
+            <div class="fb-text">+500 تقييم</div>
           </div>
         </div>
-
-        <!-- Clinic Footer / Address -->
-        <div class="rc-clinic-footer">
-          <div class="rc-footer-addr">
-            <strong>عيادة د. [اسم الطبيب]</strong>
-            📍 [العنوان الكامل]، الجزائر<br/>
-            📞 +213 XXX XXX XXX &nbsp;|&nbsp; 🌐 www.clinic.dz
+        <div class="hero-card">
+          <div class="hero-card-top">
+            <div class="hct-icon">🦷</div>
+            <div class="hct-title">د. [اسم الطبيب]</div>
+            <div class="hct-sub">أخصائي جراحة وتجميل الأسنان</div>
           </div>
-          <div class="rc-watermark">OFFICIAL</div>
+          <div class="hero-card-body">
+            <div class="mini-info-row"><span class="mir-icon">🏅</span><span class="mir-label">خبرة 15 سنة في الجزائر</span></div>
+            <div class="mini-info-row"><span class="mir-icon">📜</span><span class="mir-label">12 شهادة دولية معتمدة</span></div>
+            <div class="mini-info-row"><span class="mir-icon">🔬</span><span class="mir-label">أحدث تقنيات طبية</span></div>
+            <div class="mini-info-row"><span class="mir-icon">🕐</span><span class="mir-label">السبت — الخميس: 09:00–17:00</span></div>
+          </div>
         </div>
-
-      </div><!-- /#receiptCard -->
-
-      <!-- ③ Action Buttons -->
-      <div class="modal-actions">
-        <button class="btn-download gold" id="btnDownloadPDF" title="تحميل كـ PNG">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          تحميل PNG
-        </button>
-        <button class="btn-download" id="btnPrint" title="طباعة">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-          طباعة
-        </button>
-        <button class="btn-modal-close-sm" id="modalClose">إغلاق</button>
       </div>
 
-    </div><!-- /.modal-wrapper -->
+    </div>
   </div>
+</section>
 
-  <!-- ============================================
-       JAVASCRIPT
-  ============================================ -->
-  <script>
-    'use strict';
+<!-- ══════════════ SERVICES ══════════════ -->
+<section id="services">
+  <div class="wrap">
+    <div class="sec-header fade">
+      <span class="sec-tag">خدماتنا</span>
+      <h2 class="sec-title">رعاية شاملة <span>لأسنانك</span></h2>
+      <p class="sec-desc">نقدم طيفاً واسعاً من الخدمات السنية بأحدث التقنيات وأعلى معايير الجودة.</p>
+    </div>
+    <div class="services-grid">
+      <div class="svc-card fade d1">
+        <div class="svc-card-icon">🦷</div>
+        <h3 class="svc-card-title">زراعة الأسنان</h3>
+        <p class="svc-card-desc">زراعة فورية عالية الجودة بتقنيات حديثة — حل دائم لفراغات الأسنان.</p>
+      </div>
+      <div class="svc-card fade d2">
+        <div class="svc-card-icon">✨</div>
+        <h3 class="svc-card-title">تبييض الأسنان</h3>
+        <p class="svc-card-desc">تبييض مهني بالليزر يمنحك ابتسامة مشرقة في جلسة واحدة فقط.</p>
+      </div>
+      <div class="svc-card fade d3">
+        <div class="svc-card-icon">👑</div>
+        <h3 class="svc-card-title">تيجان الزركون</h3>
+        <p class="svc-card-desc">تركيبات من الزركون والبورسلين بجودة أوروبية لابتسامة طبيعية تدوم.</p>
+      </div>
+      <div class="svc-card fade d1">
+        <div class="svc-card-icon">😁</div>
+        <h3 class="svc-card-title">تقويم الأسنان</h3>
+        <p class="svc-card-desc">تقويم تقليدي وشفاف (Invisalign) لأسنان مستقيمة وابتسامة جميلة.</p>
+      </div>
+      <div class="svc-card fade d2">
+        <div class="svc-card-icon">🔬</div>
+        <h3 class="svc-card-title">علاج قنوات الجذر</h3>
+        <p class="svc-card-desc">علاج عصب الأسنان بالمجهر — دقة عالية وبدون ألم تام.</p>
+      </div>
+      <div class="svc-card fade d3">
+        <div class="svc-card-icon">🧒</div>
+        <h3 class="svc-card-title">طب أسنان الأطفال</h3>
+        <p class="svc-card-desc">بيئة ودية ومريحة لأطفالك — تجربة علاجية خالية من الخوف.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    /* ============================================
-       CONFIG — عدّل هذه القيم
-    ============================================ */
-    const CONFIG = {
-      whatsappNumber: '213XXXXXXXXX',       // ← رقم الواتساب بدون +
-      clinicName:     'عيادة د. [اسم الطبيب]',
-      clinicAddress:  '[العنوان]، الجزائر',
-      clinicPhone:    '+213 XXX XXX XXX',
-      clinicWeb:      'www.clinic.dz',
-    };
+<!-- ══════════════ ABOUT ══════════════ -->
+<section id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div>
+        <div class="sec-header fade">
+          <span class="sec-tag">لماذا نحن</span>
+          <h2 class="sec-title">ثقتك <span>أولويتنا</span> دائماً</h2>
+          <p class="sec-desc">نجمع بين الخبرة الطبية العالية والتقنيات الحديثة في بيئة دافئة ومريحة.</p>
+        </div>
+        <div class="about-features">
+          <div class="feat-row fade d1">
+            <div class="feat-icon">🏅</div>
+            <div><div class="feat-title">خبرة معتمدة دولياً</div><div class="feat-desc">15 عاماً من الخبرة مع 12 شهادة دولية من أرقى المراكز الطبية الأوروبية.</div></div>
+          </div>
+          <div class="feat-row fade d2">
+            <div class="feat-icon">🔬</div>
+            <div><div class="feat-title">أحدث التقنيات</div><div class="feat-desc">تصوير CBCT ثلاثي الأبعاد، مجهر جراحي، وأجهزة رقمية من أفضل العلامات الأوروبية.</div></div>
+          </div>
+          <div class="feat-row fade d3">
+            <div class="feat-icon">❤️</div>
+            <div><div class="feat-title">راحة المريض أولاً</div><div class="feat-desc">بروتوكول خاص للمرضى الخائفين وتخدير موضعي متطور لتجربة بلا ألم.</div></div>
+          </div>
+          <div class="feat-row fade d4">
+            <div class="feat-icon">🛡️</div>
+            <div><div class="feat-title">معايير تعقيم عالمية</div><div class="feat-desc">أجهزة Autoclave Class B الأوروبية وبروتوكولات تعقيم صارمة معتمدة دولياً.</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="about-visual">
+        <div class="av-card fade d1">
+          <div class="av-card-icon">👥</div>
+          <div>
+            <div class="av-card-num" data-count="2500">0</div>
+            <div class="av-card-label">مريض راضٍ يثق في خدماتنا</div>
+          </div>
+        </div>
+        <div class="av-card fade d2">
+          <div class="av-card-icon">🏆</div>
+          <div>
+            <div class="av-card-num" data-count="15">0</div>
+            <div class="av-card-label">سنة خبرة في الجزائر</div>
+          </div>
+        </div>
+        <div class="av-card fade d3">
+          <div class="av-card-icon">📜</div>
+          <div>
+            <div class="av-card-num" data-count="12">0</div>
+            <div class="av-card-label">شهادة دولية معتمدة</div>
+          </div>
+        </div>
+        <div class="av-card fade d4">
+          <div class="av-card-icon">⭐</div>
+          <div>
+            <div class="av-card-num" data-count="98">0</div>
+            <div class="av-card-label">% نسبة رضا المرضى</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    /* ============================================
-       NAVBAR SCROLL
-    ============================================ */
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      navbar.classList.toggle('scrolled', window.scrollY > 50);
-    }, { passive: true });
+<!-- ══════════════ TESTIMONIALS ══════════════ -->
+<section id="testimonials">
+  <div class="wrap">
+    <div class="sec-header fade" style="text-align:center;">
+      <span class="sec-tag">آراء المرضى</span>
+      <h2 class="sec-title">مرضانا <span>يتحدثون</span></h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card fade d1">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"تجربة رائعة من أول لحظة. الدكتور محترف جداً ويشرح كل خطوة. النتيجة فاقت توقعاتي وأنصح به بشدة."</p>
+        <div class="testi-author">
+          <div class="testi-av">أ</div>
+          <div><div class="testi-name">أحمد بن علي</div><div class="testi-city">الجزائر العاصمة</div></div>
+        </div>
+      </div>
+      <div class="testi-card fade d2">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"كنت أخجل من ابتسامتي، واليوم أبتسم في كل الصور. تيجان الزركون طبيعية جداً والخدمة ممتازة."</p>
+        <div class="testi-author">
+          <div class="testi-av">س</div>
+          <div><div class="testi-name">سارة مزوار</div><div class="testi-city">وهران</div></div>
+        </div>
+      </div>
+      <div class="testi-card fade d3">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"كنت أخاف من طبيب الأسنان دائماً، لكن الدكتور تعامل معي بصبر. علاج القناة كان بلا ألم تماماً!"</p>
+        <div class="testi-author">
+          <div class="testi-av">ي</div>
+          <div><div class="testi-name">يوسف قاسي</div><div class="testi-city">قسنطينة</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    /* ============================================
-       MOBILE MENU
-    ============================================ */
-    const hamburger = document.getElementById('hamburger');
-    const navLinks  = document.getElementById('navLinks');
-    hamburger.addEventListener('click', () => {
-      const open = navLinks.classList.toggle('open');
-      hamburger.classList.toggle('active', open);
-      hamburger.setAttribute('aria-expanded', open);
-      document.body.style.overflow = open ? 'hidden' : '';
-    });
-    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-      navLinks.classList.remove('open');
-      hamburger.classList.remove('active');
-      hamburger.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
-    }));
+<!-- ══════════════ BOOKING ══════════════ -->
+<section id="booking">
+  <div class="wrap">
+    <div class="booking-grid">
+      <div class="booking-info fade">
+        <div class="sec-header">
+          <span class="sec-tag">الحجز</span>
+          <h2 class="sec-title">احجز موعدك <span>الآن</span></h2>
+          <p class="sec-desc">أرسل طلب حجزك وسيتواصل معك فريقنا لتأكيد الموعد فوراً عبر الواتساب.</p>
+        </div>
+        <div class="info-list">
+          <div class="info-item"><span class="info-item-icon">📞</span> ردّ فوري عبر الواتساب خلال دقائق</div>
+          <div class="info-item"><span class="info-item-icon">📅</span> مواعيد مرنة السبت إلى الخميس</div>
+          <div class="info-item"><span class="info-item-icon">🅿️</span> مواقف سيارات مجانية أمام العيادة</div>
+          <div class="info-item"><span class="info-item-icon">💳</span> تسهيلات في الدفع وخطط تقسيط</div>
+        </div>
+      </div>
 
-    /* ============================================
-       SCROLL REVEAL
-    ============================================ */
-    const revealObs = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => revealObs.observe(el));
+      <div class="form-card fade d2">
+        <div class="form-card-title">طلب حجز موعد 📋</div>
+        <div class="form-card-sub">يُرسَل طلبك مباشرة عبر الواتساب ✅</div>
 
-    /* ============================================
-       COUNTERS
-    ============================================ */
-    const animateCounters = () => {
-      document.querySelectorAll('[data-count]').forEach(el => {
-        const target = parseInt(el.dataset.count), steps = 60;
-        let cur = 0;
-        const t = setInterval(() => {
-          cur = Math.min(cur + target / steps, target);
-          el.textContent = Math.floor(cur).toLocaleString('ar-DZ');
-          if (cur >= target) clearInterval(t);
-        }, 1800 / steps);
-      });
-    };
-    const statsEl = document.querySelector('.hero-stats');
-    if (statsEl) {
-      new IntersectionObserver(e => { if (e[0].isIntersecting) { animateCounters(); e[0].target.__obs?.disconnect(); } }, { threshold: 0.5 }).observe(statsEl);
-    }
+        <form id="bookingForm" novalidate>
+          <div class="form-row">
+            <div class="fg">
+              <label>الاسم الكامل <span class="req">*</span></label>
+              <input type="text" id="fname" placeholder="أحمد بن عمر" required/>
+              <span class="err-msg" id="err-fname">الرجاء إدخال الاسم الكامل</span>
+            </div>
+            <div class="fg">
+              <label>رقم الهاتف <span class="req">*</span></label>
+              <input type="tel" id="phone" placeholder="0555 123 456" maxlength="10" inputmode="numeric" required/>
+              <span class="err-msg" id="err-phone">رقم جزائري صحيح (05/06/07...)</span>
+            </div>
+          </div>
+          <div class="fg">
+            <label>الخدمة المطلوبة <span class="req">*</span></label>
+            <select id="service" required>
+              <option value="" disabled selected>اختر الخدمة</option>
+              <option>زراعة الأسنان</option>
+              <option>تبييض الأسنان</option>
+              <option>تيجان الزركون</option>
+              <option>تقويم الأسنان</option>
+              <option>علاج قنوات الجذر</option>
+              <option>طب أسنان الأطفال</option>
+              <option>استشارة عامة</option>
+            </select>
+            <span class="err-msg" id="err-service">الرجاء اختيار الخدمة</span>
+          </div>
+          <div class="form-row">
+            <div class="fg">
+              <label>التاريخ <span class="req">*</span></label>
+              <input type="date" id="appt-date" required/>
+              <span class="err-msg" id="err-date">اختر تاريخاً صحيحاً</span>
+            </div>
+            <div class="fg">
+              <label>الوقت <span class="req">*</span></label>
+              <select id="appt-time" required>
+                <option value="" disabled selected>اختر الوقت</option>
+                <option>09:00 - 10:00</option>
+                <option>10:00 - 11:00</option>
+                <option>11:00 - 12:00</option>
+                <option>14:00 - 15:00</option>
+                <option>15:00 - 16:00</option>
+                <option>16:00 - 17:00</option>
+              </select>
+              <span class="err-msg" id="err-time">اختر الوقت المناسب</span>
+            </div>
+          </div>
+          <div class="fg">
+            <label>ملاحظات إضافية</label>
+            <textarea id="notes" rows="2" placeholder="أي تفاصيل أو استفسارات..."></textarea>
+          </div>
+          <button type="submit" class="btn-submit">
+            <span>📲 إرسال الحجز عبر الواتساب</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
 
-    /* ============================================
-       DATE — DISABLE PAST
-    ============================================ */
-    const dateInput = document.getElementById('appt-date');
-    if (dateInput) dateInput.setAttribute('min', new Date().toISOString().split('T')[0]);
+<!-- ══════════════ CONTACT BAR ══════════════ -->
+<div class="contact-bar">
+  <div class="wrap">
+    <div class="contact-inner">
+      <div class="contact-text">
+        <h3>هل لديك سؤال؟ تواصل معنا الآن</h3>
+        <p>فريقنا جاهز للرد على استفساراتك من السبت إلى الخميس</p>
+      </div>
+      <div class="contact-items">
+        <a href="tel:+213XXXXXXXXX" class="contact-chip">📞 +213 XXX XXX XXX</a>
+        <a href="https://wa.me/213XXXXXXXXX" target="_blank" class="contact-chip">💬 واتساب</a>
+        <a href="#" class="contact-chip">📍 [العنوان]، الجزائر</a>
+      </div>
+    </div>
+  </div>
+</div>
 
-    /* ============================================
-       PHONE VALIDATION
-    ============================================ */
-    const validatePhone = p => /^(05|06|07)\d{8}$/.test(p.replace(/\s/g, ''));
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand-name">🦷 عيادة د. [اسم الطبيب]</div>
+        <p class="footer-brand-desc">عيادة متخصصة في طب وجراحة الأسنان بالجزائر. نقدم أعلى مستويات الرعاية الصحية في بيئة حديثة ومريحة.</p>
+      </div>
+      <div class="footer-col">
+        <h4>روابط سريعة</h4>
+        <ul>
+          <li><a href="#home">الرئيسية</a></li>
+          <li><a href="#services">الخدمات</a></li>
+          <li><a href="#about">عن العيادة</a></li>
+          <li><a href="#testimonials">آراء المرضى</a></li>
+          <li><a href="#booking">احجز موعد</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>تواصل معنا</h4>
+        <ul>
+          <li><a href="tel:+213XXXXXXXXX">📞 +213 XXX XXX XXX</a></li>
+          <li><a href="https://wa.me/213XXXXXXXXX">💬 واتساب</a></li>
+          <li><a href="#">📍 [العنوان]، الجزائر</a></li>
+          <li><a href="#">🕐 السبت — الخميس</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 عيادة د. [اسم الطبيب] — جميع الحقوق محفوظة</span>
+      <span style="color:var(--teal);">صُنع بـ ❤️ للجزائريين</span>
+    </div>
+  </div>
+</footer>
 
-    /* ============================================
-       FORM HELPERS
-    ============================================ */
-    const setError = (fId, eId, show) => {
-      document.getElementById(fId).classList.toggle('error', show);
-      document.getElementById(eId).classList.toggle('show', show);
-    };
-    document.getElementById('phone').addEventListener('input', function () {
-      this.value = this.value.replace(/\D/g, '').slice(0, 10);
-    });
+<!-- ══════════════ WA FAB ══════════════ -->
+<div class="wa-fab">
+  <span class="wa-tip">تحدث معنا</span>
+  <a href="https://wa.me/213XXXXXXXXX" target="_blank" rel="noopener" class="wa-btn" aria-label="واتساب">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+</div>
 
-    /* ============================================
-       APPOINTMENT ID GENERATOR
-    ============================================ */
-    const genApptId = () => {
-      const ts   = Date.now().toString(36).toUpperCase().slice(-4);
-      const rand = Math.random().toString(36).substring(2, 5).toUpperCase();
-      return `DZ-${ts}-${rand}`;
-    };
+<!-- ══════════════ MODAL ══════════════ -->
+<div class="modal-bg" id="modal">
+  <div class="modal-box" id="printArea">
+    <div class="modal-banner">
+      <div class="modal-check">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h3>تم إرسال طلبك بنجاح! 🎉</h3>
+      <p>تمّ الإرسال عبر الواتساب — احتفظ بهذه البطاقة</p>
+    </div>
 
-    /* ============================================
-       FAKE QR PATTERN (seeded from apptId)
-    ============================================ */
-    const buildQR = (seed) => {
-      const grid = document.getElementById('qrGrid');
-      if (!grid) return;
-      grid.innerHTML = '';
-      // Simple deterministic pattern from char codes
-      let hash = 0;
-      for (let i = 0; i < seed.length; i++) hash = ((hash << 5) - hash + seed.charCodeAt(i)) | 0;
-      const corners = [0,1,2,5,6,7,10,14,20,24]; // always dark for QR feel
-      for (let i = 0; i < 25; i++) {
-        const cell = document.createElement('div');
-        cell.className = 'qr-cell' + (corners.includes(i) || ((hash >>> i) & 1) ? '' : ' w');
-        grid.appendChild(cell);
-      }
-    };
+    <div id="receiptCard">
+      <div class="rc-header">
+        <div class="rc-logo">
+          <div class="rc-logo-icon">🦷</div>
+          <div class="rc-clinic">د. [اسم الطبيب]<span>طب وجراحة الأسنان • الجزائر</span></div>
+        </div>
+        <div class="rc-id-box">
+          <span class="il">رقم الموعد</span>
+          <span class="iv" id="rc-appt-id">—</span>
+        </div>
+      </div>
+      <div class="rc-bar"></div>
+      <div class="rc-title-row">
+        <span class="rc-doc-title">🗓 بطاقة موعد طبي</span>
+        <span class="rc-issued" id="rc-issued">—</span>
+      </div>
+      <div class="rc-fields">
+        <div class="rcf"><div class="rcf-l">👤 المريض</div><div class="rcf-v" id="rc-name">—</div></div>
+        <div class="rcf"><div class="rcf-l">📞 الهاتف</div><div class="rcf-v" id="rc-phone">—</div></div>
+        <div class="rcf full"><div class="rcf-l">🩺 الخدمة</div><div class="rcf-v"><span class="badge" id="rc-service">—</span></div></div>
+        <div class="rcf"><div class="rcf-l">📅 التاريخ</div><div class="rcf-v" id="rc-date">—</div></div>
+        <div class="rcf"><div class="rcf-l">🕐 الوقت</div><div class="rcf-v" id="rc-time">—</div></div>
+      </div>
+      <div class="rc-status-row">
+        <div><div style="font-size:.6rem;color:#92400e;font-weight:700;margin-bottom:6px;letter-spacing:.05em;">حالة الموعد</div>
+          <div class="rc-pill"><span class="rc-pill-dot"></span><span class="rc-pill-txt">بانتظار التأكيد من العيادة</span></div>
+        </div>
+        <div class="rc-qr" id="qrGrid"></div>
+      </div>
+      <div class="rc-footer">
+        <div class="rc-addr"><strong>عيادة د. [اسم الطبيب]</strong>📍 [العنوان]، الجزائر<br/>📞 +213 XXX XXX XXX</div>
+        <div class="rc-wm">OFFICIAL</div>
+      </div>
+    </div>
 
-    /* ============================================
-       POPULATE RECEIPT CARD
-    ============================================ */
-    const populateReceipt = (data) => {
-      const { fname, phone, service, date, time, apptId } = data;
+    <div class="modal-btns">
+      <button class="m-btn teal" id="btnDL">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        تحميل PNG
+      </button>
+      <button class="m-btn dark" id="btnPrint">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        طباعة
+      </button>
+      <button class="m-btn ghost" id="btnClose">إغلاق</button>
+    </div>
+  </div>
+</div>
 
-      const formattedDate = new Date(date).toLocaleDateString('ar-DZ', {
-        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
-      });
-      const issuedNow = new Date().toLocaleString('ar-DZ', {
-        year: 'numeric', month: '2-digit', day: '2-digit',
-        hour: '2-digit', minute: '2-digit'
-      });
+<script>
+'use strict';
+const CFG = { wa: '213XXXXXXXXX' };
 
-      document.getElementById('rc-appt-id').textContent    = apptId;
-      document.getElementById('rc-patient-name').textContent = fname;
-      document.getElementById('rc-phone').textContent      = phone;
-      document.getElementById('rc-service').textContent    = '🩺 ' + service;
-      document.getElementById('rc-date').textContent       = formattedDate;
-      document.getElementById('rc-time').textContent       = time;
-      document.getElementById('rc-issued-date').textContent = 'صدر: ' + issuedNow;
+/* Navbar */
+window.addEventListener('scroll', () =>
+  document.getElementById('navbar').classList.toggle('elevated', scrollY > 10), {passive:true});
 
-      buildQR(apptId);
-    };
+/* Hamburger */
+const hb = document.getElementById('hamburger');
+const nl = document.getElementById('navLinks');
+hb.addEventListener('click', () => {
+  const o = nl.classList.toggle('open');
+  hb.classList.toggle('active', o);
+  document.body.style.overflow = o ? 'hidden' : '';
+});
+nl.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  nl.classList.remove('open'); hb.classList.remove('active'); document.body.style.overflow = '';
+}));
 
-    /* ============================================
-       PNG DOWNLOAD — Pure Canvas API (no libs)
-       Draws the entire receipt card onto a canvas
-       then exports as a high-res PNG file.
-    ============================================ */
-    const downloadReceiptAsImage = async (apptId) => {
-      const btn = document.getElementById('btnDownloadPDF');
-      btn.textContent = '⏳ جاري التحضير...';
-      btn.disabled = true;
+/* Scroll reveal */
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('show'); obs.unobserve(e.target); } });
+}, { threshold: 0.12, rootMargin: '0px 0px -32px 0px' });
+document.querySelectorAll('.fade').forEach(el => obs.observe(el));
 
-      // ── Collect live data from populated receipt DOM ──
-      const get = id => document.getElementById(id)?.textContent?.trim() || '';
-      const patientName = get('rc-patient-name');
-      const phone       = get('rc-phone');
-      const service     = get('rc-service').replace('🩺 ', '');
-      const apptDate    = get('rc-date');
-      const apptTime    = get('rc-time');
-      const issuedDate  = get('rc-issued-date');
+/* Counters */
+const cObs = new IntersectionObserver(entries => {
+  entries.forEach(({ target, isIntersecting }) => {
+    if (!isIntersecting || target._done) return;
+    target._done = true;
+    const end = parseInt(target.dataset.count), steps = 60;
+    let n = 0;
+    const t = setInterval(() => {
+      n = Math.min(n + end / steps, end);
+      target.textContent = Math.floor(n).toLocaleString('ar-DZ');
+      if (n >= end) clearInterval(t);
+    }, 1800 / steps);
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('[data-count]').forEach(el => cObs.observe(el));
 
-      // ── Canvas setup (2× for retina sharpness) ──
-      const W = 520, H = 680, DPR = 2;
-      const canvas = document.createElement('canvas');
-      canvas.width  = W * DPR;
-      canvas.height = H * DPR;
-      const ctx = canvas.getContext('2d');
-      ctx.scale(DPR, DPR);
+/* Date min */
+document.getElementById('appt-date').min = new Date().toISOString().split('T')[0];
 
-      // ── Helpers ──
-      const rect  = (x,y,w,h,r,fill) => { ctx.beginPath(); ctx.moveTo(x+r,y); ctx.lineTo(x+w-r,y); ctx.quadraticCurveTo(x+w,y,x+w,y+r); ctx.lineTo(x+w,y+h-r); ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h); ctx.lineTo(x+r,y+h); ctx.quadraticCurveTo(x,y+h,x,y+h-r); ctx.lineTo(x,y+r); ctx.quadraticCurveTo(x,y,x+r,y); ctx.closePath(); if(fill){ctx.fillStyle=fill;ctx.fill();} };
-      const text  = (t,x,y,font,color,align='right') => { ctx.font=font; ctx.fillStyle=color; ctx.textAlign=align; ctx.fillText(t,x,y); };
-      const line  = (x1,y1,x2,y2,color,w=1) => { ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.strokeStyle=color; ctx.lineWidth=w; ctx.stroke(); };
-      const rtlText = (t,x,y,font,color) => text(t,x,y,font,color,'right');
+/* Phone input */
+document.getElementById('phone').addEventListener('input', function () {
+  this.value = this.value.replace(/\D/g, '').slice(0, 10);
+});
 
-      // ── 1. White card background with shadow effect ──
-      rect(0, 0, W, H, 20, '#ffffff');
+/* Validation */
+const validPhone = p => /^(05|06|07)\d{8}$/.test(p.replace(/\s/g,''));
+const setErr = (id, eid, show) => {
+  document.getElementById(id).classList.toggle('err', show);
+  document.getElementById(eid).classList.toggle('show', show);
+};
 
-      // ── 2. Clinic header — dark navy gradient ──
-      const hdrGrad = ctx.createLinearGradient(0,0,W,80);
-      hdrGrad.addColorStop(0, '#0a1628');
-      hdrGrad.addColorStop(1, '#1a3460');
-      rect(0, 0, W, 80, 0, 'transparent');
-      ctx.fillStyle = hdrGrad;
-      // manual rounded top
-      ctx.beginPath();
-      ctx.moveTo(20, 0); ctx.lineTo(W-20, 0);
-      ctx.quadraticCurveTo(W,0,W,20);
-      ctx.lineTo(W,80); ctx.lineTo(0,80); ctx.lineTo(0,20);
-      ctx.quadraticCurveTo(0,0,20,0);
-      ctx.closePath(); ctx.fill();
+/* Appt ID */
+const genId = () => `DZ-${Date.now().toString(36).toUpperCase().slice(-4)}-${Math.random().toString(36).substring(2,5).toUpperCase()}`;
 
-      // Logo box
-      const lgGrad = ctx.createLinearGradient(20,20,58,58);
-      lgGrad.addColorStop(0,'#c9a84c'); lgGrad.addColorStop(1,'#e8c87a');
-      rect(20,20,38,38,8,'transparent');
-      ctx.fillStyle = lgGrad; ctx.beginPath();
-      ctx.roundRect(20,20,38,38,8); ctx.fill();
-      text('🦷', 39, 47, '20px serif', '#fff', 'center');
+/* QR */
+const buildQR = seed => {
+  const g = document.getElementById('qrGrid'); if (!g) return; g.innerHTML = '';
+  let h = 0; for (let i = 0; i < seed.length; i++) h = ((h << 5) - h + seed.charCodeAt(i)) | 0;
+  const co = [0,1,2,5,6,7,10,14,20,24];
+  for (let i = 0; i < 25; i++) { const c = document.createElement('div'); c.className = 'qc' + (co.includes(i)||((h>>>i)&1) ? '' : ' w'); g.appendChild(c); }
+};
 
-      // Clinic name
-      rtlText('عيادة د. [اسم الطبيب]', W-20, 42, 'bold 15px Cairo,sans-serif', '#ffffff');
-      rtlText('جراحة وتجميل الأسنان • الجزائر', W-20, 60, '11px Cairo,sans-serif', 'rgba(255,255,255,0.6)');
+/* Fill receipt */
+const fillReceipt = ({fname, phone, service, date, time, id}) => {
+  const fd = new Date(date).toLocaleDateString('ar-DZ', {weekday:'long',year:'numeric',month:'long',day:'numeric'});
+  const now = new Date().toLocaleString('ar-DZ', {year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'});
+  document.getElementById('rc-appt-id').textContent = id;
+  document.getElementById('rc-name').textContent = fname;
+  document.getElementById('rc-phone').textContent = phone;
+  document.getElementById('rc-service').textContent = '🩺 ' + service;
+  document.getElementById('rc-date').textContent = fd;
+  document.getElementById('rc-time').textContent = time;
+  document.getElementById('rc-issued').textContent = 'صدر: ' + now;
+  buildQR(id);
+};
 
-      // Appt ID badge (right→left layout so left side)
-      rect(20,22,110,36,8,'rgba(201,168,76,0.18)');
-      ctx.strokeStyle='rgba(201,168,76,0.4)'; ctx.lineWidth=1;
-      ctx.beginPath(); ctx.roundRect(20,22,110,36,8); ctx.stroke();
-      text('رقم الموعد', 75, 36, 'bold 9px Cairo,sans-serif', 'rgba(255,255,255,0.5)', 'center');
-      text(apptId, 75, 52, 'bold 11px Cairo,sans-serif', '#e8c87a', 'center');
+/* PNG Download — Canvas */
+const downloadPNG = (id) => {
+  const btn = document.getElementById('btnDL');
+  btn.textContent = '⏳ ...'; btn.disabled = true;
+  const get = i => document.getElementById(i)?.textContent?.trim() || '';
+  const W=500, H=620, D=2;
+  const cv = document.createElement('canvas');
+  cv.width = W*D; cv.height = H*D;
+  const c = cv.getContext('2d');
+  c.scale(D, D);
+  const rr=(x,y,w,h,r,fill,stroke)=>{c.beginPath();c.moveTo(x+r,y);c.lineTo(x+w-r,y);c.arcTo(x+w,y,x+w,y+r,r);c.lineTo(x+w,y+h-r);c.arcTo(x+w,y+h,x+w-r,y+h,r);c.lineTo(x+r,y+h);c.arcTo(x,y+h,x,y+h-r,r);c.lineTo(x,y+r);c.arcTo(x,y,x+r,y,r);c.closePath();if(fill){c.fillStyle=fill;c.fill();}if(stroke){c.strokeStyle=stroke;c.lineWidth=1;c.stroke();}};
+  const tx=(t,x,y,f,col,al='right')=>{c.font=f;c.fillStyle=col;c.textAlign=al;c.fillText(t,x,y);};
+  // BG
+  rr(0,0,W,H,16,'#ffffff');
+  // Header
+  const hg=c.createLinearGradient(0,0,W,72);hg.addColorStop(0,'#0e7490');hg.addColorStop(1,'#0891b2');
+  c.beginPath();c.moveTo(16,0);c.lineTo(W-16,0);c.arcTo(W,0,W,16,16);c.lineTo(W,72);c.lineTo(0,72);c.lineTo(0,16);c.arcTo(0,0,16,0,16);c.closePath();c.fillStyle=hg;c.fill();
+  // Logo
+  rr(16,16,36,36,8,'rgba(255,255,255,0.2)');
+  tx('🦷',34,46,'18px serif','#fff','center');
+  tx('د. [اسم الطبيب]',W-16,32,'bold 13px Cairo,sans-serif','#fff','right');
+  tx('طب وجراحة الأسنان • الجزائر',W-16,50,'10px Cairo,sans-serif','rgba(255,255,255,0.7)','right');
+  // ID badge
+  rr(16,20,100,30,6,'rgba(255,255,255,0.15)','rgba(255,255,255,0.3)');
+  tx('رقم الموعد',66,32,'bold 7px Cairo,sans-serif','rgba(255,255,255,0.6)','center');
+  tx(id,66,46,'bold 9px Cairo,sans-serif','#fff','center');
+  // Teal bar
+  const bg=c.createLinearGradient(0,72,W,72);bg.addColorStop(0,'#0891b2');bg.addColorStop(.5,'#67e8f9');bg.addColorStop(1,'#0891b2');
+  c.fillStyle=bg;c.fillRect(0,72,W,3);
+  // Title
+  tx('🗓 بطاقة موعد طبي',W-16,96,'bold 9px Cairo,sans-serif','#0891b2','right');
+  tx(get('rc-issued'),16,96,'8px Cairo,sans-serif','#94a3b8','left');
+  c.strokeStyle='#f1f5f9';c.lineWidth=1;c.beginPath();c.moveTo(16,104);c.lineTo(W-16,104);c.stroke();
+  // Fields
+  const fields=[
+    {l:'👤 المريض',v:get('rc-name'),x:W-16,a:'right'},
+    {l:'📞 الهاتف',v:get('rc-phone'),x:16,a:'left'},
+    {l:'🩺 الخدمة',v:get('rc-service').replace('🩺 ',''),x:W-16,a:'right',full:true},
+    {l:'📅 التاريخ',v:get('rc-date'),x:W-16,a:'right'},
+    {l:'🕐 الوقت',v:get('rc-time'),x:16,a:'left'},
+  ];
+  let fy=118;
+  fields.forEach((f,i)=>{
+    tx(f.l,f.x,fy,'bold 8px Cairo,sans-serif','#94a3b8',f.a);
+    tx(f.v,f.x,fy+17,'bold 11px Cairo,sans-serif','#1e293b',f.a);
+    const last=f.full||(i%2===1)||i===fields.length-1;
+    if(last){fy+=42;c.strokeStyle='#f1f5f9';c.lineWidth=1;c.beginPath();c.moveTo(16,fy-2);c.lineTo(W-16,fy-2);c.stroke();}
+  });
+  // Status
+  c.setLineDash([4,3]);c.strokeStyle='#fcd34d';c.lineWidth=1;rr(16,fy+4,W-32,48,8);c.stroke();c.setLineDash([]);
+  c.fillStyle='#fffbeb';rr(16,fy+4,W-32,48,8);c.fill();
+  tx('حالة الموعد',W-26,fy+16,'bold 7px Cairo,sans-serif','#92400e','right');
+  rr(W-168,fy+21,138,22,11,'#fef3c7','#fcd34d');
+  c.fillStyle='#f59e0b';c.beginPath();c.arc(W-160,fy+32,4,0,Math.PI*2);c.fill();
+  tx('بانتظار التأكيد من العيادة',W-32,fy+35,'bold 8px Cairo,sans-serif','#92400e','right');
+  // QR
+  const qx=24,qy=fy+8,qs=36,cs=5,qp=3;
+  rr(qx,qy,qs,qs,4);c.strokeStyle='#e2e8f0';c.lineWidth=1;c.stroke();
+  let qh=0;for(let i=0;i<id.length;i++)qh=((qh<<5)-qh+id.charCodeAt(i))|0;
+  const qco=[0,1,2,5,6,7,10,14,20,24];
+  for(let i=0;i<25;i++){const r=Math.floor(i/5),cl=i%5;c.fillStyle=qco.includes(i)||((qh>>>i)&1)?'#1e293b':'#f0f0f0';c.fillRect(qx+qp+cl*cs,qy+qp+r*cs,cs-1,cs-1);}
+  fy+=62;
+  c.strokeStyle='#f1f5f9';c.lineWidth=1;c.beginPath();c.moveTo(16,fy);c.lineTo(W-16,fy);c.stroke();fy+=14;
+  tx('عيادة د. [اسم الطبيب]',W-16,fy,'bold 9px Cairo,sans-serif','#475569','right');
+  tx('📍 [العنوان]، الجزائر  |  📞 +213 XXX XXX XXX',W-16,fy+16,'8px Cairo,sans-serif','#94a3b8','right');
+  // Bottom bar
+  const bb=c.createLinearGradient(0,H-8,W,H-8);bb.addColorStop(0,'#0891b2');bb.addColorStop(.5,'#67e8f9');bb.addColorStop(1,'#0891b2');
+  c.beginPath();c.moveTo(0,H-10);c.lineTo(W,H-10);c.lineTo(W,H-16);c.arcTo(W,H,W-16,H,16);c.lineTo(16,H);c.arcTo(0,H,0,H-16,16);c.closePath();c.fillStyle=bb;c.fill();
+  // Export
+  cv.toBlob(blob=>{
+    const u=URL.createObjectURL(blob),a=document.createElement('a');
+    a.href=u; a.download=`موعد-${id}.png`; a.click(); URL.revokeObjectURL(u);
+    btn.innerHTML='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> تحميل PNG';
+    btn.disabled=false;
+  },'image/png');
+};
 
-      // ── 3. Gold separator line ──
-      const goldGrad = ctx.createLinearGradient(0,80,W,80);
-      goldGrad.addColorStop(0,'#c9a84c'); goldGrad.addColorStop(0.5,'#e8c87a'); goldGrad.addColorStop(1,'#c9a84c');
-      ctx.fillStyle = goldGrad;
-      ctx.fillRect(0, 80, W, 3);
+/* Form submit */
+document.getElementById('bookingForm').addEventListener('submit', e => {
+  e.preventDefault(); let ok = true;
+  const fname   = document.getElementById('fname').value.trim();
+  const phone   = document.getElementById('phone').value.trim();
+  const service = document.getElementById('service').value;
+  const date    = document.getElementById('appt-date').value;
+  const time    = document.getElementById('appt-time').value;
+  const notes   = document.getElementById('notes').value.trim();
+  if (fname.length < 3)     { setErr('fname','err-fname',true); ok=false; } else setErr('fname','err-fname',false);
+  if (!validPhone(phone))   { setErr('phone','err-phone',true); ok=false; } else setErr('phone','err-phone',false);
+  if (!service)             { setErr('service','err-service',true); ok=false; } else setErr('service','err-service',false);
+  if (!date)                { setErr('appt-date','err-date',true); ok=false; } else setErr('appt-date','err-date',false);
+  if (!time)                { setErr('appt-time','err-time',true); ok=false; } else setErr('appt-time','err-time',false);
+  if (!ok) return;
+  const id = genId();
+  fillReceipt({fname, phone, service, date, time, id});
+  const fd = new Date(date).toLocaleDateString('ar-DZ',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+  const msg = [`🦷 *طلب حجز — عيادة د. [اسم الطبيب]*`,`━━━━━━━━━━━━━━━`,`🔖 *رقم الموعد:* \`${id}\``,`👤 *الاسم:* ${fname}`,`📞 *الهاتف:* ${phone}`,`🩺 *الخدمة:* ${service}`,`📅 *التاريخ:* ${fd}`,`🕐 *الوقت:* ${time}`,notes?`📝 *ملاحظات:* ${notes}`:'',`━━━━━━━━━━━━━━━`,`✅ _يرجى التأكيد في أقرب وقت_`].filter(Boolean).join('\n');
+  document.getElementById('modal').classList.add('open');
+  document.getElementById('btnDL')._id = id;
+  setTimeout(() => window.open(`https://wa.me/${CFG.wa}?text=${encodeURIComponent(msg)}`,'_blank','noopener'), 700);
+  e.target.reset();
+});
 
-      // ── 4. Document title row ──
-      text('🗓 بطاقة موعد طبي', W-20, 106, 'bold 11px Cairo,sans-serif', '#c9a84c', 'right');
-      text(issuedDate, 20, 106, '10px Cairo,sans-serif', '#718096', 'left');
-
-      // ── 5. Divider ──
-      line(20, 114, W-20, 114, '#f0f0f0', 1);
-
-      // ── 6. Fields grid ──
-      const fields = [
-        { label:'👤 اسم المريض',     value: patientName, x:W-20, col:'r' },
-        { label:'📞 رقم الهاتف',     value: phone,       x:20,   col:'l' },
-        { label:'🩺 الخدمة المطلوبة',value: service,      x:W-20, col:'r', full:true },
-        { label:'📅 تاريخ الموعد',   value: apptDate,    x:W-20, col:'r' },
-        { label:'🕐 وقت الموعد',     value: apptTime,    x:20,   col:'l' },
-      ];
-
-      let fy = 130;
-      const colW = (W - 40) / 2;
-
-      fields.forEach((f, i) => {
-        const xAlign = f.col === 'r' ? 'right' : 'left';
-        const fx     = f.full ? (f.col === 'r' ? W-20 : 20) : f.x;
-
-        // Label
-        text(f.label, fx, fy, 'bold 9.5px Cairo,sans-serif', '#718096', xAlign);
-        // Value
-        text(f.value, fx, fy+20, 'bold 13px Cairo,sans-serif', '#0a1628', xAlign);
-
-        // Divider after each pair (or after full-width)
-        const isLastInRow = f.full || (i % 2 === 1) || i === fields.length-1;
-        if (isLastInRow) {
-          fy += 48;
-          line(20, fy - 4, W-20, fy - 4, '#f0f0f0', 1);
-        }
-      });
-
-      // ── 7. Status section ──
-      const sy = fy + 2;
-      // dashed border box
-      ctx.setLineDash([4,3]);
-      ctx.strokeStyle = 'rgba(201,168,76,0.35)';
-      ctx.lineWidth = 1;
-      ctx.beginPath(); ctx.roundRect(20, sy, W-40, 56, 10); ctx.stroke();
-      ctx.setLineDash([]);
-      // subtle bg
-      ctx.fillStyle = 'rgba(201,168,76,0.04)';
-      ctx.beginPath(); ctx.roundRect(20, sy, W-40, 56, 10); ctx.fill();
-
-      // Status label
-      text('حالة الموعد', W-32, sy+16, 'bold 9px Cairo,sans-serif', '#718096', 'right');
-      // Status chip
-      ctx.fillStyle = 'rgba(255,165,0,0.12)';
-      ctx.beginPath(); ctx.roundRect(W-180, sy+24, 148, 24, 12); ctx.fill();
-      ctx.strokeStyle = 'rgba(255,165,0,0.3)'; ctx.lineWidth=1;
-      ctx.beginPath(); ctx.roundRect(W-180, sy+24, 148, 24, 12); ctx.stroke();
-      // dot
-      ctx.fillStyle = '#f6ad55';
-      ctx.beginPath(); ctx.arc(W-174, sy+36, 4, 0, Math.PI*2); ctx.fill();
-      text('بانتظار التأكيد من العيادة', W-40, sy+40, 'bold 9.5px Cairo,sans-serif', '#c05621', 'right');
-
-      // QR placeholder (right side of status box) — drawn as mini pixel grid
-      const qx = 28, qy = sy + 6, qs = 44;
-      ctx.strokeStyle='rgba(201,168,76,0.35)'; ctx.lineWidth=1;
-      ctx.beginPath(); ctx.roundRect(qx, qy, qs, qs, 6); ctx.stroke();
-      const cellS = 7, pad = 4;
-      let qHash = 0;
-      for (let c=0; c<apptId.length; c++) qHash = ((qHash<<5)-qHash+apptId.charCodeAt(c))|0;
-      const qCorners=[0,1,2,5,6,7,10,14,20,24];
-      for (let i=0;i<25;i++){
-        const row=Math.floor(i/5), col=i%5;
-        const dark = qCorners.includes(i)||((qHash>>>i)&1);
-        ctx.fillStyle = dark ? '#0a1628' : '#f0eeea';
-        ctx.fillRect(qx+pad+col*cellS, qy+pad+row*cellS, cellS-1.5, cellS-1.5);
-      }
-
-      fy = sy + 68;
-
-      // ── 8. Footer separator ──
-      line(20, fy, W-20, fy, '#f0ece4', 1);
-      fy += 12;
-
-      // Clinic address footer
-      text('عيادة د. [اسم الطبيب]', W-20, fy+2, 'bold 10px Cairo,sans-serif', '#0a1628', 'right');
-      text('📍 [العنوان الكامل]، الجزائر', W-20, fy+17, '9.5px Cairo,sans-serif', '#718096', 'right');
-      text('📞 +213 XXX XXX XXX  |  🌐 www.clinic.dz', W-20, fy+32, '9px Cairo,sans-serif', '#718096', 'right');
-
-      // OFFICIAL watermark (rotated, subtle)
-      ctx.save();
-      ctx.translate(45, H-30);
-      ctx.rotate(-Math.PI/2);
-      text('OFFICIAL', 0, 0, 'bold 9px Cairo,sans-serif', 'rgba(201,168,76,0.2)', 'center');
-      ctx.restore();
-
-      // ── 9. Bottom gold accent line ──
-      const botGrad = ctx.createLinearGradient(0,H-4,W,H-4);
-      botGrad.addColorStop(0,'#c9a84c'); botGrad.addColorStop(0.5,'#e8c87a'); botGrad.addColorStop(1,'#c9a84c');
-      ctx.fillStyle = botGrad;
-      // rounded bottom
-      ctx.beginPath();
-      ctx.moveTo(0,H-6); ctx.lineTo(W,H-6); ctx.lineTo(W,H-20);
-      ctx.quadraticCurveTo(W,H,W-20,H); ctx.lineTo(20,H);
-      ctx.quadraticCurveTo(0,H,0,H-20); ctx.closePath();
-      ctx.fillStyle=botGrad; ctx.fill();
-
-      // ── Export PNG ──
-      canvas.toBlob(blob => {
-        const url = URL.createObjectURL(blob);
-        const a   = document.createElement('a');
-        a.href     = url;
-        a.download = `موعد-${apptId}.png`;
-        a.click();
-        URL.revokeObjectURL(url);
-        btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> تحميل PNG';
-        btn.disabled = false;
-      }, 'image/png');
-    };
-
-    /* Print via @media print on main page */
-    const triggerPrint = () => {
-      document.getElementById('printArea').style.display = 'block';
-      window.print();
-    };
-
-    /* ============================================
-       BOOKING FORM SUBMIT
-    ============================================ */
-    const bookingForm = document.getElementById('bookingForm');
-
-    bookingForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      let valid = true;
-
-      const fname   = document.getElementById('fname').value.trim();
-      const phone   = document.getElementById('phone').value.trim();
-      const service = document.getElementById('service').value;
-      const date    = document.getElementById('appt-date').value;
-      const time    = document.getElementById('appt-time').value;
-      const notes   = document.getElementById('notes').value.trim();
-
-      if (fname.length < 3)       { setError('fname', 'fname-error', true);     valid = false; } else setError('fname', 'fname-error', false);
-      if (!validatePhone(phone))  { setError('phone', 'phone-error', true);     valid = false; } else setError('phone', 'phone-error', false);
-      if (!service)               { setError('service', 'service-error', true); valid = false; } else setError('service', 'service-error', false);
-      if (!date)                  { setError('appt-date', 'date-error', true);  valid = false; } else setError('appt-date', 'date-error', false);
-      if (!time)                  { setError('appt-time', 'time-error', true);  valid = false; } else setError('appt-time', 'time-error', false);
-      if (!valid) return;
-
-      // Generate unique appointment ID
-      const apptId = genApptId();
-
-      // Populate the digital receipt card
-      populateReceipt({ fname, phone, service, date, time, apptId });
-
-      // Format date for WhatsApp
-      const fmtDate = new Date(date).toLocaleDateString('ar-DZ', {
-        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
-      });
-
-      // Build WhatsApp message
-      const msg = [
-        `🦷 *طلب حجز موعد — ${CONFIG.clinicName}*`,
-        `━━━━━━━━━━━━━━━━━`,
-        `🔖 *رقم الموعد:* \`${apptId}\``,
-        `👤 *الاسم:* ${fname}`,
-        `📞 *الهاتف:* ${phone}`,
-        `🩺 *الخدمة:* ${service}`,
-        `📅 *التاريخ:* ${fmtDate}`,
-        `🕐 *الوقت:* ${time}`,
-        notes ? `📝 *ملاحظات:* ${notes}` : '',
-        `━━━━━━━━━━━━━━━━━`,
-        `✅ _يرجى تأكيد الموعد في أقرب وقت ممكن_`,
-      ].filter(Boolean).join('\n');
-
-      const waURL = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(msg)}`;
-
-      // Show receipt modal
-      document.getElementById('successModal').classList.add('active');
-
-      // Fire WhatsApp
-      setTimeout(() => window.open(waURL, '_blank', 'noopener,noreferrer'), 700);
-
-      // Store current apptId for download buttons
-      document.getElementById('btnDownloadPDF')._apptId = apptId;
-
-      bookingForm.reset();
-    });
-
-    /* ============================================
-       MODAL — DOWNLOAD & PRINT BUTTONS
-    ============================================ */
-    document.getElementById('btnDownloadPDF').addEventListener('click', function () {
-      downloadReceiptAsImage(this._apptId || 'DZ-XXXX');
-    });
-
-    document.getElementById('btnPrint').addEventListener('click', () => {
-      triggerPrint();
-    });
-
-    /* ============================================
-       MODAL — CLOSE
-    ============================================ */
-    const modal      = document.getElementById('successModal');
-    const modalClose = document.getElementById('modalClose');
-
-    const closeModal = () => modal.classList.remove('active');
-    modalClose.addEventListener('click', closeModal);
-    modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-
-    /* ============================================
-       SERVICE WORKER
-    ============================================ */
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/service-worker.js').catch(() => {});
-      });
-    }
-  </script>
-
+/* Modal */
+document.getElementById('btnDL').addEventListener('click', function(){ downloadPNG(this._id||'DZ-XXXX'); });
+document.getElementById('btnPrint').addEventListener('click', () => window.print());
+const closeModal = () => document.getElementById('modal').classList.remove('open');
+document.getElementById('btnClose').addEventListener('click', closeModal);
+document.getElementById('modal').addEventListener('click', e => { if (e.target.id==='modal') closeModal(); });
+document.addEventListener('keydown', e => { if (e.key==='Escape') closeModal(); });
+</script>
 </body>
 </html>
